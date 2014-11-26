@@ -1,3 +1,5 @@
-Projekt ImageQuizz App 2014
+ImageQuizz App 2014
 ===========================
 
+FeatureList
+===========
