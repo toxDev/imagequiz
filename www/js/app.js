@@ -7,7 +7,7 @@ angular.module('imageQuizz', ['ionic'])
 
     .config(function ($stateProvider, $urlRouterProvider) {
         $stateProvider
-            .state('moduls', {
+            .state('modules', {
                 url: '/modules',
                 templateUrl: 'templates/QuestionListView.html',
                 controller: ''
@@ -16,6 +16,11 @@ angular.module('imageQuizz', ['ionic'])
                 url: '/questionlist',
                 templateUrl: 'templates/QuestionListView.html',
                 controller: 'QuestionListController as qlCtrl'
+            })
+            .state('question_view', {
+                url: '/questionview',
+                templateUrl: 'templates/QuestionView.html',
+                controller: 'QuestionController as qCtrl'
             });
         $urlRouterProvider.otherwise('/modules');
 
