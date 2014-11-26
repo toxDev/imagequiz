@@ -10,7 +10,7 @@ angular.module('imageQuizz', ['ionic'])
             .state('moduls', {
                 url: '/modules',
                 templateUrl: 'templates/QuestionListView.html',
-                controller: 'ModulListController as mlCtrl'
+                controller: ''
             })
             .state('question_list', {
                 url: '/questionlist',
