@@ -1,15 +1,13 @@
 ImageQuizz App 2014
-===========================
+===================
 
-Views
-======
+####Views
 
 * StatistikView
 * MainView
 * QuizzView
 
-FeatureList
-======
+####FeatureList
 
 * [ ] Quizz Modus
 * [ ] Statistik über alle gespielten Runden
