@@ -3,7 +3,23 @@
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
-angular.module('starter', ['ionic'])
+angular.module('imageQuizz', ['ionic'])
+
+    .config(function ($stateProvider, $urlRouterProvider) {
+        $stateProvider
+            .state('moduls', {
+                url: '/modules',
+                templateUrl: 'templates/QuestionListView.html',
+                controller: 'ModulListController as mlCtrl'
+            })
+            .state('question_list', {
+                url: '/questionlist',
+                templateUrl: 'templates/QuestionListView.html',
+                controller: 'QuestionListController as qlCtrl'
+            });
+        $urlRouterProvider.otherwise('/modules');
+
+    })
 
     .run(function ($ionicPlatform) {
         $ionicPlatform.ready(function () {
