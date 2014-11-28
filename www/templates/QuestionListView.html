@@ -1,26 +1,90 @@
 <ion-view title="imageQuizz">
+    <ion-nav-buttons side="right">
+        <button class="button button-icon icon ion-ios7-search"
+                ng-click="mlCtrl.toogleSearch()">
+        </button>
+    </ion-nav-buttons>
     <ion-content class="has-header">
         <div class="list">
-        <div class="item item-divider">
-            D
+
+            <div class="item item-divider">
+                Gefährliche Tiere
+            </div>
+
+            <a href="#/questionview" style="text-decoration: none;">
+            <div class="card">
+                <div class="item item-text-wrap">
+                    <div class="row">
+                        <div class="col col-50">
+                            <div class="item item-image">
+                                <img src="http://placehold.it/640x480">
+                            </div>
+                        </div>
+                        <div class="col">
+                            <ul class="list">
+                                <li class="item" style="padding-top: 5px;padding-bottom: 5px;">
+                                    <i class="icon ion-ios7-arrow-forward"> Option A </i>
+                                </li>
+                                <li class="item" style="padding-top: 5px;padding-bottom: 5px;">
+                                    <i class="icon ion-ios7-arrow-forward"> Option B </i>
+                                </li>
+                                <li class="item" style="padding-top: 5px;padding-bottom: 5px;">
+                                    <i class="icon ion-ios7-arrow-forward"> Option C </i>
+                                </li>
+                                <li class="item" style="padding-top: 5px;padding-bottom: 5px;">
+                                    <i class="icon ion-ios7-arrow-forward"> Option D </i>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            </a>
+        </div>
+        <a href="#/questionview" style="text-decoration: none">
+        <div class="card">
+            <div class="item item-text-wrap">
+                <div class="row">
+                    <div class="col col-50">
+                        <div class="item item-image">
+                            <img src="http://placehold.it/640x480">
+                        </div>
+                    </div>
+                    <div class="col">
+                        <ul class="list">
+                            <li class="item" style="padding-top: 5px;padding-bottom: 5px;">
+                                <i class="icon ion-ios7-arrow-forward"> Option A </i>
+                            </li>
+                            <li class="item" style="padding-top: 5px;padding-bottom: 5px;">
+                                <i class="icon ion-ios7-arrow-forward"> Option B </i>
+                            </li>
+                            <li class="item" style="padding-top: 5px;padding-bottom: 5px;">
+                                <i class="icon ion-ios7-arrow-forward"> Option C </i>
+                            </li>
+                            <li class="item" style="padding-top: 5px;padding-bottom: 5px;">
+                                <i class="icon ion-ios7-arrow-forward"> Option D </i>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        </a>
         </div>
 
-        <a class="item" href="#">
-            Deutsche Sehenswürdigkeiten
-        </a>
-
-        <div class="item item-divider">
-            G
-        </div>
-
-        <a class="item" href="#">
-            Gefährliche Raubtiere
-        </a>
-
-
-    </div>
     </ion-content>
+    <div class="bar bar-footer bar-dark">
+        <!--<a href="#/questionview" style="text-decoration: none;">-->
+        <button class="button icon-pulling ion-play button-outline button-block button-assertive" style="margin: 0px">
+            Start Quizz
+        </button>
+        <!--</a>-->
+    </div>
+
 </ion-view>
+
 
 <!--<ion-view title="Leistungen">
     <ion-nav-buttons side="right">
@@ -55,16 +119,16 @@
             </ion-item>
         </ion-list>
 
-        &lt;!&ndash;Wenn kein Eintrag in der Liste existiert wird folgender Inhalt angezeigt.&ndash;&gt;
-        <div class="card" ng-hide="rlCtrl.records.length">
-            <div class="item item-text-wrap">
-                Keine Leistung vorhanden.
-                <button class="button button-block ion-plus button-light" ng-click="rlCtrl.addRecord()">
-                    Leistung anlegen
-                </button>
-            </div>
-        </div>
-    </ion-content>
+        <!--Wenn kein Eintrag in der Liste existiert wird folgender Inhalt angezeigt.-->
+<!--<div class="card" ng-hide="rlCtrl.records.length">
+    <div class="item item-text-wrap">
+        Keine Leistung vorhanden.
+        <button class="button button-block ion-plus button-light" ng-click="rlCtrl.addRecord()">
+            Leistung anlegen
+        </button>
+    </div>
+</div>
+</ion-content>
 </ion-view>-->
 
 
