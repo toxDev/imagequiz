@@ -1,4 +1,9 @@
 <ion-view title="imageQuizz">
+    <ion-nav-buttons side="right">
+        <button class="button button-icon icon ion-ios7-search"
+                ng-click="mlCtrl.toogleSearch()">
+        </button>
+    </ion-nav-buttons>
     <ion-content class="has-header">
         <div class="list">
 
@@ -6,7 +11,7 @@
                 Gefährliche Tiere
             </div>
 
-            <!--<a class="item">-->
+            <a href="#/questionview" style="text-decoration: none;">
             <div class="card">
                 <div class="item item-text-wrap">
                     <div class="row">
@@ -35,9 +40,9 @@
 
                 </div>
             </div>
-            <!--</a>-->
+            </a>
         </div>
-        <!--<a class="item">-->
+        <a href="#/questionview" style="text-decoration: none">
         <div class="card">
             <div class="item item-text-wrap">
                 <div class="row">
@@ -66,14 +71,16 @@
 
             </div>
         </div>
-        <!--</a>-->
+        </a>
         </div>
 
     </ion-content>
     <div class="bar bar-footer bar-dark">
+        <!--<a href="#/questionview" style="text-decoration: none;">-->
         <button class="button icon-pulling ion-play button-outline button-block button-assertive" style="margin: 0px">
             Start Quizz
         </button>
+        <!--</a>-->
     </div>
 
 </ion-view>
