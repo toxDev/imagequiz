@@ -1,1 +1,17 @@
 /* Empty. Add your own CSS if you like */
+.alpha_sidebar {
+    position: absolute;
+    top: 50px;
+    right: 10px;
+    z-index: 100000
+}
+
+.alpha_sidebar li {
+    color: #49afcd;
+    margin-bottom: 6px;
+    cursor: pointer;
+}
+
+.alpha_list {
+    padding-right: 22px;
+}
