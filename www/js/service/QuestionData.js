@@ -7,7 +7,7 @@ angular.module('imageQuizz').factory('QuestionData',
                 if (!questions) {
                     //init storage
                     var questions = [];
-                    questions.push(new Question(1, "Gefährliche Raubtiere", "http://www.placehold.it/640x480", "ccc", "Eine gefährliche Raubkatze",
+                    questions.push(new Question(1, "Gefährliche Raubtiere", "/img/gefaehrliche_raubtiere/loewe.jpg", "@FlickrLickr", "Eine gefährliche Raubkatze",
                         [{
                             "option": "Löwe",
                             "answer": true
@@ -25,7 +25,7 @@ angular.module('imageQuizz').factory('QuestionData',
                                 "answer": false
                             }]
                     ));
-                    questions.push(new Question(2, "Gefährliche Raubtiere", "http://www.placehold.it/640x480", "ccc", "Ein gefährliches Reptil",
+                    questions.push(new Question(2, "Gefährliche Raubtiere", "/img/gefaehrliche_raubtiere/krokodil.jpg", "@U.S. Fish and Wildlife Service", "Ein gefährliches Reptil",
                         [{
                             "option": "Schildkröte",
                             "answer": false
