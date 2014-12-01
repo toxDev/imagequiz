@@ -8,6 +8,7 @@ angular.module('imageQuizz').factory('Question',
             this.imageOwner = imageOwner;
             this.infoText = infoText;
             this.options = options
+                // [{"gepard":true}, {"loewe":false}];
                 /*this.options = {
                  "gepard" : true,
                  "loewe": false,

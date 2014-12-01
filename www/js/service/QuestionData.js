@@ -7,24 +7,60 @@ angular.module('imageQuizz').factory('QuestionData',
                 if (!questions) {
                     //init storage
                     var questions = [];
-                    questions.push(new Question(1, "Gefährliche Raubtiere", "http://www.placehold.it/640x480", "ccc", "Eine gefährliche Raubkatze", {
-                        "Löwe": true,
-                        "Gepard": false,
-                        "Huhn": false,
-                        "Zige": false
-                    }));
-                    questions.push(new Question(2, "Gefährliche Raubtiere", "http://www.placehold.it/640x480", "ccc", "Eine gefährliche Seekuh", {
-                        "Robbe": true,
-                        "Robben": false,
-                        "Schweinsteiger": false,
-                        "Obama": false
-                    }));
-                    questions.push(new Question(3, "Deutsche Sehenswürdigkeiten", "http://www.placehold.it/640x480", "ccc", "1100 Tonnen Fracht am Tag", {
-                        "Brandenburger Tor": true,
-                        "Kölnder Dom": false,
-                        "Deutsches Museum": false,
-                        "Hamburger Hafen": false
-                    }));
+                    questions.push(new Question(1, "Gefährliche Raubtiere", "http://www.placehold.it/640x480", "ccc", "Eine gefährliche Raubkatze",
+                        [{
+                            "option": "Löwe",
+                            "answer": true
+                        },
+                            {
+                                "option": "Gepard",
+                                "answer": false
+                            },
+                            {
+                                "option": "Huhn",
+                                "answer": false
+                            },
+                            {
+                                "option": "Ziege",
+                                "answer": false
+                            }]
+                    ));
+                    questions.push(new Question(2, "Gefährliche Raubtiere", "http://www.placehold.it/640x480", "ccc", "Ein gefährliches Reptil",
+                        [{
+                            "option": "Schildkröte",
+                            "answer": false
+                        },
+                            {
+                                "option": "Krokodil",
+                                "answer": true
+                            },
+                            {
+                                "option": "Python",
+                                "answer": false
+                            },
+                            {
+                                "option": "Eidechse",
+                                "answer": false
+                            }]
+                    ));
+                    questions.push(new Question(3, "Deutsche Sehenswürdigkeiten", "http://www.placehold.it/640x480", "ccc", "1100 Tonnen Fracht am Tag",
+                        [{
+                            "option": "Brandenburger Tor",
+                            "answer": false
+                        },
+                            {
+                                "option": "Kölner Dom",
+                                "answer": false
+                            },
+                            {
+                                "option": "Deutsches Museum",
+                                "answer": false
+                            },
+                            {
+                                "option": "Hamburger Hafen",
+                                "answer": true
+                            }]
+                    ));
                     //Damit daten im lokal Storage abgelegt werden, muss später entfernt werden
                     localStorage.setItem('questions', JSON.stringify(questions));
                 } else {

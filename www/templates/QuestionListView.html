@@ -8,70 +8,101 @@
         <div class="list">
 
             <div class="item item-divider">
-                Gefährliche Tiere
+                {{questionList[0].category}}
             </div>
 
-            <a href="#/questionview" style="text-decoration: none;">
-            <div class="card">
-                <div class="item item-text-wrap">
-                    <div class="row">
-                        <div class="col col-50">
-                            <div class="item item-image">
-                                <img src="http://placehold.it/640x480">
+            <a href="#/questionview" style="text-decoration: none;" ng-repeat="question in questionList">
+                <div class="card">
+                    <div class="item item-text-wrap">
+                        <div class="row">
+                            <div class="col col-50">
+                                <div class="item item-image">
+                                    <img ng-src="{{question.imageLink}}">
+                                </div>
+                            </div>
+                            <div class="col">
+                                <ul class="list">
+                                    <li class="item" style="padding-top: 5px;padding-bottom: 5px;">
+                                        <i class="icon ion-ios7-arrow-forward"> {{question.options[0]['option']}} </i>
+                                    </li>
+                                    <li class="item" style="padding-top: 5px;padding-bottom: 5px;">
+                                        <i class="icon ion-ios7-arrow-forward"> {{question.options[1]['option']}} </i>
+                                    </li>
+                                    <li class="item" style="padding-top: 5px;padding-bottom: 5px;">
+                                        <i class="icon ion-ios7-arrow-forward"> {{question.options[2]['option']}} </i>
+                                    </li>
+                                    <li class="item" style="padding-top: 5px;padding-bottom: 5px;">
+                                        <i class="icon ion-ios7-arrow-forward"> {{question.options[3]['option']}} </i>
+                                    </li>
+                                </ul>
                             </div>
                         </div>
-                        <div class="col">
-                            <ul class="list">
-                                <li class="item" style="padding-top: 5px;padding-bottom: 5px;">
-                                    <i class="icon ion-ios7-arrow-forward"> Option A </i>
-                                </li>
-                                <li class="item" style="padding-top: 5px;padding-bottom: 5px;">
-                                    <i class="icon ion-ios7-arrow-forward"> Option B </i>
-                                </li>
-                                <li class="item" style="padding-top: 5px;padding-bottom: 5px;">
-                                    <i class="icon ion-ios7-arrow-forward"> Option C </i>
-                                </li>
-                                <li class="item" style="padding-top: 5px;padding-bottom: 5px;">
-                                    <i class="icon ion-ios7-arrow-forward"> Option D </i>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
 
+                    </div>
                 </div>
-            </div>
             </a>
-        </div>
-        <a href="#/questionview" style="text-decoration: none">
-        <div class="card">
-            <div class="item item-text-wrap">
-                <div class="row">
-                    <div class="col col-50">
-                        <div class="item item-image">
-                            <img src="http://placehold.it/640x480">
-                        </div>
-                    </div>
-                    <div class="col">
-                        <ul class="list">
-                            <li class="item" style="padding-top: 5px;padding-bottom: 5px;">
-                                <i class="icon ion-ios7-arrow-forward"> Option A </i>
-                            </li>
-                            <li class="item" style="padding-top: 5px;padding-bottom: 5px;">
-                                <i class="icon ion-ios7-arrow-forward"> Option B </i>
-                            </li>
-                            <li class="item" style="padding-top: 5px;padding-bottom: 5px;">
-                                <i class="icon ion-ios7-arrow-forward"> Option C </i>
-                            </li>
-                            <li class="item" style="padding-top: 5px;padding-bottom: 5px;">
-                                <i class="icon ion-ios7-arrow-forward"> Option D </i>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
 
-            </div>
-        </div>
-        </a>
+            <!--  <a href="#/questionview" style="text-decoration: none;">
+              <div class="card">
+                  <div class="item item-text-wrap">
+                      <div class="row">
+                          <div class="col col-50">
+                              <div class="item item-image">
+                                  <img src="http://placehold.it/640x480">
+                              </div>
+                          </div>
+                          <div class="col">
+                              <ul class="list">
+                                  <li class="item" style="padding-top: 5px;padding-bottom: 5px;">
+                                      <i class="icon ion-ios7-arrow-forward"> Option A </i>
+                                  </li>
+                                  <li class="item" style="padding-top: 5px;padding-bottom: 5px;">
+                                      <i class="icon ion-ios7-arrow-forward"> Option B </i>
+                                  </li>
+                                  <li class="item" style="padding-top: 5px;padding-bottom: 5px;">
+                                      <i class="icon ion-ios7-arrow-forward"> Option C </i>
+                                  </li>
+                                  <li class="item" style="padding-top: 5px;padding-bottom: 5px;">
+                                      <i class="icon ion-ios7-arrow-forward"> Option D </i>
+                                  </li>
+                              </ul>
+                          </div>
+                      </div>
+
+                  </div>
+              </div>
+              </a>
+          </div>
+          <a href="#/questionview" style="text-decoration: none">
+          <div class="card">
+              <div class="item item-text-wrap">
+                  <div class="row">
+                      <div class="col col-50">
+                          <div class="item item-image">
+                              <img src="http://placehold.it/640x480">
+                          </div>
+                      </div>
+                      <div class="col">
+                          <ul class="list">
+                              <li class="item" style="padding-top: 5px;padding-bottom: 5px;">
+                                  <i class="icon ion-ios7-arrow-forward"> Option A </i>
+                              </li>
+                              <li class="item" style="padding-top: 5px;padding-bottom: 5px;">
+                                  <i class="icon ion-ios7-arrow-forward"> Option B </i>
+                              </li>
+                              <li class="item" style="padding-top: 5px;padding-bottom: 5px;">
+                                  <i class="icon ion-ios7-arrow-forward"> Option C </i>
+                              </li>
+                              <li class="item" style="padding-top: 5px;padding-bottom: 5px;">
+                                  <i class="icon ion-ios7-arrow-forward"> Option D </i>
+                              </li>
+                          </ul>
+                      </div>
+                  </div>
+
+              </div>
+          </div>
+          </a>-->
         </div>
 
     </ion-content>
