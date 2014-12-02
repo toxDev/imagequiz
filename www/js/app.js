@@ -13,7 +13,7 @@ angular.module('imageQuizz', ['ionic'])
                 controller: 'QuestionListController as qlCtrl'
             })
             .state('question_view', {
-                url: '/questionview',
+                url: '/questionview/:id',
                 templateUrl: 'templates/QuestionView.html',
                 controller: 'QuestionController as qCtrl'
             });
