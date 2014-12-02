@@ -4,7 +4,8 @@ angular.module('imageQuizz').controller('QuestionListController',
         $scope.questionList = QuestionData.findAllQuestionsByCategory($stateParams.id);
 
         $scope.startQuizzMode = function () {
-            $state.go('question_view_quizz', {id: $scope.questionList[0].category});
+            //$state.go('question_view_quizz', {id: $scope.questionList[0].category});
+            $state.go('question_view_quizz', {id: $stateParams.id});
         }
 
     });
