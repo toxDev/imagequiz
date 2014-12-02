@@ -11,7 +11,8 @@
                 {{questionList[0].category}}
             </div>
 
-            <a href="#/questionview" style="text-decoration: none;" ng-repeat="question in questionList">
+            <a href="#/questionview/{{question.id}}" style="text-decoration: none;"
+               ng-repeat="question in questionList">
                 <div class="card">
                     <div class="item item-text-wrap">
                         <div class="row">
