@@ -97,7 +97,25 @@ angular.module('imageQuizz').factory('QuestionData',
                                 "answer": false
                             }]
                     ));
-                    questions.push(new Question(9, "Deutsche Sehenswürdigkeiten", "http://www.placehold.it/640x480", "ccc", "1100 Tonnen Fracht am Tag",
+                    questions.push(new Question(6, "Autos", "/img/autos/ford_gt.jpg", "@Amit Belani - Flickr", "Gebaut von 2004 - 2006",
+                        [{
+                            "option": "Cobra",
+                            "answer": false
+                        },
+                            {
+                                "option": "Porsche 911",
+                                "answer": false
+                            },
+                            {
+                                "option": "Ford GT",
+                                "answer": true
+                            },
+                            {
+                                "option": "GT2",
+                                "answer": false
+                            }]
+                    ));
+                    questions.push(new Question(9, "Deutsche Sehenswürdigkeiten", "/img/deutsche_sehenswuerdigkeiten/hh_hafen.jpg", "@Sir James", "Im Norden Deutschlands.",
                         [{
                             "option": "Brandenburger Tor",
                             "answer": false
@@ -113,6 +131,24 @@ angular.module('imageQuizz').factory('QuestionData',
                             {
                                 "option": "Hamburger Hafen",
                                 "answer": true
+                            }]
+                    ));
+                    questions.push(new Question(9, "Deutsche Sehenswürdigkeiten", "/img/deutsche_sehenswuerdigkeiten/frauenkirche_muenchen.jpg", "@Photo by DAVID ILIFF. License: CC-BY-SA 3.0", "98,45 Meter hoch",
+                        [{
+                            "option": "Münchner Frauenkirche",
+                            "answer": true
+                        },
+                            {
+                                "option": "Dresdner Dom",
+                                "answer": false
+                            },
+                            {
+                                "option": "Frankfurter Dom",
+                                "answer": false
+                            },
+                            {
+                                "option": "Limburger Dom",
+                                "answer": false
                             }]
                     ));
                     //Damit daten im lokal Storage abgelegt werden, muss später entfernt werden
