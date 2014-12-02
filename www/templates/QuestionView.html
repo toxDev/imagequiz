@@ -1,11 +1,11 @@
 <ion-view title="imageQuizz">
     <ion-content class="has-header">
-
+        <ion-scroll>
         <img src={{question.imageLink}}
              style=" margin-left:auto; margin-right:auto; max-width: 100%">
-
+        </ion-scroll>
         //TODO: div fest am unteren Rand.
-        <div style=" position:relative;margin: 0px; padding-left: 2%; padding-right: 2%; background-color: #4d4d4d">
+        <div style="padding-left: 2%; padding-right: 2%; background-color: #4d4d4d">
             <ion-list>
                 <button class="button button-block button-outline button-light" ng-click=""
                         ng-repeat="option in question.options">
