@@ -167,6 +167,7 @@ angular.module('imageQuizz').factory('QuestionData',
                         modules.push(questions[i].category)
                     }
                 }
+                modules.sort();
                 return modules;
             },
 
