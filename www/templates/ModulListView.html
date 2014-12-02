@@ -15,74 +15,15 @@
                     ng-click="mlCtrl.toggleSearch()">Cancel
             </button>
         </div>
-        <div class="list">
-            <!--ng-repeat="module in filteredModules = (mlCtrl.modules | filter:{name: mlCtrl.searchQuery})"-->
-            <div class="item item-divider">
-                A
-            </div>
-
-            <a class="item" href="#/questionlist">
-                Automobil
-            </a>
-
-            <div class="item item-divider">
-                D
-            </div>
-
-            <a class="item" href="#/questionlist">
-                Deutsche Sehenswürdigkeiten
-            </a>
-
-            <div class="item item-divider">
-                G
-            </div>
-
-            <a class="item" href="#/questionlist">
-                Gefährliche Raubtiere
-            </a>
-            <a class="item" href="#/questionlist">
-                Geografie & Reisen
-            </a>
-
-            <div class="item item-divider">
-                I
-            </div>
-
-            <a class="item" href="#/questionlist">
-                Informatik
-            </a>
-
-            <div class="item item-divider">
-                M
-            </div>
-            <a class="item" href="#/questionlist">
-                Magische Orte
-            </a>
-
-            <div class="item item-divider">
-                S
-            </div>
-
-            <a class="item" href="#/questionlist">
-                Sport
-            </a>
-        </div>
-    </ion-content>
-    <!--<ion-content scroll="true" class="has-header" padding="true">
-        <div data-ng-repeat="(letter, categorie) in sorted_categories" class="alpha_list">
-            <ion-item class="item item-divider" id="index_{{letter}}">
-                {{letter}}
+        <ion-list can-swipe=true>
+            <ion-item class="item-text-wrap animation"
+                      ng-repeat="module in modules"
+                      href="#/questionlist/{{module}}">
+                {{module}}
             </ion-item>
-            <ion-item ng-repeat="categorie in categories">
-                {{categorie.name}}
-            </ion-item>
-        </div>
+        </ion-list>
     </ion-content>
-    <ul class="alpha_sidebar">
-        <li ng-click="gotoList('index_{{letter}}')"ng-repeat="letter in alphabet">
-            {{letter}}
-        </li>
-    </ul>-->
+
     <div class="tabs-striped tabs-background-dark tabs-color-assertive">
         <div class="tabs">
             <a class="tab-item active" href="#">
@@ -98,5 +39,7 @@
                 Settings
             </a>
         </div>
-    </div>&ndash;&gt;
+    </div>
 </ion-view>
+
+<!--ng-repeat="module in filteredModules = (mlCtrl.modules | filter:{category: mlCtrl.searchQuery} | orderBy:'category')"-->
