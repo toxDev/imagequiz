@@ -43,7 +43,61 @@ angular.module('imageQuizz').factory('QuestionData',
                                 "answer": false
                             }]
                     ));
-                    questions.push(new Question(3, "Deutsche Sehenswürdigkeiten", "http://www.placehold.it/640x480", "ccc", "1100 Tonnen Fracht am Tag",
+                    questions.push(new Question(3, "Gefährliche Raubtiere", "/img/gefaehrliche_raubtiere/python.jpg", "@Mike Wesemann", "Eine Programmiersprache heißt ebenso.",
+                        [{
+                            "option": "Klapperschlange",
+                            "answer": false
+                        },
+                            {
+                                "option": "Blindschleiche",
+                                "answer": false
+                            },
+                            {
+                                "option": "Cobra",
+                                "answer": false
+                            },
+                            {
+                                "option": "Python",
+                                "answer": true
+                            }]
+                    ));
+                    questions.push(new Question(4, "Gefährliche Raubtiere", "/img/gefaehrliche_raubtiere/braunbaer.jpg", "@Bobisbob", "Wissenschaftlicher Name Ursus arctos",
+                        [{
+                            "option": "Braunbär",
+                            "answer": true
+                        },
+                            {
+                                "option": "Tedybär",
+                                "answer": false
+                            },
+                            {
+                                "option": "Schwarzbär",
+                                "answer": false
+                            },
+                            {
+                                "option": "Koalabär",
+                                "answer": false
+                            }]
+                    ));
+                    questions.push(new Question(5, "Autos", "/img/autos/camaro.jpg", "@Rperiny", "Ein Auto von Chevrolet",
+                        [{
+                            "option": "Camaro",
+                            "answer": true
+                        },
+                            {
+                                "option": "Mustang",
+                                "answer": false
+                            },
+                            {
+                                "option": "Challenger",
+                                "answer": false
+                            },
+                            {
+                                "option": "GTO",
+                                "answer": false
+                            }]
+                    ));
+                    questions.push(new Question(9, "Deutsche Sehenswürdigkeiten", "http://www.placehold.it/640x480", "ccc", "1100 Tonnen Fracht am Tag",
                         [{
                             "option": "Brandenburger Tor",
                             "answer": false
@@ -78,10 +132,21 @@ angular.module('imageQuizz').factory('QuestionData',
                     }
                 }
                 return modules;
+            },
+
+            findAllQuestionsByCategory: function (category) {
+                var questions = this.findAllQuestions();
+                var temp_questions = [];
+                for (var i = 0; i < questions.length; i++) {
+                    if (questions[i].category == category) {
+                        temp_questions.push(questions[i])
+                    }
+                }
+                return temp_questions;
             }
 
             //To-Do
-            //findById(id) -
+            //findById(id)
 
         };
         return service;
