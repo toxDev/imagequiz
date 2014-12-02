@@ -1,17 +1,16 @@
 <ion-view title="imageQuizz">
     <ion-content class="has-header">
-        <div style="background-color: #4d4d4d">
-            <div>
-                <img src="http://placehold.it/400x320"
-                     style="display: block; margin-left: auto;margin-right:auto;">
-            </div>
-            <div style="padding-left: 2%;padding-right: 2%;padding-bottom: 100%">
-                <ion-list>
-                    <button class="button button-block button-outline button-light" ng-repeat="answer in qCtrl.answers"
-                            ng-click="">
-                        {{answer.name}}</button>
-                </ion-list>
-            </div>
+
+        <img src={{question.imageLink}}
+             style=" margin-left:auto; margin-right:auto; max-width: 100%">
+
+        <div style=" position:relative;margin: 0px; padding-left: 2%; padding-right: 2%; background-color: #4d4d4d">
+            <ion-list>
+                <button class="button button-block button-outline button-light" ng-click=""
+                        ng-repeat="option in question.options">
+                    {{option['option']}}
+                </button>
+            </ion-list>
         </div>
     </ion-content>
 </ion-view>

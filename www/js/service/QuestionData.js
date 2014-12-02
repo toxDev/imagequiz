@@ -185,7 +185,7 @@ angular.module('imageQuizz').factory('QuestionData',
                 var questions = this.findAllQuestions();
                 var temp_question = [];
                 for (var i = 0; i < questions.length; i++) {
-                    if (questions[i].id === id) {
+                    if (questions[i].id == id) {
                         temp_question = questions[i];
                         break;
                     }
