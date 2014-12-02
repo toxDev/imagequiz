@@ -2,8 +2,9 @@
 angular.module('imageQuizz').controller('ModuleListController',
     function ($scope, QuestionData) {
 
-        $scope.modules = QuestionData.findAllCategorys();
-        // console.log($scope.modules);
+        $scope.modules = QuestionData.findAllQuestions();
+        //$scope.modules.sort;
+        console.log($scope.modules);
         var thisSt = this;
         //Für Zustandswechsel anmelden
         $scope.$on('$stateChangeStart',

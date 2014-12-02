@@ -17,8 +17,8 @@
         </div>
         <div class="list">
             <div class="item my-item"
-                 collection-repeat="module in modules">
-                {{module}}
+                 ng-repeat="module in modules">
+                {{module.category}}
             </div>
         </div>
     </ion-content>
