@@ -143,10 +143,19 @@ angular.module('imageQuizz').factory('QuestionData',
                     }
                 }
                 return temp_questions;
-            }
+            },
 
-            //To-Do
-            //findById(id)
+            findQuestionById: function (id) {
+                var questions = this.findAllQuestions();
+                var temp_question = [];
+                for (var i = 0; i < questions.length; i++) {
+                    if (questions[i].id === id) {
+                        temp_question = questions[i];
+                        break;
+                    }
+                }
+                return temp_question;
+            }
 
         };
         return service;
