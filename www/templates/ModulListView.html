@@ -17,7 +17,8 @@
         </div>
         <div class="list">
             <div class="item my-item"
-                 ng-repeat="module in modules">
+                 ng-repeat="module in filteredModules = (modules | filter:{category: mlCtrl.searchQuery} | orderBy: 'category')"
+                 href="#/questionlist/{{module}}">
                 {{module.category}}
             </div>
         </div>

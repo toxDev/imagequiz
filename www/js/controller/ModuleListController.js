@@ -2,7 +2,7 @@
 angular.module('imageQuizz').controller('ModuleListController',
     function ($scope, QuestionData) {
 
-        $scope.modules = QuestionData.findAllQuestions();
+        $scope.modules = QuestionData.findAllCategorys();
         //$scope.modules.sort;
         console.log($scope.modules);
         var thisSt = this;
