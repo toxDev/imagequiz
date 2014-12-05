@@ -17,6 +17,16 @@ angular.module('imageQuizz', ['ionic'])
                 templateUrl: 'templates/QuestionView.html',
                 controller: 'QuestionController as qCtrl'
             })
+            .state('settings', {
+                url: '/settings',
+                templateUrl: 'templates/SettingView.html',
+                controller: 'SettingsController as sCtrl'
+            })
+            .state('statistic', {
+                url: '/statistic',
+                templateUrl: 'templates/StatView.html',
+                controller: 'StatisticController as statCtrl'
+            })
             .state('question_view_quizz', {
                 url: '/questionview/quizz/:id',
                 templateUrl: 'templates/QuestionView.html',
