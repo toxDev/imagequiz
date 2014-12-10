@@ -2,10 +2,10 @@
 angular.module('imageQuizz').controller('ModuleListController',
     function ($scope, QuestionData) {
 
-        $scope.modules = QuestionData.findAllCategorys();
-        //$scope.modules.sort;
-        console.log($scope.modules);
+        var letters = $scope.letters = [];
+        var currentCharCode = $scope.currentCharCode = 'A'.charCodeAt(0) - 1;
         var thisSt = this;
+
         //Für Zustandswechsel anmelden
         $scope.$on('$stateChangeStart',
             function (event) {
@@ -26,4 +26,11 @@ angular.module('imageQuizz').controller('ModuleListController',
             }
             this.searchActive = !this.searchActive;
         }
+
+        $scope.modules = QuestionData.findAllCategorys();
+
+        $scope.getItemHeight = function (item, index) {
+            //Make evenly indexed items be 10px taller, for the sake of example
+            return (index % 2) === 0 ? 50 : 60;
+        };
     });

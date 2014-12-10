@@ -17,9 +17,13 @@
         </div>
         <div class="list">
             <div class="item my-item"
-                 ng-repeat="module in ['hallo', 'servus','welcome']"
-                 href="#/questionlist/{{module}}">
-                {{module}}
+                 collection-repeat="module in modules"
+                 collection-item-width="'100%'"
+                 collection-item-height="getItemHeight (module)"
+                 ng-href="#/questionlist/{{module}}"
+                 ng-style="{height: getItemHeight(module)}"
+                 ng-class="{'item-divider': module.isLetter}">
+                {{module.letter || (module)}}
             </div>
         </div>
     </ion-content>
