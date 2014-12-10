@@ -164,12 +164,12 @@ angular.module('imageQuizz').factory('QuestionData',
                 var modules = [];
                 for (var i = 0; i < questions.length; i++) {
                     if (modules.indexOf(questions[i].category) === -1) {
-                        modules.push(new Modul(i, questions[i].category))
+                        modules.push(questions[i].category)
                     }
                 }
-                //modules.sort();
+                modules.sort();
 
-                return this.array_unique(modules);
+                return modules
             },
 
             array_unique: function (modules) {

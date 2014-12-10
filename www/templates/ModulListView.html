@@ -17,9 +17,9 @@
         </div>
         <div class="list">
             <div class="item my-item"
-                 ng-repeat="module in filteredModules = (modules | filter:{category: mlCtrl.searchQuery} | orderBy: 'category')"
+                 ng-repeat="module in ['hallo', 'servus','welcome']"
                  href="#/questionlist/{{module}}">
-                {{module.category}}
+                {{module}}
             </div>
         </div>
     </ion-content>
