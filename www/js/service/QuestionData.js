@@ -7,7 +7,7 @@ angular.module('imageQuizz').factory('QuestionData',
                 if (!questions) {
                     //init storage
                     var questions = [];
-                    questions.push(new Question(1, "Gefährliche Raubtiere", "/img/gefaehrliche_raubtiere/loewe.jpg", "@FlickrLickr", "Eine gefährliche Raubkatze",
+                    questions.push(new Question(1, "Gefährliche Raubtiere", "img/gefaehrliche_raubtiere/loewe.jpg", "@FlickrLickr", "Eine gefährliche Raubkatze",
                         [{
                             "option": "Löwe",
                             "answer": true
@@ -25,7 +25,7 @@ angular.module('imageQuizz').factory('QuestionData',
                                 "answer": false
                             }]
                     ));
-                    questions.push(new Question(2, "Gefährliche Raubtiere", "/img/gefaehrliche_raubtiere/krokodil.jpg", "@U.S. Fish and Wildlife Service", "Ein gefährliches Reptil",
+                    questions.push(new Question(2, "Gefährliche Raubtiere", "img/gefaehrliche_raubtiere/krokodil.jpg", "@U.S. Fish and Wildlife Service", "Ein gefährliches Reptil",
                         [{
                             "option": "Schildkröte",
                             "answer": false
@@ -43,7 +43,7 @@ angular.module('imageQuizz').factory('QuestionData',
                                 "answer": false
                             }]
                     ));
-                    questions.push(new Question(3, "Gefährliche Raubtiere", "/img/gefaehrliche_raubtiere/python.jpg", "@Mike Wesemann", "Eine Programmiersprache heißt ebenso.",
+                    questions.push(new Question(3, "Gefährliche Raubtiere", "img/gefaehrliche_raubtiere/python.jpg", "@Mike Wesemann", "Eine Programmiersprache heißt ebenso.",
                         [{
                             "option": "Klapperschlange",
                             "answer": false
@@ -61,7 +61,7 @@ angular.module('imageQuizz').factory('QuestionData',
                                 "answer": true
                             }]
                     ));
-                    questions.push(new Question(4, "Gefährliche Raubtiere", "/img/gefaehrliche_raubtiere/braunbaer.jpg", "@Bobisbob", "Wissenschaftlicher Name Ursus arctos",
+                    questions.push(new Question(4, "Gefährliche Raubtiere", "img/gefaehrliche_raubtiere/braunbaer.jpg", "@Bobisbob", "Wissenschaftlicher Name Ursus arctos",
                         [{
                             "option": "Braunbär",
                             "answer": true
@@ -79,7 +79,7 @@ angular.module('imageQuizz').factory('QuestionData',
                                 "answer": false
                             }]
                     ));
-                    questions.push(new Question(5, "Autos", "/img/autos/camaro.jpg", "@Rperiny", "Ein Auto von Chevrolet",
+                    questions.push(new Question(5, "Autos", "img/autos/camaro.jpg", "@Rperiny", "Ein Auto von Chevrolet",
                         [{
                             "option": "Camaro",
                             "answer": true
@@ -97,7 +97,7 @@ angular.module('imageQuizz').factory('QuestionData',
                                 "answer": false
                             }]
                     ));
-                    questions.push(new Question(6, "Autos", "/img/autos/ford_gt.jpg", "@Amit Belani - Flickr", "Gebaut von 2004 - 2006",
+                    questions.push(new Question(6, "Autos", "img/autos/ford_gt.jpg", "@Amit Belani - Flickr", "Gebaut von 2004 - 2006",
                         [{
                             "option": "Cobra",
                             "answer": false
@@ -115,7 +115,7 @@ angular.module('imageQuizz').factory('QuestionData',
                                 "answer": false
                             }]
                     ));
-                    questions.push(new Question(9, "Deutsche Sehenswürdigkeiten", "/img/deutsche_sehenswuerdigkeiten/hh_hafen.jpg", "@Sir James", "Im Norden Deutschlands.",
+                    questions.push(new Question(9, "Deutsche Sehenswürdigkeiten", "img/deutsche_sehenswuerdigkeiten/hh_hafen.jpg", "@Sir James", "Im Norden Deutschlands.",
                         [{
                             "option": "Brandenburger Tor",
                             "answer": false
@@ -133,7 +133,7 @@ angular.module('imageQuizz').factory('QuestionData',
                                 "answer": true
                             }]
                     ));
-                    questions.push(new Question(9, "Deutsche Sehenswürdigkeiten", "/img/deutsche_sehenswuerdigkeiten/frauenkirche_muenchen.jpg", "@Photo by DAVID ILIFF. License: CC-BY-SA 3.0", "98,45 Meter hoch",
+                    questions.push(new Question(9, "Deutsche Sehenswürdigkeiten", "img/deutsche_sehenswuerdigkeiten/frauenkirche_muenchen.jpg", "@Photo by DAVID ILIFF. License: CC-BY-SA 3.0", "98,45 Meter hoch",
                         [{
                             "option": "Münchner Frauenkirche",
                             "answer": true

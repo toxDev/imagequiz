@@ -1,7 +1,6 @@
 'use strict';
 angular.module('imageQuizz').controller('ModuleListController',
     function ($scope, QuestionData) {
-
         $scope.modules = QuestionData.findAllCategorys();
         // console.log($scope.modules);
         var thisSt = this;
