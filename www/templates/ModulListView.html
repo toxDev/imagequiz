@@ -15,17 +15,19 @@
                     ng-click="mlCtrl.toggleSearch()">Cancel
             </button>
         </div>
-        <div class="list">
-            <div class="item my-item"
-                 collection-repeat="module in modules"
-                 collection-item-width="'100%'"
-                 collection-item-height="getItemHeight (module)"
-                 ng-href="#/questionlist/{{module}}"
-                 ng-style="{height: getItemHeight(module)}"
-                 ng-class="{'item-divider': module.isLetter}">
-                {{module.letter || (module)}}
+        <div ng-repeat="(letter, modules) in repeaterObject">
+            <div class="item item-divider">
+                {{letter}}
             </div>
-        </div>
+            <ion-list can-swipe="true">
+                <ion-item class="item-text-wrap animation"
+                          ng-repeat="module in filteredModules = (modules | filter:{category: mlCtrl.searchQuery} | orderBy:'category')"
+                          href="#/questionlist/{{module.category}}">
+                    {{module.category}}
+                </ion-item>
+            </ion-list>
+            </div>
+
     </ion-content>
 
     <div class="tabs-striped tabs-background-dark tabs-color-assertive">
