@@ -48,7 +48,7 @@ angular.module('imageQuizz', ['ionic'])
             .state('question_view_quizz', {
                 url: '/questionview/quizz/:id',
                 templateUrl: 'templates/QuestionView.html',
-                controller: 'QuizzController as qzCtrl'
+                controller: 'QuizzController as qCtrl'
             });
         $urlRouterProvider.otherwise("/tab/modules");
 
@@ -65,4 +65,4 @@ angular.module('imageQuizz', ['ionic'])
                 StatusBar.styleDefault();
             }
         });
-    })
+    });
