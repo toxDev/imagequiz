@@ -48,7 +48,7 @@ angular.module('imageQuizz', ['ionic'])
             .state('question_view_quizz', {
                 url: '/questionview/quizz/:id',
                 templateUrl: 'templates/QuestionView.html',
-                controller: 'QuestionController as qCtrl'
+                controller: 'QuizzController as qzCtrl'
             });
         $urlRouterProvider.otherwise("/tab/modules");
 
