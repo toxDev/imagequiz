@@ -1,3 +1,4 @@
+
 // Colors
 // -------------------------------
 
@@ -10,6 +11,7 @@ $energized: #f0b840 !default;
 $assertive: #ef4e3a !default;
 $royal: #8a6de9 !default;
 $dark: #444 !default;
+
 
 // Base
 // -------------------------------
@@ -56,10 +58,12 @@ $border-radius-base: 4px !default;
 $border-radius-large: 6px !default;
 $border-radius-small: 3px !default;
 
+
 // Content
 // -------------------------------
 
 $scroll-refresh-icon-color: #666666 !default;
+
 
 // Buttons
 // -------------------------------
@@ -150,6 +154,7 @@ $button-default-border: $button-stable-border !default;
 $button-default-active-bg: $button-stable-active-bg !default;
 $button-default-active-border: $button-stable-active-border !default;
 
+
 // Bars
 // -------------------------------
 
@@ -219,6 +224,7 @@ $bar-default-border: $bar-light-border !default;
 $bar-default-active-bg: $bar-light-active-bg !default;
 $bar-default-active-border: $bar-light-active-border !default;
 
+
 // Tabs
 // -------------------------------
 
@@ -275,6 +281,7 @@ $tab-item-max-width: 150px !default;
 $tabs-striped-off-color: #000;
 $tabs-striped-off-opacity: 0.4;
 $tabs-striped-border-width: 2px;
+
 
 // Items
 // -------------------------------
@@ -363,6 +370,7 @@ $item-default-text: $item-light-text !default;
 $item-default-active-bg: #D9D9D9 !default;
 $item-default-active-border: $item-light-active-border !default;
 
+
 // Item Editing
 // -------------------------------
 
@@ -381,6 +389,7 @@ $item-delete-icon-color: $assertive !default;
 $item-reorder-icon-size: 32px !default;
 $item-reorder-icon-color: $dark !default;
 
+
 // Lists
 // -------------------------------
 
@@ -388,6 +397,7 @@ $list-header-bg: transparent !default;
 $list-header-color: #222 !default;
 $list-header-padding: 5px 15px !default;
 $list-header-margin-top: 20px !default;
+
 
 // Cards
 // -------------------------------
@@ -401,6 +411,7 @@ $card-border-width: 1px !default;
 
 $card-border-color: #ccc !default;
 $card-border-radius: 2px !default;
+
 
 // Forms
 // -------------------------------
@@ -418,11 +429,13 @@ $input-border-width: $item-border-width !default;
 $input-label-color: $dark !default;
 $input-color-placeholder: lighten($dark, 40%) !default;
 
+
 // Progress
 // -------------------------------
 
 $progress-width: 100% !default;
 $progress-margin: 15px auto !default;
+
 
 // Toggle
 // -------------------------------
@@ -468,6 +481,7 @@ $toggle-transition-duration: .2s !default;
 
 $toggle-hit-area-expansion: 5px;
 
+
 // Checkbox
 // -------------------------------
 
@@ -501,6 +515,7 @@ $checkbox-on-bg-default: $positive !default;
 $checkbox-check-width: 3px !default;
 $checkbox-check-color: #fff !default;
 
+
 // Range
 // -------------------------------
 
@@ -521,6 +536,7 @@ $range-royal-track-bg: $button-royal-bg !default;
 $range-dark-track-bg: $button-dark-bg !default;
 $range-default-track-bg: #ccc !default;
 
+
 // Menus
 // -------------------------------
 
@@ -529,6 +545,7 @@ $menu-width: 275px !default;
 $menu-animation-speed: 200ms !default;
 
 $menu-side-shadow: -1px 0px 2px rgba(0, 0, 0, 0.2), 1px 0px 2px rgba(0, 0, 0, 0.2) !default;
+
 
 // Modals
 // -------------------------------
@@ -544,6 +561,7 @@ $modal-inset-mode-right: 20% !default;
 $modal-inset-mode-bottom: 20% !default;
 $modal-inset-mode-left: 20% !default;
 $modal-inset-mode-min-height: 240px !default;
+
 
 // Popovers
 // -------------------------------
@@ -565,6 +583,7 @@ $popover-border-radius-ios: 10px !default;
 $popover-bg-color-android: #fafafa !default;
 $popover-box-shadow-android: 0 2px 6px rgba(0, 0, 0, 0.35) !default;
 
+
 // Grids
 // -------------------------------
 
@@ -575,6 +594,7 @@ $grid-responsive-md-break: 767px !default;
 // smaller than portrait tablet
 $grid-responsive-lg-break: 1023px !default;
 // smaller than landscape tablet
+
 
 // Action Sheets
 // -------------------------------

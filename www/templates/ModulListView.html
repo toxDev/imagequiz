@@ -21,7 +21,7 @@
             </div>
             <ion-list can-swipe="true">
                 <ion-item class="item-text-wrap animation"
-                          ng-repeat="module in filteredModules = (modules | filter:{category: mlCtrl.searchQuery} | orderBy:'category')"
+                          ng-repeat="module in filteredModules = (modules | filter:{category: mlCtrl.searchQuery} | unique:'category')"
                           href="#/questionlist/{{module.category}}">
                     {{module.category}}
                 </ion-item>

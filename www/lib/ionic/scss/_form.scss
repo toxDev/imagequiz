@@ -33,7 +33,6 @@ select,
 textarea {
   @include font-shorthand($font-size-base, normal, $line-height-base); // Set size, weight, line-height here
 }
-
 input,
 button,
 select,
@@ -148,7 +147,6 @@ textarea {
   border: none;
   background-color: $input-bg;
 }
-
 .item-stacked-label input {
   overflow: hidden;
   height: $line-height-computed + $font-size-base + 12px;
@@ -218,7 +216,6 @@ input,
 textarea {
   width: 100%;
 }
-
 textarea {
   padding-left: 0;
   @include placeholder($input-color-placeholder, -3px);
@@ -300,7 +297,6 @@ select[readonly] {
   background-color: $input-bg-disabled;
   cursor: not-allowed;
 }
-
 // Explicitly reset the colors here
 input[type="radio"][disabled],
 input[type="checkbox"][disabled],

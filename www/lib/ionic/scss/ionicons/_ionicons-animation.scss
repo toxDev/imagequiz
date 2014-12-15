@@ -16,7 +16,6 @@
     -moz-transform: rotate(359deg);
   }
 }
-
 @-webkit-keyframes spin {
   0% {
     -webkit-transform: rotate(0deg);
@@ -25,7 +24,6 @@
     -webkit-transform: rotate(359deg);
   }
 }
-
 @-o-keyframes spin {
   0% {
     -o-transform: rotate(0deg);
@@ -34,7 +32,6 @@
     -o-transform: rotate(359deg);
   }
 }
-
 @-ms-keyframes spin {
   0% {
     -ms-transform: rotate(0deg);
@@ -43,7 +40,6 @@
     -ms-transform: rotate(359deg);
   }
 }
-
 @keyframes spin {
   0% {
     transform: rotate(0deg);
@@ -52,6 +48,7 @@
     transform: rotate(359deg);
   }
 }
+
 
 .#{$ionicons-prefix}loading-a,
 .#{$ionicons-prefix}loading-b,
@@ -70,30 +67,30 @@
   animation-timing-function: steps(8, start);
 }
 
-.#{$ionicons-prefix}loading-a:before {
+.#{$ionicons-prefix}loading-a:before { 
   @extend .#{$ionicons-prefix}load-a:before;
 }
 
-.#{$ionicons-prefix}loading-b:before {
+.#{$ionicons-prefix}loading-b:before { 
   @extend .#{$ionicons-prefix}load-b:before;
 }
 
-.#{$ionicons-prefix}loading-c:before {
+.#{$ionicons-prefix}loading-c:before { 
   @extend .#{$ionicons-prefix}load-c:before;
 }
 
-.#{$ionicons-prefix}loading-d:before {
+.#{$ionicons-prefix}loading-d:before { 
   @extend .#{$ionicons-prefix}load-d:before;
 }
 
-.#{$ionicons-prefix}looping:before {
+.#{$ionicons-prefix}looping:before { 
   @extend .#{$ionicons-prefix}loop:before;
 }
 
-.#{$ionicons-prefix}refreshing:before {
+.#{$ionicons-prefix}refreshing:before { 
   @extend .#{$ionicons-prefix}refresh:before;
 }
 
-.#{$ionicons-prefix}ios7-reloading:before {
+.#{$ionicons-prefix}ios7-reloading:before { 
   @extend .#{$ionicons-prefix}ios7-reload:before;
 }
