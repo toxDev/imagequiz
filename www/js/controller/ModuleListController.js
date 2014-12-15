@@ -4,10 +4,17 @@ angular.module('imageQuizz').controller('ModuleListController',
 
         var thisSt = this;
         var modules = QuestionData.findAllQuestions();
-        /*[{"id": 1, "category": "Autos"},
-         {"id": 2, "category": "Gefährliche Raubtiere"},
-         {"id": 3, "category": "Deutsche Sehenswürdigkeiten"},
-         {"id": 4, "category": "Magische Orte"}];*/
+        //modules.unique();
+        console.log(modules);
+
+
+        Array.prototype.unique = function () {
+            var o = {};
+            var tmp = [];
+            for (var i = 0; i < this.length; i++) o[this[i]] = true;
+            for (var i in o) tmp[tmp.length] = i;
+            return tmp;
+        }
 
         var tmp = {};
         for (var i = 0; i < modules.length; i++) {
