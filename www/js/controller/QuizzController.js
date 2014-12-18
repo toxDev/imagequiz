@@ -9,6 +9,7 @@ angular.module('imageQuizz').controller('QuizzController',
 
         //Hier wird geprüft ob zu jeder Frage bereits ein Statistik Objekt existiert. Wenn nicht
         //wird es hier angelegt
+
         $scope.stats = StatData.findAllStats();
 
         $scope.questionList.forEach(function (question) {
@@ -17,6 +18,7 @@ angular.module('imageQuizz').controller('QuizzController',
                 console.log("Statistik hinzugefügt");
             }
         });
+
 
         this.testAnswer = function (answer) {
             console.log(answer);
