@@ -1,11 +1,20 @@
 'use strict';
 angular.module('imageQuizz').controller('QuizzController',
-    function (QuestionData,$scope,$stateParams,$ionicPopup,$ionicNavBarDelegate) {
+    function (QuestionData, $scope, $stateParams, $ionicPopup, $ionicNavBarDelegate, StatData) {
 
         $scope.cur = 0;
         $scope.questionList = QuestionData.findAllQuestionsByCategory($stateParams.id);
         $scope.question = $scope.questionList[$scope.cur];
         $scope.correctAnswers = 0;
+
+        //Hier wird geprüft ob zu jeder Frage bereits ein Statistik Objekt existiert. Wenn nicht
+        //wird es hier angelegt
+        $scope.questionList.forEach(function (question) {
+            if (!StatData.findStatByQuestionId(question.id)) {
+                StatData.addStat(question.id);
+                console.log("Statistik hinzugefügt");
+            }
+        });
 
         this.testAnswer = function (answer) {
             console.log(answer);
