@@ -19,18 +19,14 @@
             <div class="item item-divider">
                 {{letter}}
             </div>
+            <!--unique: Filter für doppelte Einträge-->
             <ion-list can-swipe="true">
                 <ion-item class="item-text-wrap animation"
-                <!--unique: Filter für doppelte Einträge-->
                           ng-repeat="module in filteredModules = (modules | filter:{category: mlCtrl.searchQuery} | unique:'category')"
                           href="#/questionlist/{{module.category}}">
                     {{module.category}}
                 </ion-item>
             </ion-list>
             </div>
-
     </ion-content>
 </ion-view>
-
-<!--todo filter in ng-repeat einbauen-->
-<!--ng-repeat="module in filteredModules = (mlCtrl.modules | filter:{category: mlCtrl.searchQuery} | orderBy:'category')"-->

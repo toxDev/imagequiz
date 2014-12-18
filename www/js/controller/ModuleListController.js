@@ -18,7 +18,7 @@ angular.module('imageQuizz').controller('ModuleListController',
 
         //Für Zustandswechsel anmelden
         $scope.$on('$stateChangeStart',
-            function (event) {
+            function () {
                 if (thisSt.searchActive == true) {
                     var saveSearchQuery = localStorage.setItem('saveQuery', JSON.stringify(thisSt.searchQuery));
                 }

@@ -54,6 +54,17 @@ angular.module('imageQuizz', ['ionic', 'ui.utils'])
 
     })
 
+    .directive('focusMe', function ($timeout) {
+        return {
+            link: function (scope, element, attrs) {
+
+                $timeout(function () {
+                    element[0].focus();
+                });
+            }
+        };
+    })
+
     .run(function ($ionicPlatform) {
         $ionicPlatform.ready(function () {
             // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
