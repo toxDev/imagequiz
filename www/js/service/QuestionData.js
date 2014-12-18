@@ -173,14 +173,6 @@ angular.module('imageQuizz').factory('QuestionData',
                 return modules
             },
 
-            array_unique: function (modules) {
-                var o = {};
-                var tmp = [];
-                for (var i = 0; i < modules.length; i++) o[modules[i]] = true;
-                for (var i in o) tmp[tmp.length] = i;
-                return tmp;
-            },
-
             findAllQuestionsByCategory: function (category) {
                 var questions = this.findAllQuestions();
                 var temp_questions = [];
