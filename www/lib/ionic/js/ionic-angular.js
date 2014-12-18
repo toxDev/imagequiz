@@ -77,7 +77,7 @@
  *
    * There are easy ways to cancel out of the action sheet, such as tapping the backdrop or even
    * hitting escape on the keyboard for desktop testing.
-   *
+ *
    * ![Action Sheet](http://ionicframework.com.s3.amazonaws.com/docs/controllers/actionSheet.gif)
    *
    * @usage
@@ -137,7 +137,7 @@
            * @name $ionicActionSheet#show
            * @description
            * Load and return a new action sheet.
-           *
+   *
            * A new isolated scope will be created for the
            * action sheet and the new element will be appended into the body.
            *
@@ -158,7 +158,7 @@
            *     to a new state.  Default true.
            *
            * @returns {function} `hideSheet` A function which, when called, hides & cancels the action sheet.
-           */
+   */
           function actionSheet(opts) {
             var scope = $rootScope.$new(true);
 
@@ -286,8 +286,8 @@
             }
             el.setAttribute('class', existingClasses.trim());
         }
-        }
       }
+    }
     }
     return this;
   };
@@ -312,8 +312,8 @@
               );
             }
         }
-        }
       }
+    }
     }
     return this;
   };
@@ -443,7 +443,7 @@
                 }
                 unwatch = scope.$watch(attrs[attrName], function (value) {
                   scope[scopeName] = value;
-                });
+          });
                 //Destroy parent scope watcher when this scope is destroyed
                 scope.$on('$destroy', unwatch);
                 break;
@@ -730,7 +730,7 @@
   function disconnectScope(scope) {
     if (scope.$root === scope) {
       return; // we can't disconnect the root node;
-    }
+  }
     var parent = scope.$parent;
     scope.$$disconnected = true;
     // See Scope.$destroy
@@ -752,7 +752,7 @@
   function reconnectScope(scope) {
     if (scope.$root === scope) {
       return; // we can't disconnect the root node;
-    }
+  }
     if (!scope.$$disconnected) {
       return;
     }
@@ -1127,14 +1127,14 @@
           var index = instances.indexOf(instance);
           if (index !== -1) {
             instances.splice(index, 1);
-          }
-        };
+        }
+      };
       };
 
       this.$getByHandle = function (handle) {
         if (!handle) {
           return delegate;
-        }
+      }
         return new InstanceForHandle(handle);
       };
 
@@ -1171,10 +1171,10 @@
           instances.forEach(function (instance) {
             if (instance.$$delegateHandle === handle) {
               matchingInstancesFound++;
-              result = instance[methodName].apply(instance, args);
-              //Only return the value from the first call
+            result = instance[methodName].apply(instance, args);
+            //Only return the value from the first call
               if (matchingInstancesFound === 1) {
-                finalResult = result;
+              finalResult = result;
             }
             }
           });
@@ -1189,7 +1189,7 @@
                 'controller, then your element may not be compiled yet. Put a $timeout ' +
                 'around your call to ' + methodName + '() and try again.'
             );
-          }
+        }
 
           return finalResult;
         };
@@ -1477,13 +1477,13 @@
                         if (this.hasBackdrop) {
                           $ionicBackdrop.release();
                           $ionicBackdrop.getElement().removeClass('backdrop-loading');
-                        }
+            }
                         self.element.removeClass('active');
                         $ionicBody.removeClass('loading-active');
                         setTimeout(function () {
                           !self.isShown && self.element.removeClass('visible');
                         }, 200);
-                      }
+          }
                       $timeout.cancel(this.durationTimeout);
                       this.isShown = false;
                     };
@@ -1623,7 +1623,7 @@
            * Note: a modal will broadcast 'modal.shown', 'modal.hidden', and 'modal.removed' events from its originating
            * scope, passing in itself as an event argument. Note: both modal.removed and modal.hidden are
            * called when the modal is removed.
-           */
+   */
           var ModalView = ionic.views.Modal.inherit({
             /**
              * @ngdoc method
@@ -1640,7 +1640,7 @@
              *    Default: true.
              *  - `{boolean=}` `hardwareBackButtonClose` Whether the modal can be closed using the hardware
              *    back button on Android and similar devices.  Default: true.
-     */
+             */
             initialize: function (opts) {
               ionic.views.Modal.prototype.initialize.call(this, opts);
               this.animation = opts.animation || 'slide-in-up';
@@ -1651,7 +1651,7 @@
              * @name ionicModal#show
              * @description Show this modal instance.
              * @returns {promise} A promise which is resolved when the modal is finished animating in.
-             */
+     */
             show: function (target) {
               var self = this;
 
@@ -1870,7 +1870,7 @@
        * @name $ionicNavBarDelegate#back
        * @description Goes back in the view history.
        * @param {DOMEvent=} event The event object (eg from a tap event)
-       */
+   */
         'back',
       /**
        * @ngdoc method
@@ -1984,7 +1984,7 @@
             type: 'tabs-striped',
             position: ''
           }
-        }
+  }
       });
 
 
@@ -2406,7 +2406,7 @@
  *
    * The Ionic Popup service allows programmatically creating and showing popup
    * windows that require the user to respond in order to continue.
-   *
+ *
    * The popup system has support for more flexible versions of the built in `alert()`, `prompt()`,
    * and `confirm()` functions that users are used to, in addition to allowing popups with completely
    * custom content and look.
@@ -2898,13 +2898,13 @@
           return el.style[cssprop];
         }
 
-        /**
-         * Checks if a given element is statically positioned
-         * @param element - raw DOM element
-         */
-        function isStaticPositioned(element) {
-          return (getStyle(element, 'position') || 'static' ) === 'static';
-        }
+  /**
+   * Checks if a given element is statically positioned
+   * @param element - raw DOM element
+   */
+  function isStaticPositioned(element) {
+    return (getStyle(element, 'position') || 'static' ) === 'static';
+  }
 
         /**
          * returns the closest, non-statically positioned parentOffset of a given element
@@ -3033,7 +3033,7 @@
        * @ngdoc method
        * @name $ionicScrollDelegate#resize
        * @description Tell the scrollView to recalculate the size of its container.
-       */
+   */
         'resize',
       /**
        * @ngdoc method
@@ -3146,7 +3146,7 @@
    *   }
    * }
        * ```
-       *
+   *
        * @param {string} id The id to remember the scroll position of this
        * scrollView by.
        */
@@ -3154,7 +3154,7 @@
       /**
        * @ngdoc method
        * @name $ionicScrollDelegate#forgetScrollPosition
-       * @description
+   * @description
        * Stop remembering the scroll position for this scrollView.
        */
         'forgetScrollPosition',
@@ -3174,7 +3174,7 @@
        * @param {string} handle
        * @returns `delegateInstance` A delegate instance that controls only the
        * scrollViews with `delegate-handle` matching the given handle.
-       *
+   *
        * Example: `$ionicScrollDelegate.$getByHandle('my-handle').scrollTop();`
        */
       ]));
@@ -3225,15 +3225,15 @@
        * @description Toggle the left side menu (if it exists).
        * @param {boolean=} isOpen Whether to open or close the menu.
        * Default: Toggles the menu.
-       */
+   */
         'toggleLeft',
-      /**
-       * @ngdoc method
-       * @name $ionicSideMenuDelegate#toggleRight
-       * @description Toggle the right side menu (if it exists).
-       * @param {boolean=} isOpen Whether to open or close the menu.
-       * Default: Toggles the menu.
-       */
+  /**
+   * @ngdoc method
+   * @name $ionicSideMenuDelegate#toggleRight
+   * @description Toggle the right side menu (if it exists).
+   * @param {boolean=} isOpen Whether to open or close the menu.
+   * Default: Toggles the menu.
+   */
         'toggleRight',
       /**
        * @ngdoc method
@@ -3241,7 +3241,7 @@
        * @description Gets the ratio of open amount over menu width. For example, a
        * menu of width 100 that is opened by 50 pixels is 50% opened, and would return
        * a ratio of 0.5.
-       *
+   *
        * @returns {float} 0 if nothing is open, between 0 and 1 if left menu is
        * opened/opening, and between 0 and -1 if right menu is opened/opening.
        */
@@ -3289,7 +3289,7 @@
        * @returns `delegateInstance` A delegate instance that controls only the
        * {@link ionic.directive:ionSideMenus} directives with `delegate-handle` matching
        * the given handle.
-       *
+   *
        * Example: `$ionicSideMenuDelegate.$getByHandle('my-handle').toggleLeft();`
        */
       ]));
@@ -3339,14 +3339,14 @@
        * @description
        * Update the slidebox (for example if using Angular with ng-repeat,
        * resize it for the elements inside).
-       */
+   */
         'update',
-      /**
-       * @ngdoc method
-       * @name $ionicSlideBoxDelegate#slide
-       * @param {number} to The index to slide to.
-       * @param {number=} speed The number of milliseconds for the change to take.
-       */
+  /**
+   * @ngdoc method
+   * @name $ionicSlideBoxDelegate#slide
+   * @param {number} to The index to slide to.
+   * @param {number=} speed The number of milliseconds for the change to take.
+   */
         'slide',
       /**
        * @ngdoc method
@@ -3399,7 +3399,7 @@
        * @returns `delegateInstance` A delegate instance that controls only the
        * {@link ionic.directive:ionSlideBox} directives with `delegate-handle` matching
        * the given handle.
-       *
+   *
        * Example: `$ionicSlideBoxDelegate.$getByHandle('my-handle').stop();`
        */
       ]));
@@ -3448,7 +3448,7 @@
        * @description Select the tab matching the given index.
        *
        * @param {number} index Index of the tab to select.
-       */
+   */
         'select',
       /**
        * @ngdoc method
@@ -3484,7 +3484,7 @@
      * ```js
      * $ionicTemplateCache('myNgIncludeTemplate.html');
      * ```
-     *
+ *
      * Optionally disable all preemptive caching with the `$ionicConfigProvider` or individual states by setting `prefetchTemplate`
      * in the `$state` definition
      *
@@ -4287,7 +4287,7 @@
               if (scroll)
                 scroll.scrollTop = 0;
             }, 0, false);
-          }
+      }
           return $location.__hash(value);
         };
 
@@ -4338,7 +4338,7 @@
        * @name $ionicListDelegate#showReorder
        * @param {boolean=} showReorder Set whether or not this list is showing its reorder buttons.
        * @returns {boolean} Whether the reorder buttons are shown.
-       */
+   */
         'showReorder',
       /**
        * @ngdoc method
@@ -5413,7 +5413,7 @@
               if (isDefined(value)) {
                 input.attr(name, value);
               }
-            });
+      });
           }
 
         };
@@ -5679,7 +5679,7 @@
                 collectionRepeatManager.destroy();
                 dataSource.destroy();
                 ionic.off('resize', rerenderOnResize, window);
-              });
+      });
             }
           };
         }])
@@ -5841,8 +5841,8 @@
                         scrollTop: this.__scrollTop,
                         scrollLeft: this.__scrollLeft
                       });
-                    }
-                  };
+            }
+          };
                   $controller('$ionicScroll', {
                     $scope: $scope,
                     scrollViewOptions: scrollViewOptions
@@ -6187,8 +6187,8 @@
             fn(scope, {
               $event: ev
             });
-          });
-        };
+        });
+      };
 
         var gesture = $ionicGesture.on(eventType, listener, element);
 
@@ -6302,9 +6302,9 @@
                   current.tagName.match(/input|textarea|select/i) ||
                   current.isContentEditable) {
                 return;
-              }
-              current = current.parentNode;
             }
+              current = current.parentNode;
+          }
             var touch = e.gesture && e.gesture.touches[0] || e.detail.touches[0];
             var bounds = $element[0].getBoundingClientRect();
             if (ionic.DomUtil.rectContains(
@@ -6314,7 +6314,7 @@
                 )) {
               $ionicScrollDelegate.scrollTop(true);
             }
-          }
+        }
         }
       };
     }];
@@ -6366,8 +6366,8 @@
               $scope.$watch('$hasTabs', function (val) {
                 $element.toggleClass('has-tabs', !!val);
               });
-            }
           }
+        }
         }
       };
     }];
@@ -6456,14 +6456,14 @@
               var distance = ($attrs.distance || '2.5%').trim();
               var isPercent = distance.indexOf('%') !== -1;
               var maxValues = this.scrollView.getScrollMax();
-              return {
-                left: this.scrollView.options.scrollingX ?
-                    calculateMaxValue(distance, maxValues.left, isPercent) :
-                    -1,
-                top: this.scrollView.options.scrollingY ?
-                    calculateMaxValue(distance, maxValues.top, isPercent) :
-                    -1
-              };
+        return {
+          left: this.scrollView.options.scrollingX ?
+              calculateMaxValue(distance, maxValues.left, isPercent) :
+              -1,
+          top: this.scrollView.options.scrollingY ?
+              calculateMaxValue(distance, maxValues.top, isPercent) :
+              -1
+        };
             };
           }],
           link: function ($scope, $element, $attrs, ctrls) {
@@ -6582,11 +6582,11 @@
               return function link($scope, $element, $attrs) {
                 $scope.$href = function () {
                   return $attrs.href || $attrs.ngHref;
-                };
+          };
                 $scope.$target = function () {
                   return $attrs.target || '_self';
                 };
-              };
+        };
             }
           };
         }]);
@@ -6676,12 +6676,12 @@
               ngModelCtrl.$render = function () {
                 input.value = ngModelCtrl.$viewValue || '';
                 onInput();
-              };
+        };
             }
 
             scope.$on('$destroy', function () {
               input.removeEventListener('input', onInput);
-            });
+      });
           }
         };
       });
@@ -6731,7 +6731,7 @@
               if (!itemCtrl.optionsContainer) {
                 itemCtrl.optionsContainer = jqLite(ITEM_TPL_OPTION_BUTTONS);
                 itemCtrl.$element.append(itemCtrl.optionsContainer);
-              }
+        }
               itemCtrl.optionsContainer.append($element);
 
               //Don't bubble click up to main .item
@@ -6808,7 +6808,7 @@
                   $fromIndex: oldIndex,
                   $toIndex: newIndex
                 });
-              };
+        };
 
               // prevent clicks from bubbling up to the item
               if (!$attr.ngClick && !$attr.onClick && !$attr.onclick) {
@@ -7087,8 +7087,8 @@
                     shown() && el.addClass('visible') || el.removeClass('active');
                     ionic.requestAnimationFrame(function () {
                       shown() && el.addClass('active') || el.removeClass('visible');
-                    });
-                  }
+            });
+          }
                 }
 
               };
@@ -7580,7 +7580,7 @@
                       disableBack: true
                     });
                     unregisterListener();
-                  });
+          });
                   $window.setTimeout(unregisterListener, 300);
                 }
 
@@ -7956,8 +7956,8 @@
             }, function (value, name) {
               if (isDefined(value)) {
                 input.attr(name, value);
-              }
-            });
+          }
+      });
 
             return function (scope, element, attr) {
               scope.getValue = function () {
@@ -8239,14 +8239,14 @@
                 width: attr.width,
                 el: $element[0],
                 isEnabled: true
-              });
+        });
 
               $scope.$watch($attr.width, function (val) {
                 var numberVal = +val;
                 if (numberVal && numberVal == val) {
                   sideMenu.setWidth(+val);
-                }
-        });
+          }
+              });
               $scope.$watch($attr.isEnabled, function (val) {
                 sideMenu.setIsEnabled(!!val);
               });
@@ -8725,7 +8725,7 @@
 
             $scope.$watch('currentSlide', function (v) {
               selectPage(v);
-            });
+      });
           }
         };
 
@@ -8937,7 +8937,7 @@
 
               $scope.isTabActive = function () {
                 return tabsCtrl.selectedTab() === tabCtrl.$scope;
-              };
+        };
             };
           }
         };

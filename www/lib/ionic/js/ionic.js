@@ -29,7 +29,7 @@
       isDomReady = true;
       for (var x = 0; x < readyCallbacks.length; x++) {
         ionic.requestAnimationFrame(readyCallbacks[x]);
-      }
+    }
       readyCallbacks = [];
       document.removeEventListener('DOMContentLoaded', domReady);
     }
@@ -80,35 +80,35 @@
         cancelAnimationFrame(requestId);
       },
 
-      /**
-       * @ngdoc method
-       * @name ionic.DomUtil#animationFrameThrottle
-       * @alias ionic.animationFrameThrottle
-       * @description
-       * When given a callback, if that callback is called 100 times between
-       * animation frames, adding Throttle will make it only run the last of
-       * the 100 calls.
-       *
-       * @param {function} callback a function which will be throttled to
-       * requestAnimationFrame
-       * @returns {function} A function which will then call the passed in callback.
-       * The passed in callback will receive the context the returned function is
-       * called with.
-       */
-      animationFrameThrottle: function (cb) {
-        var args, isQueued, context;
-        return function () {
-          args = arguments;
-          context = this;
-          if (!isQueued) {
-            isQueued = true;
-            ionic.requestAnimationFrame(function () {
-              cb.apply(context, args);
-              isQueued = false;
-            });
-          }
-        };
-      },
+    /**
+     * @ngdoc method
+     * @name ionic.DomUtil#animationFrameThrottle
+     * @alias ionic.animationFrameThrottle
+     * @description
+     * When given a callback, if that callback is called 100 times between
+     * animation frames, adding Throttle will make it only run the last of
+     * the 100 calls.
+     *
+     * @param {function} callback a function which will be throttled to
+     * requestAnimationFrame
+     * @returns {function} A function which will then call the passed in callback.
+     * The passed in callback will receive the context the returned function is
+     * called with.
+     */
+    animationFrameThrottle: function (cb) {
+      var args, isQueued, context;
+      return function () {
+        args = arguments;
+        context = this;
+        if (!isQueued) {
+          isQueued = true;
+          ionic.requestAnimationFrame(function () {
+            cb.apply(context, args);
+            isQueued = false;
+          });
+        }
+      };
+    },
 
       /**
        * @ngdoc method
@@ -175,8 +175,8 @@
                 width: rect.width,
                 height: rect.height
               };
-            }
           }
+        }
         }
         return null;
       },
@@ -202,8 +202,8 @@
                 return k;
             }
               k++;
-            }
           }
+        }
         }
         return Array.prototype.slice.call(element.parentNode.children).indexOf(element);
       },
@@ -237,7 +237,7 @@
         while (e.parentNode && depth--) {
           if (e.parentNode.classList && e.parentNode.classList.contains(className)) {
             return e.parentNode;
-          }
+        }
           e = e.parentNode;
         }
         return null;
@@ -255,9 +255,9 @@
         while (e && depth--) {
           if (e.classList && e.classList.contains(className)) {
             return e;
-          }
-          e = e.parentNode;
         }
+          e = e.parentNode;
+      }
         return null;
       },
 
@@ -310,7 +310,7 @@
           bubbles: false,
           cancelable: false,
           detail: undefined
-        };
+      };
         try {
           evt = document.createEvent("CustomEvent");
           evt.initCustomEvent(event, params.bubbles, params.cancelable, params.detail);
@@ -337,28 +337,28 @@
     ionic.EventController = {
       VIRTUALIZED_EVENTS: ['tap', 'swipe', 'swiperight', 'swipeleft', 'drag', 'hold', 'release'],
 
-      /**
-       * @ngdoc method
-       * @name ionic.EventController#trigger
-       * @alias ionic.trigger
-       * @param {string} eventType The event to trigger.
-       * @param {object} data The data for the event. Hint: pass in
-       * `{target: targetElement}`
-       * @param {boolean=} bubbles Whether the event should bubble up the DOM.
-       * @param {boolean=} cancelable Whether the event should be cancelable.
-       */
-      // Trigger a new event
-      trigger: function (eventType, data, bubbles, cancelable) {
-        var event = new ionic.CustomEvent(eventType, {
-          detail: data,
-          bubbles: !!bubbles,
-          cancelable: !!cancelable
-        });
+    /**
+     * @ngdoc method
+     * @name ionic.EventController#trigger
+     * @alias ionic.trigger
+     * @param {string} eventType The event to trigger.
+     * @param {object} data The data for the event. Hint: pass in
+     * `{target: targetElement}`
+     * @param {boolean=} bubbles Whether the event should bubble up the DOM.
+     * @param {boolean=} cancelable Whether the event should be cancelable.
+     */
+    // Trigger a new event
+    trigger: function (eventType, data, bubbles, cancelable) {
+      var event = new ionic.CustomEvent(eventType, {
+        detail: data,
+        bubbles: !!bubbles,
+        cancelable: !!cancelable
+      });
 
-        // Make sure to trigger the event on the given target, or dispatch it from
-        // the window if we don't have an event target
-        data && data.target && data.target.dispatchEvent && data.target.dispatchEvent(event) || window.dispatchEvent(event);
-      },
+      // Make sure to trigger the event on the given target, or dispatch it from
+      // the window if we don't have an event target
+      data && data.target && data.target.dispatchEvent && data.target.dispatchEvent(event) || window.dispatchEvent(event);
+    },
 
       /**
        * @ngdoc method
@@ -378,7 +378,7 @@
             var gesture = new ionic.Gesture(element);
             gesture.on(type, callback);
             return gesture;
-          }
+        }
         }
 
         // Otherwise bind a normal event
@@ -465,17 +465,17 @@
    */
   (function (ionic) {
 
-    /**
-     * ionic.Gestures
-     * use this to create instances
-     * @param   {HTMLElement}   element
-     * @param   {Object}        options
-     * @returns {ionic.Gestures.Instance}
-     * @constructor
-     */
-    ionic.Gesture = function (element, options) {
-      return new ionic.Gestures.Instance(element, options || {});
-    };
+  /**
+   * ionic.Gestures
+   * use this to create instances
+   * @param   {HTMLElement}   element
+   * @param   {Object}        options
+   * @returns {ionic.Gestures.Instance}
+   * @constructor
+   */
+  ionic.Gesture = function (element, options) {
+    return new ionic.Gestures.Instance(element, options || {});
+  };
 
     ionic.Gestures = {};
 
@@ -540,7 +540,7 @@
       for (var name in ionic.Gestures.gestures) {
         if (ionic.Gestures.gestures.hasOwnProperty(name)) {
           ionic.Gestures.detection.register(ionic.Gestures.gestures[name]);
-        }
+      }
       }
 
       // Add touch events on the document
@@ -569,7 +569,7 @@
       if (element === null) {
         void 0;
         return;
-      }
+    }
 
       // setup ionic.GesturesJS window events and register all gestures
       // this also sets up the default options
@@ -613,7 +613,7 @@
         var gestures = gesture.split(' ');
         for (var t = 0; t < gestures.length; t++) {
           this.element.addEventListener(gestures[t], handler, false);
-        }
+      }
         return this;
       },
 
@@ -629,7 +629,7 @@
         for (var t = 0; t < gestures.length; t++) {
           this.element.removeEventListener(gestures[t], handler, false);
         }
-        return this;
+      return this;
       },
 
 
@@ -692,112 +692,112 @@
 
 
     ionic.Gestures.event = {
-      /**
-       * simple addEventListener
-       * @param   {HTMLElement}   element
-       * @param   {String}        type
-       * @param   {Function}      handler
-       */
-      bindDom: function (element, type, handler) {
-        var types = type.split(' ');
-        for (var t = 0; t < types.length; t++) {
-          element.addEventListener(types[t], handler, false);
+    /**
+     * simple addEventListener
+     * @param   {HTMLElement}   element
+     * @param   {String}        type
+     * @param   {Function}      handler
+     */
+    bindDom: function (element, type, handler) {
+      var types = type.split(' ');
+      for (var t = 0; t < types.length; t++) {
+        element.addEventListener(types[t], handler, false);
+      }
+    },
+
+
+    /**
+     * touch events with mouse fallback
+     * @param   {HTMLElement}   element
+     * @param   {String}        eventType        like ionic.Gestures.EVENT_MOVE
+     * @param   {Function}      handler
+     */
+    onTouch: function onTouch(element, eventType, handler) {
+      var self = this;
+
+      this.bindDom(element, ionic.Gestures.EVENT_TYPES[eventType], function bindDomOnTouch(ev) {
+        var sourceEventType = ev.type.toLowerCase();
+
+        // onmouseup, but when touchend has been fired we do nothing.
+        // this is for touchdevices which also fire a mouseup on touchend
+        if (sourceEventType.match(/mouse/) && touch_triggered) {
+          return;
         }
-      },
+
+        // mousebutton must be down or a touch event
+        else if (sourceEventType.match(/touch/) ||   // touch events are always on screen
+            sourceEventType.match(/pointerdown/) || // pointerevents touch
+            (sourceEventType.match(/mouse/) && ev.which === 1)   // mouse is pressed
+        ) {
+          enable_detect = true;
+        }
+
+        // mouse isn't pressed
+        else if (sourceEventType.match(/mouse/) && ev.which !== 1) {
+          enable_detect = false;
+        }
 
 
-      /**
-       * touch events with mouse fallback
-       * @param   {HTMLElement}   element
-       * @param   {String}        eventType        like ionic.Gestures.EVENT_MOVE
-       * @param   {Function}      handler
-       */
-      onTouch: function onTouch(element, eventType, handler) {
-        var self = this;
+        // we are in a touch event, set the touch triggered bool to true,
+        // this for the conflicts that may occur on ios and android
+        if (sourceEventType.match(/touch|pointer/)) {
+          touch_triggered = true;
+        }
 
-        this.bindDom(element, ionic.Gestures.EVENT_TYPES[eventType], function bindDomOnTouch(ev) {
-          var sourceEventType = ev.type.toLowerCase();
+        // count the total touches on the screen
+        var count_touches = 0;
 
-          // onmouseup, but when touchend has been fired we do nothing.
-          // this is for touchdevices which also fire a mouseup on touchend
-          if (sourceEventType.match(/mouse/) && touch_triggered) {
-            return;
+        // when touch has been triggered in this detection session
+        // and we are now handling a mouse event, we stop that to prevent conflicts
+        if (enable_detect) {
+          // update pointerevent
+          if (ionic.Gestures.HAS_POINTEREVENTS && eventType != ionic.Gestures.EVENT_END) {
+            count_touches = ionic.Gestures.PointerEvent.updatePointer(eventType, ev);
+          }
+          // touch
+          else if (sourceEventType.match(/touch/)) {
+            count_touches = ev.touches.length;
+          }
+          // mouse
+          else if (!touch_triggered) {
+            count_touches = sourceEventType.match(/up/) ? 0 : 1;
           }
 
-          // mousebutton must be down or a touch event
-          else if (sourceEventType.match(/touch/) ||   // touch events are always on screen
-              sourceEventType.match(/pointerdown/) || // pointerevents touch
-              (sourceEventType.match(/mouse/) && ev.which === 1)   // mouse is pressed
-          ) {
-            enable_detect = true;
+          // if we are in a end event, but when we remove one touch and
+          // we still have enough, set eventType to move
+          if (count_touches > 0 && eventType == ionic.Gestures.EVENT_END) {
+            eventType = ionic.Gestures.EVENT_MOVE;
+          }
+          // no touches, force the end event
+          else if (!count_touches) {
+            eventType = ionic.Gestures.EVENT_END;
           }
 
-          // mouse isn't pressed
-          else if (sourceEventType.match(/mouse/) && ev.which !== 1) {
-            enable_detect = false;
+          // store the last move event
+          if (count_touches || last_move_event === null) {
+            last_move_event = ev;
           }
 
+          // trigger the handler
+          handler.call(ionic.Gestures.detection, self.collectEventData(element, eventType, self.getTouchList(last_move_event, eventType), ev));
 
-          // we are in a touch event, set the touch triggered bool to true,
-          // this for the conflicts that may occur on ios and android
-          if (sourceEventType.match(/touch|pointer/)) {
-            touch_triggered = true;
+          // remove pointerevent from list
+          if (ionic.Gestures.HAS_POINTEREVENTS && eventType == ionic.Gestures.EVENT_END) {
+            count_touches = ionic.Gestures.PointerEvent.updatePointer(eventType, ev);
           }
+        }
 
-          // count the total touches on the screen
-          var count_touches = 0;
+        //debug(sourceEventType +" "+ eventType);
 
-          // when touch has been triggered in this detection session
-          // and we are now handling a mouse event, we stop that to prevent conflicts
-          if (enable_detect) {
-            // update pointerevent
-            if (ionic.Gestures.HAS_POINTEREVENTS && eventType != ionic.Gestures.EVENT_END) {
-              count_touches = ionic.Gestures.PointerEvent.updatePointer(eventType, ev);
-            }
-            // touch
-            else if (sourceEventType.match(/touch/)) {
-              count_touches = ev.touches.length;
-            }
-            // mouse
-            else if (!touch_triggered) {
-              count_touches = sourceEventType.match(/up/) ? 0 : 1;
-            }
-
-            // if we are in a end event, but when we remove one touch and
-            // we still have enough, set eventType to move
-            if (count_touches > 0 && eventType == ionic.Gestures.EVENT_END) {
-              eventType = ionic.Gestures.EVENT_MOVE;
-            }
-            // no touches, force the end event
-            else if (!count_touches) {
-              eventType = ionic.Gestures.EVENT_END;
-            }
-
-            // store the last move event
-            if (count_touches || last_move_event === null) {
-              last_move_event = ev;
-            }
-
-            // trigger the handler
-            handler.call(ionic.Gestures.detection, self.collectEventData(element, eventType, self.getTouchList(last_move_event, eventType), ev));
-
-            // remove pointerevent from list
-            if (ionic.Gestures.HAS_POINTEREVENTS && eventType == ionic.Gestures.EVENT_END) {
-              count_touches = ionic.Gestures.PointerEvent.updatePointer(eventType, ev);
-            }
-          }
-
-          //debug(sourceEventType +" "+ eventType);
-
-          // on the end we reset everything
-          if (!count_touches) {
-            last_move_event = null;
-            enable_detect = false;
-            touch_triggered = false;
-            ionic.Gestures.PointerEvent.reset();
-          }
-        });
-      },
+        // on the end we reset everything
+        if (!count_touches) {
+          last_move_event = null;
+          enable_detect = false;
+          touch_triggered = false;
+          ionic.Gestures.PointerEvent.reset();
+        }
+      });
+    },
 
 
       /**
@@ -1002,7 +1002,7 @@
         for (var key in src) {
           if (dest[key] !== undefined && merge) {
             continue;
-          }
+        }
           dest[key] = src[key];
         }
         return dest;
@@ -1020,7 +1020,7 @@
         while (node) {
           if (node == parent) {
             return true;
-          }
+        }
           node = node.parentNode;
         }
         return false;
@@ -1164,7 +1164,7 @@
           element.onselectstart = function () {
             return false;
         };
-        }
+      }
       }
     };
 
@@ -1233,8 +1233,8 @@
             if (gesture.handler.call(gesture, eventData, this.current.inst) === false) {
               this.stopDetect();
               break;
-            }
           }
+        }
         }
 
         // store as previous event event
@@ -1286,7 +1286,7 @@
           startEv.touches = [];
           for (var i = 0, len = ev.touches.length; i < len; i++) {
             startEv.touches.push(ionic.Gestures.utils.extend({}, ev.touches[i]));
-          }
+        }
         }
 
         var delta_time = ev.timeStamp - startEv.timeStamp,
@@ -1498,14 +1498,14 @@
           // when you move or end we clear the timer
           case ionic.Gestures.EVENT_MOVE:
             if (ev.distance > inst.options.hold_threshold) {
-              clearTimeout(this.timer);
+            clearTimeout(this.timer);
             }
             break;
 
           case ionic.Gestures.EVENT_END:
             clearTimeout(this.timer);
             break;
-        }
+      }
       }
     };
 
@@ -1550,8 +1550,8 @@
           if (!did_doubletap || inst.options.tap_always) {
             ionic.Gestures.detection.current.name = 'tap';
             inst.trigger('tap', ev);
-          }
         }
+      }
       }
     };
 
@@ -1585,7 +1585,7 @@
             inst.trigger(this.name, ev);
             inst.trigger(this.name + ev.direction, ev);
           }
-        }
+      }
       }
     };
 
@@ -1663,7 +1663,7 @@
 
                 // recalculate event data using new start point
                 ev = ionic.Gestures.detection.extendEventData(ev);
-              }
+            }
             }
 
             // lock drag to axis?
@@ -1678,7 +1678,7 @@
             }
               else {
                 ev.direction = (ev.deltaX < 0) ? ionic.Gestures.DIRECTION_LEFT : ionic.Gestures.DIRECTION_RIGHT;
-              }
+            }
             }
 
             // first time, trigger dragstart event
@@ -1708,7 +1708,7 @@
 
             this.triggered = false;
             break;
-        }
+      }
       }
     };
 
@@ -1798,7 +1798,7 @@
 
             this.triggered = false;
             break;
-        }
+      }
       }
     };
 
@@ -1834,7 +1834,7 @@
 
         if (ev.eventType == ionic.Gestures.EVENT_START) {
           inst.trigger(this.name, ev);
-        }
+      }
       }
     };
 
@@ -1850,7 +1850,7 @@
       handler: function releaseGesture(ev, inst) {
         if (ev.eventType == ionic.Gestures.EVENT_END) {
           inst.trigger(this.name, ev);
-        }
+      }
       }
     };
   })(window.ionic);
@@ -1872,12 +1872,12 @@
       // the browser does not allow window.navigator to be set
       navigator: window.navigator,
 
-      /**
-       * @ngdoc property
-       * @name ionic.Platform#isReady
-       * @returns {boolean} Whether the device is ready.
-       */
-      isReady: false,
+    /**
+     * @ngdoc property
+     * @name ionic.Platform#isReady
+     * @returns {boolean} Whether the device is ready.
+     */
+    isReady: false,
       /**
        * @ngdoc property
        * @name ionic.Platform#isFullScreen
@@ -1933,7 +1933,7 @@
           // only add to the body class if we got platform info
           for (var i = 0; i < ionic.Platform.platforms.length; i++) {
             document.body.classList.add('platform-' + ionic.Platform.platforms[i]);
-          }
+        }
         });
       },
 
@@ -1997,8 +1997,8 @@
               grade = (version < 4 ? 'c' : 'b');
             } else if (this.isWindowsPhone()) {
               grade = 'b';
-            }
           }
+        }
         }
 
         this.setGrade(grade);
@@ -2097,7 +2097,7 @@
           if (!isNaN(v)) {
             platformVersion = v;
             return;
-          }
+        }
         }
 
         platformVersion = 0;
@@ -2168,7 +2168,7 @@
               window.StatusBar && window.StatusBar.hide();
               document.body.classList.add('status-bar-hide');
             }
-          });
+        });
         });
       },
 
@@ -2198,7 +2198,7 @@
             } else {
               document.body.classList.remove('fullscreen');
             }
-          });
+        });
           // showStatusBar: default is false if no param provided
           ionic.Platform.showStatusBar((showStatusBar === true));
         });
@@ -2217,11 +2217,11 @@
         // the window and scripts are fully loaded, and a cordova/phonegap
         // object exists then let's listen for the deviceready
         document.addEventListener("deviceready", onPlatformReady, false);
-      } else {
+    } else {
         // the window and scripts are fully loaded, but the window object doesn't have the
         // cordova/phonegap object, so its just a browser, not a webview wrapped w/ cordova
         onPlatformReady();
-      }
+    }
       if (windowLoadListenderAttached) {
         window.removeEventListener("load", onWindowLoad, false);
       }
@@ -2231,7 +2231,7 @@
       onWindowLoad();
     } else {
       windowLoadListenderAttached = true;
-      window.addEventListener("load", onWindowLoad, false);
+    window.addEventListener("load", onWindowLoad, false);
     }
 
     window.addEventListener("load", onWindowLoad, false);
@@ -2243,7 +2243,7 @@
       for (var x = 0; x < readyCallbacks.length; x++) {
         // fire off all the callbacks that were added before the platform was ready
         readyCallbacks[x]();
-      }
+    }
       readyCallbacks = [];
       ionic.trigger('platformready', {target: document});
 
@@ -2270,7 +2270,7 @@
         if (document.documentElement.style[keys[i]] !== undefined) {
           ionic.CSS.TRANSFORM = keys[i];
           break;
-        }
+      }
       }
 
       // transition
@@ -2279,7 +2279,7 @@
         if (document.documentElement.style[keys[i]] !== undefined) {
           ionic.CSS.TRANSITION = keys[i];
           break;
-        }
+      }
       }
 
     })();
@@ -2534,11 +2534,11 @@
             if (focusInput.isContentEditable) {
               clonedInput.contentEditable = focusInput.contentEditable;
               clonedInput.innerHTML = focusInput.innerHTML;
-            }
+          }
             focusInput.parentElement.insertBefore(clonedInput, focusInput);
             focusInput.style.top = focusInput.offsetTop;
             focusInput.classList.add('previous-input-focus');
-          }
+        }
         }
       });
     },
@@ -2561,7 +2561,7 @@
           previousInputFocus[x].classList.remove('previous-input-focus');
           previousInputFocus[x].style.top = '';
           previousInputFocus[x].focus();
-        }
+      }
       });
     },
 
@@ -2626,7 +2626,7 @@
       tapDoc.addEventListener(type, tapEventListeners[type], useCapture);
     } else {
       tapDoc.removeEventListener(type, tapEventListeners[type]);
-    }
+  }
   }
 
   function tapClick(e) {
@@ -2657,7 +2657,7 @@
     if (e.target.type == 'submit' && e.detail === 0) {
       // do not prevent click if it came from an "Enter" or "Go" keypress submit
       return;
-    }
+  }
 
     // do not allow through any click events that were not created by ionic.tap
     if ((ionic.scroll.isScrolling && ionic.tap.containsOrIsTextInput(e.target) ) ||
@@ -2670,7 +2670,7 @@
         e.preventDefault();
     }
       return false;
-    }
+  }
   }
 
 // MOUSE
@@ -2704,7 +2704,7 @@
       e.stopPropagation();
       e.preventDefault();
       return false;
-    }
+  }
 
     if (tapIgnoreEvent(e) || (/^(select|option)$/i).test(e.target.tagName)) return false;
 
@@ -2718,11 +2718,11 @@
 
   function tapMouseMove(e) {
     if (tapHasPointerMoved(e)) {
-      tapEventListener('mousemove', false);
-      ionic.activator.end();
+    tapEventListener('mousemove', false);
+    ionic.activator.end();
       tapPointerMoved = true;
       return false;
-    }
+  }
   }
 
 
@@ -2749,7 +2749,7 @@
         // don't preventDefault on an already focused input or else iOS's text caret isn't usable
         e.preventDefault();
     }
-    }
+  }
   }
 
   function tapTouchEnd(e) {
@@ -2762,7 +2762,7 @@
       if ((/^(select|option)$/i).test(e.target.tagName)) {
         e.preventDefault();
     }
-    }
+  }
 
     tapLastTouchTarget = e.target;
     tapTouchCancel();
@@ -2771,10 +2771,10 @@
   function tapTouchMove(e) {
     if (tapHasPointerMoved(e)) {
       tapPointerMoved = true;
-      tapEventListener(tapTouchMoveListener, false);
-      ionic.activator.end();
+    tapEventListener(tapTouchMoveListener, false);
+    ionic.activator.end();
       return false;
-    }
+  }
   }
 
   function tapTouchCancel(e) {
@@ -2798,7 +2798,7 @@
     if (ionic.scroll.isScrolling && ionic.tap.containsOrIsTextInput(e.target)) {
       e.preventDefault();
       return true;
-    }
+  }
   }
 
   function tapHandleFocus(ele) {
@@ -2833,7 +2833,7 @@
       ionic.trigger('ionic.focusin', {
         target: ele
       }, true);
-    }
+  }
   }
 
   function tapFocusOutActive() {
@@ -2841,7 +2841,7 @@
     if (ele && ((/^(input|textarea|select)$/i).test(ele.tagName) || ele.isContentEditable)) {
       void 0;
       ele.blur();
-    }
+  }
     tapActiveElement(null);
   }
 
@@ -2862,7 +2862,7 @@
       void 0;
       tapTouchFocusedInput.focus();
       tapTouchFocusedInput = null;
-    }
+  }
     ionic.scroll.isScrolling = false;
   }
 
@@ -2873,14 +2873,14 @@
   function tapActiveElement(ele) {
     if (arguments.length) {
       tapActiveEle = ele;
-    }
+  }
     return tapActiveEle || document.activeElement;
   }
 
   function tapHasPointerMoved(endEvent) {
     if (!endEvent || endEvent.target.nodeType !== 1 || !tapPointerStart || ( tapPointerStart.x === 0 && tapPointerStart.y === 0 )) {
       return false;
-    }
+  }
     var endCoordinates = ionic.tap.pointerCoord(endEvent);
 
     var hasClassList = !!(endEvent.target.classList && endEvent.target.classList.contains);
@@ -2898,7 +2898,7 @@
       if (!climbEle) break;
       if (climbEle.tagName === 'LABEL') return climbEle;
       climbEle = climbEle.parentElement;
-    }
+  }
     if (allowSelf !== false) return ele;
   }
 
@@ -2910,8 +2910,8 @@
       if (ele.querySelector) {
         var control = ele.querySelector('input,textarea,select');
         if (control) return control;
-      }
     }
+  }
     return ele;
   }
 
@@ -2920,7 +2920,7 @@
     //do nothing for e2e tests
     if (!ng || (ng && !ng.scenario)) {
       ionic.tap.register(document);
-    }
+  }
   });
 
   (function (document, ionic) {
@@ -2948,7 +2948,7 @@
             if (eleToActivate && ele.classList.contains('item')) {
               eleToActivate = ele;
               break;
-            }
+          }
             if (ele.tagName == 'A' || ele.tagName == 'BUTTON' || ele.hasAttribute('ng-click')) {
               eleToActivate = ele;
               break;
@@ -3003,8 +3003,8 @@
         if (queueElements[key]) {
           queueElements[key].classList.add(ACTIVATED_CLASS);
           activeElements[key] = queueElements[key];
-        }
       }
+    }
       queueElements = {};
     }
 
@@ -3013,8 +3013,8 @@
         if (activeElements[key]) {
           activeElements[key].classList.remove(ACTIVATED_CLASS);
           delete activeElements[key];
-        }
       }
+    }
     }
 
   })(document, ionic);
@@ -3036,7 +3036,7 @@
           var k = new_index - arr.length;
           while ((k--) + 1) {
             arr.push(undefined);
-          }
+        }
         }
         arr.splice(new_index, 0, arr.splice(old_index, 1)[0]);
         return arr;
@@ -3072,8 +3072,8 @@
             } else {
               timeout = null;
               if (!immediate) result = func.apply(context, args);
-            }
-          };
+          }
+        };
           var callNow = immediate && !timeout;
           if (!timeout) {
             timeout = setTimeout(later, wait);
@@ -3105,12 +3105,12 @@
           args = arguments;
           if (remaining <= 0) {
             clearTimeout(timeout);
-            timeout = null;
+          timeout = null;
             previous = now;
-            result = func.apply(context, args);
+          result = func.apply(context, args);
           } else if (!timeout && options.trailing !== false) {
             timeout = setTimeout(later, remaining);
-          }
+        }
           return result;
         };
       },
@@ -3345,7 +3345,7 @@
       document.removeEventListener("MSPointerDown", keyboardInit);
     } else {
       document.removeEventListener('touchstart', keyboardInit);
-    }
+  }
   }
 
   function keyboardNativeShow(e) {
@@ -3431,7 +3431,7 @@
       document.addEventListener("MSPointerMove", keyboardPreventDefault, false);
     } else {
       document.addEventListener('touchmove', keyboardPreventDefault, false);
-    }
+  }
 
     return details;
   }
@@ -3445,19 +3445,19 @@
   function keyboardUpdateViewportHeight() {
     if (getViewportHeight() > keyboardViewportHeight) {
       keyboardViewportHeight = getViewportHeight();
-    }
+  }
   }
 
   function keyboardOnKeyDown(e) {
     if (ionic.scroll.isScrolling) {
       keyboardPreventDefault(e);
-    }
+  }
   }
 
   function keyboardPreventDefault(e) {
     if (e.target.tagName !== 'TEXTAREA') {
       e.preventDefault();
-    }
+  }
   }
 
   function keyboardOrientationChange() {
@@ -3488,7 +3488,7 @@
       }, 50);
     } else {
       keyboardViewportHeight = updatedViewportHeight;
-    }
+  }
   }
 
   function keyboardGetHeight() {
@@ -3507,7 +3507,7 @@
         return keyboardViewportHeight - getViewportHeight();
       } else {
         return 0;
-      }
+    }
     }
 
     // fallback for when its the webview without the plugin
@@ -3522,7 +3522,7 @@
     }
 
       return 260;
-    }
+  }
 
     // safe guess
     return 275;
@@ -3538,7 +3538,7 @@
         return true;
     }
       ele = ele.parentElement;
-    }
+  }
     return false;
   }
 
@@ -3592,10 +3592,10 @@
         if (props[x]) {
           keyValue = props[x].split('=');
           viewportProperties[keyValue[0]] = (keyValue.length > 1 ? keyValue[1] : '_');
-        }
       }
-      viewportUpdate();
     }
+      viewportUpdate();
+  }
   }
 
   function viewportUpdate() {
@@ -3635,13 +3635,13 @@
           } else if (version == 7) {
             // iPad <= 7.0 WebView Portait
             viewportProperties.height = DEVICE_HEIGHT;
-          }
+        }
         } else {
           // iPad <= 6.1 Browser
           if (version < 7) {
             viewportProperties.height = '0';
           }
-        }
+      }
       }
 
     } else if (p.isIOS()) {
@@ -3679,7 +3679,7 @@
     // only update the viewport tag if there was a change
     if (initWidth !== viewportProperties.width || initHeight !== viewportProperties.height) {
       viewportTagUpdate();
-    }
+  }
   }
 
   function viewportTagUpdate() {
@@ -3688,7 +3688,7 @@
       if (viewportProperties[key]) {
         props.push(key + (viewportProperties[key] == '_' ? '' : '=' + viewportProperties[key]));
     }
-    }
+  }
 
     viewportTag.content = props.join(', ');
   }
@@ -3885,7 +3885,7 @@
           var newRunning = {};
           for (var usedId in running) {
             newRunning[usedId] = true;
-          }
+        }
           running = newRunning;
         }
 
@@ -3915,7 +3915,7 @@
             for (var j = 0; j < Math.min(droppedFrames, 4); j++) {
               step(true);
               dropCounter++;
-            }
+          }
 
           }
 
@@ -3924,7 +3924,7 @@
             percent = (now - start) / duration;
             if (percent > 1) {
               percent = 1;
-            }
+          }
           }
 
           // Execute step callback, then...
@@ -4369,10 +4369,10 @@
               } else {
                 // probably overkill for chrome
                 delay = 350;
-              }
+          }
             } else {
               delay = 80;
-            }
+        }
 
             //Put element in middle of visible screen
             //Wait for android to update view height and resize() to reset scroll position
@@ -4391,7 +4391,7 @@
                 ionic.tap.cloneFocusedInput(container, self);
                 self.scrollBy(0, scrollTop, true);
                 self.onScroll();
-              }
+          }
             }, delay);
           }
 
@@ -4541,7 +4541,7 @@
           self.mouseMove = function (e) {
             if (!mousedown || e.defaultPrevented) {
               return;
-            }
+        }
 
             self.doTouchMove(getEventTouches(e), e.timeStamp);
 
@@ -4897,7 +4897,7 @@
             self.__repositionScrollbars();
             if (!wasResize) {
               self.triggerScrollEvent();
-            }
+        }
           };
 
         } else if (helperElem.style[transformProperty] !== undef) {
@@ -4907,7 +4907,7 @@
             self.__repositionScrollbars();
             if (!wasResize) {
               self.triggerScrollEvent();
-            }
+        }
           };
 
         } else {
@@ -5526,7 +5526,7 @@
                   } else {
                     self.__refreshHide();
                     self.__refreshHidden = true;
-                  }
+              }
 
                   if (!self.__refreshActive && scrollTop <= -self.__refreshHeight) {
 
@@ -5558,7 +5558,7 @@
               // if a positive scroll value and the refresher is still not hidden, hide it
               self.__refreshHide();
               self.__refreshHidden = true;
-            }
+        }
           }
 
           // Keep list from growing infinitely (holding min 10, max 20 measure points)
@@ -5668,11 +5668,11 @@
                 // Deactivate pull-to-refresh when decelerating
                 if (!self.__refreshActive) {
                   self.__startDeceleration(timeStamp);
-                }
-              }
+            }
+          }
             } else {
               self.__scrollingComplete();
-            }
+        }
           } else if ((timeStamp - self.__lastTouchMove) > 100) {
             self.__scrollingComplete();
           }
@@ -5714,7 +5714,7 @@
                 self.__refreshDeactivate();
               }
 
-            }
+        }
           }
         }
 
@@ -5771,12 +5771,12 @@
               self.__scrollTop = oldTop + (diffTop * percent);
               self.__zoomLevel = oldZoom + (diffZoom * percent);
 
-              // Push values out
-              if (self.__callback) {
-                self.__callback(self.__scrollLeft, self.__scrollTop, self.__zoomLevel, wasResize);
-              }
+          // Push values out
+          if (self.__callback) {
+            self.__callback(self.__scrollLeft, self.__scrollTop, self.__zoomLevel, wasResize);
+          }
 
-            }
+        }
           };
 
           var verify = function (id) {
@@ -5793,7 +5793,7 @@
 
             if (self.options.zooming) {
               self.__computeScrollMax();
-            }
+        }
           };
 
           // When continuing based on previous animation we choose an ease-out animation instead of ease-in-out
@@ -6049,13 +6049,13 @@
             var isHeadingOutwardsX = scrollOutsideX * self.__decelerationVelocityX <= self.__minDecelerationScrollLeft;
             if (isHeadingOutwardsX) {
               self.__decelerationVelocityX += scrollOutsideX * penetrationDeceleration;
-            }
+        }
             var isStoppedX = Math.abs(self.__decelerationVelocityX) <= self.__minVelocityToKeepDecelerating;
             //If we're not heading outwards, or if the above statement got us below minDeceleration, go back towards bounds
             if (!isHeadingOutwardsX || isStoppedX) {
               self.__decelerationVelocityX = scrollOutsideX * penetrationAcceleration;
             }
-          }
+      }
 
           if (scrollOutsideY !== 0) {
             var isHeadingOutwardsY = scrollOutsideY * self.__decelerationVelocityY <= self.__minDecelerationScrollTop;
@@ -6169,8 +6169,8 @@
                 rightWidth += childSize;
               } else {
                 leftWidth += childSize;
-              }
             }
+          }
           }
 
           var margin = Math.max(leftWidth, rightWidth) + 10;
@@ -6189,7 +6189,7 @@
               if (rightWidth > 0) {
                 titleEl.style.right = (rightWidth + 5) + 'px';
             }
-            }
+          }
           } else if (align == 'left') {
             titleEl.classList.add('title-left');
             if (leftWidth > 0) {
@@ -6280,7 +6280,7 @@
         buttonsWidth: buttonsWidth,
         content: content,
         startOffsetX: offsetX
-      };
+    };
     };
 
     /**
@@ -6333,7 +6333,7 @@
         if (newX < -buttonsWidth) {
           // Calculate the new X position, capped at the top of the buttons
           newX = Math.min(-buttonsWidth, -buttonsWidth + (((e.gesture.deltaX + buttonsWidth) * 0.4)));
-        }
+      }
 
         this._currentDrag.content.style[ionic.CSS.TRANSFORM] = 'translate3d(' + newX + 'px, 0, 0)';
         this._currentDrag.content.style[ionic.CSS.TRANSITION] = 'none';
@@ -6362,7 +6362,7 @@
           restingPoint = 0;
         } else if (e.gesture.direction == "right") {
           restingPoint = 0;
-        }
+      }
 
       }
 
@@ -6434,7 +6434,7 @@
         placeholder: placeholder,
         scrollHeight: scroll,
         list: placeholder.parentNode
-      };
+    };
 
       this._moveElement(e);
     };
@@ -6465,17 +6465,17 @@
           //Trigger another drag so the scrolling keeps going
           ionic.requestAnimationFrame(function () {
             self.drag(e);
-        });
+          });
         }
         if (e.gesture.deltaY > 0 && pixelsPastBottom > 0) {
           if (scrollY < this.scrollView.getScrollMax().top) {
             this.scrollView.scrollBy(null, pixelsPastBottom);
-            //Trigger another drag so the scrolling keeps going
+          //Trigger another drag so the scrolling keeps going
             ionic.requestAnimationFrame(function () {
-              self.drag(e);
+            self.drag(e);
             });
-          }
         }
+      }
       }
 
       // Check if we should start dragging. Check if we've dragged past the threshold,
@@ -6508,8 +6508,8 @@
         el = siblings[i];
         if (i === len - 1) {
           if (dragOffsetTop > el.offsetTop) {
-            return i;
-          }
+          return i;
+        }
         } else if (i === 0) {
           if (dragOffsetTop < el.offsetTop + el.offsetHeight) {
             return i;
@@ -6517,7 +6517,7 @@
         } else if (dragOffsetTop > el.offsetTop - el.offsetHeight / 2 &&
             dragOffsetTop < el.offsetTop + el.offsetHeight) {
           return i;
-        }
+      }
       }
       return this._currentDrag.startIndex;
     };
@@ -6560,7 +6560,7 @@
           virtualAddThreshold: 200,
           canSwipe: function () {
             return true;
-          }
+        }
         }, opts);
 
         ionic.extend(this, opts);
@@ -6649,7 +6649,7 @@
             var el = this._virtualItemsToRemove[i];
             //el.parentNode.removeChild(el);
             this.didHideItem && this.didHideItem(i);
-          }
+        }
           // Once scrolling stops, check if we need to remove old items
 
         }
@@ -6679,7 +6679,7 @@
         while (target) {
           if (target.classList && target.classList.contains(ITEM_CLASS)) {
             return target;
-          }
+        }
           target = target.parentNode;
         }
         return null;
@@ -6712,7 +6712,7 @@
             });
             this._dragOp.start(e);
             e.preventDefault();
-          }
+        }
         }
 
         // Or check if this is a swipe to the side drag
@@ -6724,7 +6724,7 @@
             this._dragOp = new SlideDrag({el: this.el, canSwipe: this.canSwipe});
             this._dragOp.start(e);
             e.preventDefault();
-          }
+        }
         }
 
         // If we had a last drag operation and this is a new one on a different item, clean that last one
@@ -6769,7 +6769,7 @@
         if (!this._dragOp) {
           //ionic.views.ListView.__super__._handleDrag.call(this, e);
           return;
-        }
+      }
 
         e.gesture.srcEvent.preventDefault();
         this._dragOp.drag(e);
@@ -6805,7 +6805,7 @@
             var input = self.el.querySelector('input, textarea');
             input && input.focus && input.focus();
           }, self.focusFirstDelay);
-        }
+      }
       },
       hide: function () {
         // Unfocus all elements
@@ -6815,8 +6815,8 @@
           window.setTimeout(function () {
             for (var i = 0; i < inputs.length; i++) {
               inputs[i].blur && inputs[i].blur();
-            }
-        });
+          }
+          });
         }
       }
     });
@@ -6830,7 +6830,7 @@
      * The side menu view handles one of the side menu's in a Side Menu Controller
      * configuration.
      * It takes a DOM reference to that side menu element.
-     */
+   */
     ionic.views.SideMenu = ionic.views.View.inherit({
       initialize: function (opts) {
         this.el = opts.el;
@@ -6975,7 +6975,7 @@
             if (browser.transitions) {
               slide.style.left = (pos * -width) + 'px';
               move(pos, index > pos ? -width : (index < pos ? width : 0), 0);
-            }
+        }
 
           }
 
@@ -7325,7 +7325,7 @@
                     move(circle(index + 1), width, 0);
                     move(circle(index - 2), -width, 0);
 
-                  } else {
+              } else {
                     move(index + 1, width, 0);
                   }
 
@@ -7345,12 +7345,12 @@
                   move(index, 0, speed);
                   move(circle(index + 1), width, speed);
 
-                } else {
+            } else {
 
                   move(index - 1, -width, speed);
                   move(index, 0, speed);
                   move(index + 1, width, speed);
-                }
+            }
 
               }
 
@@ -7510,7 +7510,7 @@
               setup();
             }; // to play nice with old IE
 
-          }
+      }
         };
 
       }
@@ -7612,7 +7612,7 @@
               self.setOpenPercent(0);
             } else if (px > self._dragInfo.triggerX) {
               self.setOpenPercent(100);
-            }
+          }
           } else {
             // The initial state was off, so "tend towards" off
             if (px < self._dragInfo.triggerX) {
@@ -7650,7 +7650,7 @@
             var openPixel = Math.round((openPercent / 100) * this.track.offsetWidth - (this.handle.offsetWidth));
             openPixel = (openPixel < 1 ? 0 : openPixel);
             this.handle.style[ionic.CSS.TRANSFORM] = 'translate3d(' + openPixel + 'px,0,0)';
-          }
+        }
         }
       },
 
@@ -7658,11 +7658,11 @@
         if (value === true || value === false) {
           if (this.handle.style[ionic.CSS.TRANSFORM] !== "") {
             this.handle.style[ionic.CSS.TRANSFORM] = "";
-          }
+        }
           this.checkbox.checked = value;
           this.openPercent = (value ? 100 : 0);
           this.onChange && this.onChange();
-        }
+      }
         return this.checkbox.checked;
       }
 
