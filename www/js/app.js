@@ -1,11 +1,39 @@
 angular.module('imageQuizz', ['ionic', 'ui.utils'])
 
     .config(function ($stateProvider, $urlRouterProvider) {
+
         $stateProvider
-            .state('modules', {
-                url: '/modules',
-                templateUrl: 'templates/ModulListView.html',
-                controller: 'ModuleListController as mlCtrl'
+            .state('tabs', {
+                url: "/tab",
+                abstract: true,
+                templateUrl: "templates/TabsView.html"
+            })
+            .state('tabs.home', {
+                url: "/modules",
+                views: {
+                    'module-tab': {
+                        templateUrl: "templates/ModulListView.html",
+                        controller: 'ModuleListController as mlCtrl'
+                    }
+                }
+            })
+            .state('tabs.stats', {
+                url: '/stats',
+                views: {
+                    'stats-tab': {
+                        templateUrl: "templates/StatView.html",
+                        controller: "StatisticController as statsCtrl"
+                    }
+                }
+            })
+            .state('tabs.settings', {
+                url: '/settings',
+                views: {
+                    'settings-tab': {
+                        templateUrl: "templates/SettingView.html",
+                        controller: "SettingsController as stCtrl"
+                    }
+                }
             })
             .state('question_list', {
                 url: '/questionlist/:id',
@@ -17,22 +45,12 @@ angular.module('imageQuizz', ['ionic', 'ui.utils'])
                 templateUrl: 'templates/QuestionView.html',
                 controller: 'QuestionController as qCtrl'
             })
-            .state('settings', {
-                url: '/settings',
-                templateUrl: 'templates/SettingView.html',
-                controller: 'SettingsController as sCtrl'
-            })
-            .state('statistic', {
-                url: '/statistic',
-                templateUrl: 'templates/StatView.html',
-                controller: 'StatisticController as statCtrl'
-            })
             .state('question_view_quizz', {
                 url: '/questionview/quizz/:id',
                 templateUrl: 'templates/QuestionView.html',
-                controller: 'QuestionController as qCtrl'
+                controller: 'QuizzController as qCtrl'
             });
-        $urlRouterProvider.otherwise('/modules');
+        $urlRouterProvider.otherwise("/tab/modules");
 
     })
 
@@ -47,4 +65,4 @@ angular.module('imageQuizz', ['ionic', 'ui.utils'])
                 StatusBar.styleDefault();
             }
         });
-    })
+    });

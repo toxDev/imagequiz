@@ -1,8 +1,11 @@
 'use strict';
-angular.module('imageQuizz').controller('QuestionController',
+angular.module('imageQuizz').controller('QuizzController',
     function (QuestionData,$scope,$stateParams,$ionicPopup,$ionicNavBarDelegate) {
 
-        $scope.question = QuestionData.findQuestionById($stateParams.id);
+        $scope.cur = 0;
+        $scope.questionList = QuestionData.findAllQuestionsByCategory($stateParams.id);
+        $scope.question = $scope.questionList[$scope.cur];
+        $scope.correctAnswers = 0;
 
         this.testAnswer = function (answer) {
             console.log(answer);
@@ -20,6 +23,7 @@ angular.module('imageQuizz').controller('QuestionController',
 
             if(answer === correctAnswer){
                 result = 'Richtig! Sehr gut :)'
+                $scope.correctAnswers += 1;
             } else {
                 result = 'Leider Falsch :('
             }
@@ -30,7 +34,16 @@ angular.module('imageQuizz').controller('QuestionController',
             });
 
             popup.then(function () {
-                $ionicNavBarDelegate.back()
+                if($scope.cur == $scope.questionList.length-1){
+                    var statisticPopup = $ionicPopup.alert({
+                        title:'Runden Statistik',
+                        template:'Richtig erkannte Bilder: '+$scope.correctAnswers+'<br>'+
+                                    'Von insgesamt: '+$scope.questionList.length
+                    });
+                    $ionicNavBarDelegate.back();
+                } else {
+                    $scope.question = $scope.questionList[++$scope.cur];
+                }
             })
         }
     });
