@@ -1,6 +1,6 @@
 'use strict';
 angular.module('imageQuizz').factory('QuestionData',
-    function (Question, Modul) {
+    function (Question) {
         var service = {
             findAllQuestions: function () {
                 var questions = localStorage.getItem('questions');
@@ -164,7 +164,7 @@ angular.module('imageQuizz').factory('QuestionData',
                 var modules = [];
                 for (var i = 0; i < questions.length; i++) {
                     if (modules.indexOf(questions[i].category) === -1) {
-                        modules.push(new Modul(i, questions[i].category));
+                        modules.push(questions[i].category);
                         console.log(modules);
                     }
                 }

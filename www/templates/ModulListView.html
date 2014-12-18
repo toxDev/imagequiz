@@ -21,6 +21,7 @@
             </div>
             <ion-list can-swipe="true">
                 <ion-item class="item-text-wrap animation"
+                <!--unique: Filter für doppelte Einträge-->
                           ng-repeat="module in filteredModules = (modules | filter:{category: mlCtrl.searchQuery} | unique:'category')"
                           href="#/questionlist/{{module.category}}">
                     {{module.category}}
