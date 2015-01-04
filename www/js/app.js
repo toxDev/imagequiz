@@ -54,7 +54,7 @@ angular.module('imageQuizz', ['ionic', 'ui.utils'])
 
     })
 
-    .directive('focusMe', function ($timeout) {
+    /*.directive('focusMe', function ($timeout) {
         return {
             link: function (scope, element, attrs) {
 
@@ -63,7 +63,7 @@ angular.module('imageQuizz', ['ionic', 'ui.utils'])
                 });
             }
         };
-    })
+     })*/
 
     .run(function ($ionicPlatform) {
         $ionicPlatform.ready(function () {
