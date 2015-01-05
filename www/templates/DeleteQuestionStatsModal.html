@@ -6,14 +6,9 @@
         </button>
     </div>
     <ion-content class="has-header">
-        <div class="item item-input-inset">
-            <label class="item-input-wrapper">
-                <input type="text" placeholder="Kategorien durchsuchen" ng-model="searchQuery">
-            </label>
-            <button class="button button-clear"
-                    style="min-height: inherit; line-height: inherit;"
-                    ng-click="searchQuery=''" ng-show="searchQuery">Cancel
-            </button>
-        </div>
+        <ion-checkbox>Autos</ion-checkbox>
+        <ion-checkbox>Deutsche Sehenswürdigkeiten</ion-checkbox>
+        <ion-checkbox>Gefährliche Raubtiere</ion-checkbox>
+        <button class="button button-block button-balanced">Fertig</button>
     </ion-content>
 </ion-modal-view>

@@ -13,7 +13,7 @@ angular.module('imageQuizz').controller('SettingsController',
 
         //Modal View Import
         $ionicModal.fromTemplateUrl('templates/ImportModulesModal.html', {
-            id: 1,
+            id: '1',
             scope: $scope,
             backdropClickToClose: false,
             animation: 'slide-in-up',
@@ -24,7 +24,7 @@ angular.module('imageQuizz').controller('SettingsController',
 
         //Modal View Delete Stats
         $ionicModal.fromTemplateUrl('templates/DeleteQuestionStatsModal.html', {
-            id: 2,
+            id: '2',
             scope: $scope,
             backdropClickToClose: false,
             animation: 'slide-in-up',
@@ -37,7 +37,7 @@ angular.module('imageQuizz').controller('SettingsController',
          *Open a specific modal
          * @param index from the Modal which would open
          */
-        this.openModal = function (index) {
+        $scope.openModal = function (index) {
             if (index == 1) $scope.modal1.show();
             else $scope.modal2.show();
         };
