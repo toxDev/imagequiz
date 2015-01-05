@@ -1,6 +1,40 @@
 'use strict';
 angular.module('imageQuizz').controller('StatisticController',
-    function ($scope) {
+    function ($scope, StatData, QuestionData) {
+
+        //Statistik Daten abrufen
+        var stat_data = StatData.findAllStats();
+        var sum_right = 0;
+        var sum_false = 0;
+        var undone_questions = 0;
+        for (var i = 0; i < stat_data.length; i++) {
+            console.log("hallo" + stat_data[i].countRight);
+            if (!stat_data[i].countRight && !stat_data[i].countWrong) {
+                undone_questions++;
+            } else {
+                sum_right += stat_data[i].countRight;
+                sum_false += stat_data[i].countWrong;
+            }
+        }
+
+        var categorys = QuestionData.findAllCategorys();
+        var chartRows = [];
+        for (var i = 0; i < categorys.length; i++) {
+            var questions = QuestionData.findAllQuestionsByCategory(categorys[i]);
+            var category_right = 0;
+            var category_wrong = 0;
+            for (var j = 0; j < questions.length; j++) {
+                var stat = StatData.findStatByQuestionId(questions[j].id);
+                if (stat.actRightSeries >= 7) {
+                    category_right++;
+                } else {
+                    category_wrong++;
+                }
+            }
+            chartRows.push({c: [{v: categorys[i]}, {v: category_right}, {v: category_wrong}]})
+        }
+
+
         $scope.chartObject = {};
         $scope.chartObject = {"type": "PieChart"}
         $scope.chartObject.data = {
@@ -11,19 +45,26 @@ angular.module('imageQuizz').controller('StatisticController',
                 {
                     c: [
                         {v: "Korrekt"},
-                        {v: 150}
+                        {v: sum_right}
                     ]
                 },
                 {
                     c: [
                         {v: "Falsch"},
-                        {v: 60}
+                        {v: sum_false}
+                    ]
+                },
+                {
+                    c: [
+                        {v: "unbearbeitete Fragen"},
+                        {v: undone_questions}
                     ]
                 }
             ]
         };
         $scope.chartObject.options = {
             'title': 'Insgesamt beantwortetet Fragen'
+
         }
         $scope.chartObject.cssStyle = "height:400px; width:100%";
 
@@ -34,94 +75,15 @@ angular.module('imageQuizz').controller('StatisticController',
                 {id: "t", label: "Topping", type: "string"},
                 {id: "s", label: "gelernt", type: "number"},
                 {id: "s", label: "offen", type: "number"}
-            ], "rows": [
-                {
-                    c: [
-                        {v: "Autos"},
-                        {v: 1},
-                        {v: 2}
-                    ]
-                },
-                {
-                    c: [
-                        {v: "Deutsche Sehenswürdigkeiten"},
-                        {v: 15},
-                        {v: 7}
-                    ]
-                },
-                {
-                    c: [
-                        {v: "Gefährliche Tiere"},
-                        {v: 6},
-                        {v: 3}
-                    ]
-                }
-            ]
+            ], "rows": chartRows
         };
         $scope.chartObjectColumn.options = {
             'title': 'Gespiele Fragen nach Kategorie',
             'isStacked': 'true',
-            'legend': {position: 'bottom', textStyle: {color: 'black', fontSize: 16}},
-            vAxis: {ticks: [5, 10, 15, 20]}
-
+            'legend': {position: 'bottom', textStyle: {color: 'black', fontSize: 16}}
         }
+
+
         $scope.chartObjectColumn.cssStyle = "height:400px; width:100%;";
-
-        /*
-         // $routeParams.chartType == BarChart or PieChart or ColumnChart...
-         $scope.chartObject.type = $routeParams.chartType;
-
-
-
-         var chart1 = {};
-         chart1.type = "ColumnChart";
-         chart1.cssStyle = "height:400px; width:100%;";
-         chart1.data = {"cols": [
-         {id: "month", label: "Month", type: "string"},
-         {id: "laptop-id", label: "Laptop", type: "number"},
-         {id: "desktop-id", label: "Desktop", type: "number"},
-         {id: "server-id", label: "Server", type: "number"},
-         {id: "cost-id", label: "Shipping", type: "number"}
-         ], "rows": [
-         {c: [
-         {v: "January"},
-         {v: 19, f: "42 items"},
-         {v: 12, f: "Ony 12 items"},
-         {v: 7, f: "7 servers"},
-         {v: 4}
-         ]},
-         {c: [
-         {v: "February"},
-         {v: 13},
-         {v: 1, f: "1 unit (Out of stock this month)"},
-         {v: 12},
-         {v: 2}
-         ]},
-         {c: [
-         {v: "March"},
-         {v: 24},
-         {v: 0},
-         {v: 11},
-         {v: 6}
-
-         ]}
-         ]};
-
-         chart1.options = {
-         "title": "Sales per month",
-         "isStacked": "true",
-         "fill": 20,
-         "displayExactValues": true,
-         "vAxis": {
-         "title": "Sales unit", "gridlines": {"count": 6}
-         },
-         "hAxis": {
-         "title": "Date"
-         }
-         };
-
-         chart1.formatters = {};
-
-         $scope.chart = chart1;*/
     }
 );
