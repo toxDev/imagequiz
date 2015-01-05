@@ -1,4 +1,4 @@
-angular.module('imageQuizz', ['ionic', 'ui.utils'])
+angular.module('imageQuizz', ['ionic', 'ui.utils', 'googlechart'])
 
     .config(function ($stateProvider, $urlRouterProvider) {
 
