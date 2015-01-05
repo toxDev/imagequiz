@@ -13,8 +13,8 @@
 }
 .list:last-child {
   margin-bottom: 0px;
-  &.card {
-    margin-bottom: 40px;
+  &.card{
+    margin-bottom:40px;
   }
 }
 
@@ -37,6 +37,7 @@
   padding-right: 1px;
   padding-left: 1px;
 }
+
 
 /**
  * Cards and Inset Lists
@@ -67,7 +68,8 @@
 
 .card .item,
 .list-inset .item,
-.padding > .list .item {
+.padding > .list .item
+{
   &:first-child {
     border-top-left-radius: $card-border-radius;
     border-top-right-radius: $card-border-radius;

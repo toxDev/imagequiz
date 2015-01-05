@@ -46,6 +46,7 @@
   }
 }
 
+
 // Set popover border-radius
 .popover,
 .popover .bar-header {
@@ -66,6 +67,7 @@
 .popover-arrow {
   display: none;
 }
+
 
 // iOS Popover
 .platform-ios {
@@ -114,6 +116,7 @@
   }
 }
 
+
 // Android Popover
 .platform-android {
 
@@ -138,6 +141,7 @@
   }
 }
 
+
 // disable clicks on all but the popover
 .popover-open {
   pointer-events: none;
@@ -154,6 +158,7 @@
     }
   }
 }
+
 
 // wider popover on larger viewports
 @media (min-width: $popover-large-break-point) {

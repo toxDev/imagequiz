@@ -40,6 +40,7 @@ textarea {
   font-family: $font-family-base; // And only set font-family here for those that need it (note the missing label element)
 }
 
+
 // Input List
 // -------------------------------
 
@@ -172,6 +173,7 @@ textarea {
   }
 }
 
+
 // Form Controls
 // -------------------------------
 
@@ -277,12 +279,14 @@ input[type="file"] {
   width: 200px;
 }
 
+
 // Placeholder
 // -------------------------------
 input,
 textarea {
   @include placeholder();
 }
+
 
 // DISABLED STATE
 // -------------------------------

@@ -16,9 +16,16 @@ angular.module('imageQuizz').controller('QuizzController',
             }
         });
 
+        this.removeFullyRememberedQuestions = function (questionList) {
+            questionList.forEach(function (question) {
+                if(StatData.findStatByQuestionId(question.id).actRightSeries == 7){
+                    questionList.splice(questionList.indexOf(question),1);
+                }
+            });
+            return questionList;
+        };
 
         this.testAnswer = function (answer) {
-            console.log(answer);
             var correctAnswer;
 
             $scope.question.options.forEach(function (option) {
@@ -27,16 +34,24 @@ angular.module('imageQuizz').controller('QuizzController',
                 }
             });
 
-            console.log(correctAnswer);
-
             var result;
+            var stat = StatData.findStatByQuestionId($scope.question.id);
+            var right = stat.countRight;
+            var wrong = stat.countWrong;
+            var series = stat.actRightSeries;
 
             if(answer === correctAnswer){
-                result = 'Richtig! Sehr gut :)'
+                result = 'Richtig! Sehr gut :)';
                 $scope.correctAnswers += 1;
+                right += 1;
+                series += 1;
             } else {
-                result = 'Leider Falsch :('
+                result = 'Leider Falsch :(';
+                wrong += 1;
+                series = 0;
             }
+
+            StatData.updateStat($scope.question.id,right,wrong,series);
 
             var popup = $ionicPopup.alert({
                 title:result,
