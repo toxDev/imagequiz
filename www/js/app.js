@@ -1,4 +1,4 @@
-angular.module('imageQuizz', ['ionic', 'ui.utils'])
+angular.module('imageQuizz', ['ionic', 'ui.utils', 'firebase'])
 
     .config(function ($stateProvider, $urlRouterProvider) {
 

@@ -1,11 +1,14 @@
 <ion-view title="imageQuizz">
     <ion-content class="has-header">
         <div class="padding">
-            <button class="button button-block button-stable" ng-click="stCtrl.saveData()">Benutzerdaten in der Cloud
-                speichern
+            <div class="item item-divider">Statistik speichern</div>
+            <ion-checkbox style="text-align: right" ng-model="cloudData.checked" ng-change="cloudDataChange()">
+                Statistiken in der Cloud speichern?
+            </ion-checkbox>
+            <!-- <div class="item item-divider">Weitere Optionen</div>-->
+            <button class="button button-block button-balanced" ng-click="openModal(1)">Module hinzufügen</button>
+            <button class="button button-block button-assertive" ng-click="openModal(2)">Gelernte Karten zurücksetzen
             </button>
-            <button class="button button-block button-stable" ng-click="stCtrl.openModal()">Module hinzufügen</button>
-            <button class="button button-block button-assertive">Gelernte Karten zurücksetzen</button>
         </div>
     </ion-content>
 </ion-view>
