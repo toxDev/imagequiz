@@ -1,5 +1,11 @@
 <ion-view title="imageQuizz">
     <ion-content class="has-header">
-        <h1>Hier werden die Settings angezeigt</h1>
+        <div class="padding">
+            <button class="button button-block button-stable" ng-click="stCtrl.saveData()">Benutzerdaten in der Cloud
+                speichern
+            </button>
+            <button class="button button-block button-stable" ng-click="stCtrl.openModal()">Module hinzufügen</button>
+            <button class="button button-block button-assertive">Gelernte Karten zurücksetzen</button>
+        </div>
     </ion-content>
 </ion-view>
