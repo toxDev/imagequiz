@@ -18,7 +18,7 @@ angular.module('imageQuizz').controller('QuizzController',
 
         this.removeFullyRememberedQuestions = function (questionList) {
             questionList.forEach(function (question) {
-                if(StatData.findStatByQuestionId(question.id).actRightSeries == 7){
+                if(StatData.findStatByQuestionId(question.id).actRightSeries == 6){
                     questionList.splice(questionList.indexOf(question),1);
                 }
             });
