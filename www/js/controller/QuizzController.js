@@ -1,9 +1,43 @@
 'use strict';
 angular.module('imageQuizz').controller('QuizzController',
-    function (QuestionData, $scope, $stateParams, $ionicPopup, $ionicNavBarDelegate, StatData) {
+    function (QuestionData, $scope, $state, $stateParams, $ionicPopup, $ionicNavBarDelegate, StatData) {
+
+        this.removeFullyRememberedQuestions = function (questionList) {
+            for (var i = 0; i < questionList.length; i++){
+                if(StatData.findStatByQuestionId(questionList[i].id).actRightSeries >= 6){
+                    questionList.splice(i,1);
+                    i = i-1;
+                }
+            }
+            return questionList;
+        };
 
         $scope.cur = 0;
-        $scope.questionList = QuestionData.findAllQuestionsByCategory($stateParams.id);
+        $scope.questionList = this.removeFullyRememberedQuestions(QuestionData.findAllQuestionsByCategory($stateParams.id));
+
+        //Zurücksetzen der Fragen, wenn alle 6 mal richtig beantwortet wurden
+        if(!$scope.questionList || $scope.questionList.length == 0){
+            var popup = $ionicPopup.confirm({
+                title: 'Du hast alle Fragen gelernt!',
+                template: 'Soll der Lern-Zähler zurückgesetzt werden?',
+                cancelText: 'Nein',
+                okText: 'Ja'
+            });
+            popup.then(function(res) {
+                console.log(res);
+                if(res){
+                    $scope.questionList = QuestionData.findAllQuestionsByCategory($stateParams.id);
+                    $scope.questionList.forEach(function (question) {
+                        StatData.updateStat(question.id,StatData.findStatByQuestionId(question.id).countRight,
+                            StatData.findStatByQuestionId(question.id).countWrong,0);
+                    });
+
+                } else {
+                    $ionicNavBarDelegate.back();
+                }
+            });
+        }
+
         $scope.question = $scope.questionList[$scope.cur];
         $scope.correctAnswers = 0;
 
@@ -15,15 +49,6 @@ angular.module('imageQuizz').controller('QuizzController',
                 console.log("Statistik hinzugefügt");
             }
         });
-
-        this.removeFullyRememberedQuestions = function (questionList) {
-            questionList.forEach(function (question) {
-                if(StatData.findStatByQuestionId(question.id).actRightSeries == 6){
-                    questionList.splice(questionList.indexOf(question),1);
-                }
-            });
-            return questionList;
-        };
 
         this.testAnswer = function (answer) {
             var correctAnswer;
