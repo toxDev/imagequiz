@@ -45,7 +45,6 @@ angular.module('imageQuizz').factory('StatData',
                         stats[i] = new Stat(id,right,wrong,series);
                     }
                 }
-
                 localStorage.setItem('stats', JSON.stringify(stats));
             }
         };
