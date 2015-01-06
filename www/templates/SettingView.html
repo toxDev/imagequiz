@@ -7,6 +7,12 @@
                 Statistiken in der Cloud speichern?
             </ion-checkbox>
             </div>
+            <div class="card">
+                <div class="item item-text-wrap">
+                    UserID: {{stCtrl.generateUID()}} <br>
+                    LastSync: --
+                </div>
+            </div>
             <!-- <div class="item item-divider">Weitere Optionen</div>-->
             <button class="button button-block button-balanced" ng-click="openModal(1)">Module hinzufügen</button>
             <button class="button button-block button-assertive" ng-click="openModal(2)">Gelernte Karten zurücksetzen

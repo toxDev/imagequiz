@@ -11,6 +11,17 @@ angular.module('imageQuizz').controller('SettingsController',
         //variable for checkbox decision
         $scope.cloudData = {checked: false};
 
+        this.generateUID = function () {
+
+            var uID = localStorage.getItem('uid');
+
+            if (!uID) {
+                var uID = Math.floor(Math.random() * 1000000);
+                localStorage.setItem('uid', JSON.stringify(uID));
+            }
+            return uID;
+        };
+
         //Modal View Import
         $ionicModal.fromTemplateUrl('templates/ImportModulesModal.html', {
             id: '1',
