@@ -11,6 +11,10 @@ angular.module('imageQuizz').controller('SettingsController',
         //variable for checkbox decision
         $scope.cloudData = {checked: false};
 
+        /**
+         * Generate a specific user ID for firebase
+         * @returns uID for firebase syn and backup
+         */
         this.generateUID = function () {
 
             var uID = localStorage.getItem('uid');
