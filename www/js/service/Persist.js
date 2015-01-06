@@ -12,6 +12,7 @@ angular.module('imageQuizz').factory(
             },
             update: function (stat) {
                 this.findAll().$save(stat);
+                //TODO last sync time
             },
             persist: function (stat) {
                 this.findAll().$add(stat);
