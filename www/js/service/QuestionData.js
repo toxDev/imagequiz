@@ -133,7 +133,7 @@ angular.module('imageQuizz').factory('QuestionData',
                                 "answer": true
                             }]
                     ));
-                    questions.push(new Question(9, "Deutsche Sehenswürdigkeiten", "img/deutsche_sehenswuerdigkeiten/frauenkirche_muenchen.jpg", "@Photo by DAVID ILIFF. License: CC-BY-SA 3.0", "98,45 Meter hoch",
+                    questions.push(new Question(10, "Deutsche Sehenswürdigkeiten", "img/deutsche_sehenswuerdigkeiten/frauenkirche_muenchen.jpg", "@Photo by DAVID ILIFF. License: CC-BY-SA 3.0", "98,45 Meter hoch",
                         [{
                             "option": "Münchner Frauenkirche",
                             "answer": true
