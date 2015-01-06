@@ -1,14 +1,15 @@
 <ion-view title="imageQuizz">
+    <ion-nav-buttons side="right">
+        <button class="button button-icon icon ion-ios-help-outline"></button>
+    </ion-nav-buttons>
     <ion-content class="has-header">
         <div class="padding">
             <div class="card">
                 <div class="item item-divider">Statistik speichern
-                    <button class="button button-icon icon ion-information-circled"
-                            style="min-height: inherit; line-height: inherit"></button>
                 </div>
                 <ion-checkbox style="text-align: left" ng-model="cloudData.checked" ng-change="cloudDataChange()">
-                Statistiken in der Cloud speichern?
-            </ion-checkbox>
+                    Statistiken in der Cloud speichern?
+                </ion-checkbox>
             </div>
             <div class="card">
                 <div class="item item-text-wrap">
