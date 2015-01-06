@@ -5,7 +5,6 @@ angular.module('imageQuizz').controller('QuestionController',
         $scope.question = QuestionData.findQuestionById($stateParams.id);
 
         this.testAnswer = function (answer) {
-            console.log(answer);
             var correctAnswer;
 
             $scope.question.options.forEach(function (option) {
@@ -13,8 +12,6 @@ angular.module('imageQuizz').controller('QuestionController',
                     correctAnswer = option['option'];
                 }
             });
-
-            console.log(correctAnswer);
 
             var result;
 
