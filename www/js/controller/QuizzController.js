@@ -14,7 +14,7 @@ angular.module('imageQuizz').controller('QuizzController',
             return questionList;
         };
 
-        $scope.cur = 0; 
+        $scope.cur = 0;
         $scope.questionList = this.removeFullyRememberedQuestions(QuestionData.findAllQuestionsByCategory($stateParams.id));
 /*
         //Zurücksetzen der Fragen, wenn alle 6 mal richtig beantwortet wurden

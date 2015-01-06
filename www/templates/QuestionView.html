@@ -15,9 +15,18 @@
             <div style="width: 100%; padding-left: 2%; padding-right: 2%;;
             background-color: #4d4d4d">
                 <ion-list>
-                    <button class="button button-block button-outline button-light"
+                    <style>
+                        .color {
+
+                            /*                            animation: blink 0.1s steps(5, start) infinite;
+                                                        -webkit-animation: blink 0.1s steps(5, start) infinite;*/
+                        }
+                    </style>
+                    <button class="button button-block button-outline button-light button"
                             ng-click="qCtrl.testAnswer(option['option'])"
-                            ng-repeat="option in question.options">
+                            ng-repeat="option in question.options"
+                            ng-class="{'button-balanced color':(option['option'] == rightAnswer), 'button-assertive button':(option['option'] == wrongAnswer)}"
+                            ;>
                         {{option['option']}}
                     </button>
                 </ion-list>
