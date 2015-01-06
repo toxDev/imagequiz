@@ -20,5 +20,6 @@ angular.module('imageQuizz').factory(
                 return this.findAll().$getRecord(id);
             }
         };
+        return service;
     });
 
