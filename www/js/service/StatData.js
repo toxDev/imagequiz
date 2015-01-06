@@ -1,17 +1,24 @@
 'use strict';
-
 angular.module('imageQuizz').factory('StatData',
-    function (Stat) {
+    function (Stat, Persist) {
         var service = {
             findAllStats: function () {
-                var stats = localStorage.getItem('stats');
-                if (!stats) {
-                    var stats = [];
+                if( localStorage.getItem('sync') == 1) {
+                    var stats = Persist.findAll();
+                    if (!stats){
+                        stats = [];
+                    }
                     localStorage.setItem('stats', JSON.stringify(stats));
                 } else {
-                    stats = JSON.parse(stats);
+                    var stats = localStorage.getItem('stats');
+                    if (!stats) {
+                        stats = [];
+                        localStorage.setItem('stats', JSON.stringify(stats));
+                    } else {
+                        stats = JSON.parse(stats);
+                    }
+                    return stats;
                 }
-                return stats;
             },
             findStatByQuestionId: function (id) {
                 var stats = this.findAllStats();
@@ -36,6 +43,9 @@ angular.module('imageQuizz').factory('StatData',
                 var stats = this.findAllStats();
                 stats.push(new Stat(questionID, 0, 0, 0));
                 localStorage.setItem('stats', JSON.stringify(stats));
+                if(localStorage.getItem('sync') == 1) {
+                    Persist.persist(new Stat(questionID, 0, 0, 0));
+                }
             },
             updateStat: function (id, right, wrong, series) {
                 var stats = this.findAllStats();
@@ -46,6 +56,9 @@ angular.module('imageQuizz').factory('StatData',
                     }
                 }
                 localStorage.setItem('stats', JSON.stringify(stats));
+                if(localStorage.getItem('sync') == 1){
+                    Persist.update(new Stat(id,right,wrong,series));
+                }
             }
         };
         return service;
