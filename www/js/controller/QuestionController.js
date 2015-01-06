@@ -1,6 +1,13 @@
 'use strict';
 angular.module('imageQuizz').controller('QuestionController',
-    function (QuestionData,$scope,$stateParams,$ionicPopup,$ionicNavBarDelegate,$timeout) {
+    function (QuestionData, $scope, $stateParams, $ionicPopup, $ionicNavBarDelegate, $timeout, $window, $document) {
+
+        //console.log($document.getElementById('myimg'));
+
+        $scope.actHight = $document.innerHeight;
+        /*        if($scope.actHight < 300) {
+         $scope.actHight = 300;
+         }*/
 
         $scope.question = QuestionData.findQuestionById($stateParams.id);
 

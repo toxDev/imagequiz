@@ -1,6 +1,8 @@
 'use strict';
 angular.module('imageQuizz').controller('QuizzController',
-    function (QuestionData, $scope, $state, $stateParams, $ionicPopup, $ionicNavBarDelegate, StatData, $timeout) {
+    function (QuestionData, $scope, $state, $stateParams, $ionicPopup, $ionicNavBarDelegate, StatData, $timeout, $document) {
+
+        $scope.actHight = $document.innerHeight;
 
         this.removeFullyRememberedQuestions = function (questionList) {
             for (var i = 0; i < questionList.length; i++){
