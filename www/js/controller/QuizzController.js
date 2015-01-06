@@ -16,7 +16,7 @@ angular.module('imageQuizz').controller('QuizzController',
             }
         });
 
-        this.removeFullyRememberedQuestions = function (questionList) {
+        /*this.removeFullyRememberedQuestions = function (questionList) {
             questionList.forEach(function (question) {
                 if(StatData.findStatByQuestionId(question.id).actRightSeries == 6){
                     questionList.splice(questionList.indexOf(question),1);
@@ -24,7 +24,7 @@ angular.module('imageQuizz').controller('QuizzController',
             });
             return questionList;
         };
-
+*/
         this.testAnswer = function (answer) {
             var correctAnswer;
 

@@ -3,12 +3,14 @@ angular.module('imageQuizz').factory('StatData',
     function (Stat, Persist) {
         var service = {
             findAllStats: function () {
+
                 if( localStorage.getItem('sync') == 1) {
                     var stats = Persist.findAll();
                     if (!stats){
-                        stats = [];
+                        var stats = [];
                     }
                     localStorage.setItem('stats', JSON.stringify(stats));
+                    return stats;
                 } else {
                     var stats = localStorage.getItem('stats');
                     if (!stats) {

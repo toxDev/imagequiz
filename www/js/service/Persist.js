@@ -1,5 +1,5 @@
 'use strict';
-angular.module('imageQuizz').factory(
+angular.module('imageQuizz').factory('Persist',
     function ($firebase, FIREBASE_URL) {
 
         var rootRef = new Firebase(FIREBASE_URL);
