@@ -1,6 +1,6 @@
 'use strict';
 angular.module('imageQuizz').controller('QuestionController',
-    function (QuestionData,$scope,$stateParams,$ionicPopup,$ionicNavBarDelegate) {
+    function (QuestionData,$scope,$stateParams,$ionicPopup,$ionicNavBarDelegate,$timeout) {
 
         $scope.question = QuestionData.findQuestionById($stateParams.id);
 
@@ -32,5 +32,15 @@ angular.module('imageQuizz').controller('QuestionController',
             popup.then(function () {
                 $ionicNavBarDelegate.back()
             })
-        }
+        };
+
+        this.toggleInfo = function () {
+            var popup = $ionicPopup.alert({
+                title: 'Information',
+                template: $scope.question.infoText
+            });
+            $timeout(function(){
+                popup.close();
+            }, 2500);
+        };
     });

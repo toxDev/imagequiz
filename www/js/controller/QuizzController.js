@@ -1,6 +1,6 @@
 'use strict';
 angular.module('imageQuizz').controller('QuizzController',
-    function (QuestionData, $scope, $state, $stateParams, $ionicPopup, $ionicNavBarDelegate, StatData) {
+    function (QuestionData, $scope, $state, $stateParams, $ionicPopup, $ionicNavBarDelegate, StatData, $timeout) {
 
         this.removeFullyRememberedQuestions = function (questionList) {
             for (var i = 0; i < questionList.length; i++){
@@ -14,7 +14,7 @@ angular.module('imageQuizz').controller('QuizzController',
 
         $scope.cur = 0;
         $scope.questionList = this.removeFullyRememberedQuestions(QuestionData.findAllQuestionsByCategory($stateParams.id));
-
+/*
         //Zurücksetzen der Fragen, wenn alle 6 mal richtig beantwortet wurden
         if(!$scope.questionList || $scope.questionList.length == 0){
             var popup = $ionicPopup.confirm({
@@ -37,7 +37,7 @@ angular.module('imageQuizz').controller('QuizzController',
                 }
             });
         }
-
+*/
         $scope.question = $scope.questionList[$scope.cur];
         $scope.correctAnswers = 0;
 
@@ -96,4 +96,14 @@ angular.module('imageQuizz').controller('QuizzController',
                 }
             })
         }
+
+        this.toggleInfo = function () {
+            var popup = $ionicPopup.alert({
+                title: 'Information',
+                template: $scope.question.infoText
+            });
+            $timeout(function(){
+                popup.close();
+            }, 2500);
+        };
     });

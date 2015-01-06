@@ -1,5 +1,9 @@
 <ion-view title="imageQuizz">
-
+    <ion-nav-buttons side="right">
+        <button class="button button-icon icon ion-ios7-information-outline"
+                ng-click="qCtrl.toggleInfo()" href="#">
+        </button>
+    </ion-nav-buttons>
     <div class="has-header">
             <img src={{question.imageLink}} style="display:block; margin:auto; max-width: 100%;">
     </div>
