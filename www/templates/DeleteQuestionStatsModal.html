@@ -6,9 +6,12 @@
         </button>
     </div>
     <ion-content class="has-header">
-        <ion-checkbox>Autos</ion-checkbox>
-        <ion-checkbox>Deutsche Sehenswürdigkeiten</ion-checkbox>
-        <ion-checkbox>Gefährliche Raubtiere</ion-checkbox>
+        <ion-list can-swipe="true">
+            <ion-item class="item-text-wrap animation"
+                    >
+                <ion-checkbox ng-repeat="module in modules">{{module}}</ion-checkbox>
+            </ion-item>
+        </ion-list>
         <button class="button button-block button-assertive">Zurücksetzen</button>
     </ion-content>
 </ion-modal-view>

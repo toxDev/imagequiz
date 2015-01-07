@@ -1,6 +1,8 @@
 'use strict';
 angular.module('imageQuizz').controller('SettingsController',
-    function ($ionicModal, StatData, $scope, $ionicPopup) {
+    function ($ionicModal, StatData, $scope, $ionicPopup, QuestionData) {
+
+        $scope.modules = QuestionData.findAllCategorys();
 
         //checkbox data
         $scope.cloudDataChange = function () {
