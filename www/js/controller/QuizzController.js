@@ -2,8 +2,7 @@
 angular.module('imageQuizz').controller('QuizzController',
     function (QuestionData, $scope, $state, $stateParams, $ionicPopup, $ionicNavBarDelegate, StatData, $timeout, $document) {
 
-        $scope.actHight = $document.innerHeight;
-
+        //Setzt den 'correctRightSeriesCounter' einer Kategorie zurück
         this.removeFullyRememberedQuestions = function (questionList) {
             for (var i = 0; i < questionList.length; i++){
                 if(StatData.findStatByQuestionId(questionList[i].id).actRightSeries >= 6){
@@ -14,43 +13,57 @@ angular.module('imageQuizz').controller('QuizzController',
             return questionList;
         };
 
+
+        //Setzen der ersten Frage, ermitteln der Fragen die noch nicht als gelernt eingestuft sind
         $scope.cur = 0;
         $scope.questionList = this.removeFullyRememberedQuestions(QuestionData.findAllQuestionsByCategory($stateParams.id));
-/*
-        //Zurücksetzen der Fragen, wenn alle 6 mal richtig beantwortet wurden
-        if(!$scope.questionList || $scope.questionList.length == 0){
-            var popup = $ionicPopup.confirm({
-                title: 'Du hast alle Fragen gelernt!',
-                template: 'Soll der Lern-Zähler zurückgesetzt werden?',
-                cancelText: 'Nein',
-                okText: 'Ja'
-            });
-            popup.then(function(res) {
-                console.log(res);
-                if(res){
-                    $scope.questionList = QuestionData.findAllQuestionsByCategory($stateParams.id);
-                    $scope.questionList.forEach(function (question) {
-                        StatData.updateStat(question.id,StatData.findStatByQuestionId(question.id).countRight,
-                            StatData.findStatByQuestionId(question.id).countWrong,0);
-                    });
-
-                } else {
-                    $ionicNavBarDelegate.back();
-                }
-            });
-        }
-*/
         $scope.question = $scope.questionList[$scope.cur];
-        $scope.correctAnswers = 0;
+
+        //Ermittelt die aktuelle höhe des Dokuemnts für den View
+        $scope.actHight = $document.innerHeight;
 
         //Hier wird geprüft ob zu jeder Frage bereits ein Statistik Objekt existiert. Wenn nicht
-        //wird es hier angelegt 
+        //wird es hier angelegt
         $scope.questionList.forEach(function (question) {
             if (!StatData.findStatByQuestionId(question.id)) {
                 StatData.addStat(question.id);
                 console.log("Statistik hinzugefügt");
             }
         });
+
+        //Erkennung der swipe Gesten (Frage vor/zurück)
+        $scope.swipeRight = function () {
+            $scope.act = --$scope.cur % $scope.complete + 1;
+            $scope.question = $scope.questionList[$scope.act - 1];
+            $ionicNavBarDelegate.setTitle($scope.act + "/" + $scope.complete);
+        };
+        $scope.swipeLeft = function () {
+            $scope.act = ++$scope.cur % $scope.complete + 1;
+            $scope.question = $scope.questionList[$scope.act - 1];
+            $ionicNavBarDelegate.setTitle($scope.act + "/" + $scope.complete);
+        };
+
+        //Aktelle Anzahl an Fragen und aktuelle Frage
+        $scope.complete = $scope.questionList.length;
+        $scope.act = 1;
+
+        $ionicNavBarDelegate.setTitle($scope.act + "/" + $scope.complete);
+
+        //Zeigt zu einer Frage für 2500ms den in der Frage hinterlegten Infotext an
+        this.toggleInfo = function () {
+            var popup = $ionicPopup.alert({
+                title: 'Information',
+                template: $scope.question.infoText
+            });
+            $timeout(function () {
+                popup.close();
+            }, 2500);
+        };
+
+
+        $scope.correctAnswers = 0;
+
+
 
         this.testAnswer = function (answer) {
             var correctAnswer;
@@ -99,13 +112,5 @@ angular.module('imageQuizz').controller('QuizzController',
             })
         }
 
-        this.toggleInfo = function () {
-            var popup = $ionicPopup.alert({
-                title: 'Information',
-                template: $scope.question.infoText
-            });
-            $timeout(function(){
-                popup.close();
-            }, 2500);
-        };
+
     });

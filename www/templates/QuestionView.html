@@ -1,16 +1,15 @@
-<ion-view title="imageQuizz">
+<ion-view>
     <ion-nav-buttons side="right">
         <button class="button button-icon icon ion-ios7-information-outline"
                 ng-click="qCtrl.toggleInfo()" href="#">
         </button>
     </ion-nav-buttons>
 
-    <ion-content style="margin-bottom: -22px">
+    <ion-content style="margin-bottom: -22px" on-swipe-left="swipeLeft()" on-swipe-right="swipeRight()">
 
-        <div style="margin: auto;height: {{actHight-44}}px">
-
+        <div style="margin: auto;height: {{actHight-44}}px;background-color: white">
             <img id="myimg" src={{question.imageLink}}
-                 style="display:block; margin:20px auto 20px auto; max-width: 100%; box-shadow: 0px 0px 54px -8px rgba(0,0,0,0.75);; ">
+                 style="display:block; margin:20px auto 20px auto;max-width: 100%; box-shadow: 0px 0px 54px -8px rgba(0,0,0,0.75);; ">
 
             <div style="width: 100%; padding-left: 2%; padding-right: 2%;;
             background-color: #4d4d4d">

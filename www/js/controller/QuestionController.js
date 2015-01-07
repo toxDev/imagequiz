@@ -4,6 +4,9 @@ angular.module('imageQuizz').controller('QuestionController',
 
         //console.log($document.getElementById('myimg'));
 
+        $scope.complete = 1;
+        $scope.act = 1;
+
         $scope.actHight = $document.innerHeight;
         /*        if($scope.actHight < 300) {
          $scope.actHight = 300;
