@@ -1,6 +1,8 @@
 'use strict';
 angular.module('imageQuizz').controller('SettingsController',
-    function ($ionicModal, StatData, $scope, $ionicPopup) {
+    function ($ionicModal, StatData, $scope, $ionicPopup, $ionicNavBarDelegate) {
+
+        $ionicNavBarDelegate.setTitle("Einstellungen");
 
         //checkbox data
         $scope.cloudDataChange = function () {

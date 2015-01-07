@@ -1,7 +1,8 @@
 'use strict';
 angular.module('imageQuizz').controller('StatisticController',
-    function ($scope, StatData, QuestionData) {
+    function ($scope, StatData, QuestionData, $ionicNavBarDelegate) {
 
+        $ionicNavBarDelegate.setTitle("Statistik");
         //Statistik Daten abrufen (PieChart)
         var stat_data = StatData.findAllStats();
         var sum_right = 0, sum_false = 0, undone_questions = 0;

@@ -168,7 +168,7 @@ angular.module('imageQuizz').factory('QuestionData',
                         //console.log(modules);
                     }
                 }
-                //modules.sort(); 
+                //modules.sort();
 
                 return modules
             },
