@@ -17,13 +17,21 @@ angular.module('imageQuizz').controller('QuizzController',
         //Setzen der ersten Frage, ermitteln der Fragen die noch nicht als gelernt eingestuft sind
         $scope.cur = 0;
         $scope.questionList = this.removeFullyRememberedQuestions(QuestionData.findAllQuestionsByCategory($stateParams.id));
-        $scope.question = $scope.questionList[$scope.cur];
+        //Variablen zur Statistikermittlung
+        $scope.correctAnswersCount = 0;
+        $scope.wrongAnswerCount = 0;
+        $scope.workedQuestionCount = 0;
+        $scope.learnedQuestionCount = 0;
+
+        $scope.rightAnswer = "";
+        $scope.wrongAnswer = "";
 
         //Ermittelt die aktuelle höhe des Dokuemnts für den View
         $scope.actHight = $document.innerHeight;
 
         //Hier wird geprüft ob zu jeder Frage bereits ein Statistik Objekt existiert. Wenn nicht
         //wird es hier angelegt
+        //TO-DO muss hier entfernt werden, bzw. es muss sichergestellt sein das die Statistik beim Modul import angelegt wird.
         $scope.questionList.forEach(function (question) {
             if (!StatData.findStatByQuestionId(question.id)) {
                 StatData.addStat(question.id);
@@ -32,16 +40,30 @@ angular.module('imageQuizz').controller('QuizzController',
         });
 
         //Erkennung der swipe Gesten (Frage vor/zurück)
-        $scope.swipeRight = function () {
+/*        $scope.swipeRight = function () {
+            $scope.questionList = $scope.ref.removeFullyRememberedQuestions(QuestionData.findAllQuestionsByCategory($stateParams.id));
             $scope.act = --$scope.cur % $scope.complete + 1;
             $scope.question = $scope.questionList[$scope.act - 1];
             $ionicNavBarDelegate.setTitle($scope.act + "/" + $scope.complete);
+        };*/
+        $scope.nextQuestion = function () {
+            //$scope.questionList = $scope.ref.removeFullyRememberedQuestions(QuestionData.findAllQuestionsByCategory($stateParams.id));
+            if($scope.cur < $scope.questionList.length){
+                $scope.question = $scope.questionList[$scope.cur++];
+                $ionicNavBarDelegate.setTitle($scope.cur + "/" + $scope.complete);
+            } else {
+                var categoryCompletePopup = $ionicPopup.alert({
+                    title: 'Rundenstatistik',
+                    template: 'Bearbeitete Fragen: '+$scope.workedQuestionCount +'<br><hr>Korrekt beantwortet: '+$scope.correctAnswersCount+'<br>Falsch beantwortet: '+$scope.wrongAnswerCount+'<hr>Gelernte Karten: '+$scope.learnedQuestionCount
+                });
+                categoryCompletePopup.then(function(res) {
+                    $ionicNavBarDelegate.back();
+                })
+            }
+
         };
-        $scope.swipeLeft = function () {
-            $scope.act = ++$scope.cur % $scope.complete + 1;
-            $scope.question = $scope.questionList[$scope.act - 1];
-            $ionicNavBarDelegate.setTitle($scope.act + "/" + $scope.complete);
-        };
+
+        $scope.nextQuestion();
 
         //Aktelle Anzahl an Fragen und aktuelle Frage
         $scope.complete = $scope.questionList.length;
@@ -60,57 +82,54 @@ angular.module('imageQuizz').controller('QuizzController',
             }, 2500);
         };
 
-
-        $scope.correctAnswers = 0;
-
-
-
         this.testAnswer = function (answer) {
             var correctAnswer;
+            var stat = StatData.findStatByQuestionId($scope.question.id);
+            var right = stat.countRight;
+            var wrong = stat.countWrong;
+            var series = stat.actRightSeries;
+            $scope.workedQuestionCount++;
 
+            //Die korrekte Antwort wird gesucht und in 'correctAnswer' gespeichert
             $scope.question.options.forEach(function (option) {
                 if(option['answer'] == true) {
                     correctAnswer = option['option'];
                 }
             });
 
-            var result;
-            var stat = StatData.findStatByQuestionId($scope.question.id);
-            var right = stat.countRight;
-            var wrong = stat.countWrong;
-            var series = stat.actRightSeries;
-
             if(answer === correctAnswer){
-                result = 'Richtig! Sehr gut :)';
-                $scope.correctAnswers += 1;
+                $scope.rightAnswer = correctAnswer;
                 right += 1;
                 series += 1;
+                $scope.correctAnswersCount++;
+                if(series == 6){
+                    $scope.learnedQuestionCount++;
+                }
+                $timeout(function () {
+                    StatData.updateStat($scope.question.id,right,wrong,series);
+                    $scope.rightAnswerAnswer = "";
+                    $scope.nextQuestion();
+                }, 1000);
+
             } else {
-                result = 'Leider Falsch :(';
+                $scope.question.options.forEach(function (option) {
+                    if (option['option'] == answer) {
+                        $scope.wrongAnswer = answer;
+                    }
+                    if (option['answer'] == true) {
+                        $scope.rightAnswer = option['option'];
+                    }
+                });
                 wrong += 1;
                 series = 0;
+                $scope.wrongAnswerCount++;
+
+                $timeout(function () {
+                    StatData.updateStat($scope.question.id,right,wrong,series);
+                    $scope.wrongAnswer = "";
+                    $scope.rightAnswerAnswer = "";
+                    $scope.nextQuestion();
+                }, 1000);
             }
-
-            StatData.updateStat($scope.question.id,right,wrong,series);
-
-            var popup = $ionicPopup.alert({
-                title:result,
-                template: 'Deine Antwort: ' + answer +'<br>'+'Richtige Antwort: ' + correctAnswer
-            });
-
-            popup.then(function () {
-                if($scope.cur == $scope.questionList.length-1){
-                    var statisticPopup = $ionicPopup.alert({
-                        title:'Runden Statistik',
-                        template:'Richtig erkannte Bilder: '+$scope.correctAnswers+'<br>'+
-                                    'Von insgesamt: '+$scope.questionList.length
-                    });
-                    $ionicNavBarDelegate.back();
-                } else {
-                    $scope.question = $scope.questionList[++$scope.cur];
-                }
-            })
         }
-
-
     });

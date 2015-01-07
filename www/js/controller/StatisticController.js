@@ -6,7 +6,6 @@ angular.module('imageQuizz').controller('StatisticController',
         var stat_data = StatData.findAllStats();
         var sum_right = 0, sum_false = 0, undone_questions = 0;
         for (var i = 0; i < stat_data.length; i++) {
-            console.log("hallo" + stat_data[i].countRight);
             if (!stat_data[i].countRight && !stat_data[i].countWrong) {
                 undone_questions++;
             } else {
@@ -23,7 +22,7 @@ angular.module('imageQuizz').controller('StatisticController',
             var category_wrong = 0;
             for (var j = 0; j < questions.length; j++) {
                 var stat = StatData.findStatByQuestionId(questions[j].id);
-                if (stat.actRightSeries >= 7) {
+                if (stat.actRightSeries >= 6) {
                     category_right++;
                 } else {
                     category_wrong++;
