@@ -133,7 +133,7 @@ angular.module('imageQuizz').factory('QuestionData',
                                 "answer": true
                             }]
                     ));
-                    questions.push(new Question(9, "Deutsche Sehenswürdigkeiten", "img/deutsche_sehenswuerdigkeiten/frauenkirche_muenchen.jpg", "@Photo by DAVID ILIFF. License: CC-BY-SA 3.0", "98,45 Meter hoch",
+                    questions.push(new Question(10, "Deutsche Sehenswürdigkeiten", "img/deutsche_sehenswuerdigkeiten/frauenkirche_muenchen.jpg", "@Photo by DAVID ILIFF. License: CC-BY-SA 3.0", "98,45 Meter hoch",
                         [{
                             "option": "Münchner Frauenkirche",
                             "answer": true
@@ -151,6 +151,67 @@ angular.module('imageQuizz').factory('QuestionData',
                                 "answer": false
                             }]
                     ));
+
+                    /*// Neue Kategorie
+                     //http://de.wikipedia.org/wiki/Rotkehlchen#mediaviewer/File:Erithacus_rubecula_(Marek_Szczepanek).jpg
+                     questions.push(new Question(100, "Vögel", "http://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Erithacus_rubecula_%28Marek_Szczepanek%29.jpg/640px-Erithacus_rubecula_%28Marek_Szczepanek%29.jpg", "@FlickrLickr", "Lateinischer Name: Erithacus rubecula",
+                     [{
+                     "option": "Meise",
+                     "answer": true
+                     },
+                     {
+                     "option": "Rotkehlchen",
+                     "answer": true
+                     },
+                     {
+                     "option": "Buntspecht",
+                     "answer": false
+                     },
+                     {
+                     "option": "Lerche",
+                     "answer": false
+                     }]
+                     ));
+                     //http://de.wikipedia.org/wiki/Meisen
+                     questions.push(new Question(101, "Vögel", "http://upload.wikimedia.org/wikipedia/commons/thumb/2/2d/Parus_major_m.jpg/640px-Parus_major_m.jpg", "@Sławek Staszczuk (photoss [AT] hotmail.co.uk) CC BY-SA 3.0", "Kommen in der nördlichen Hemisphäre und in Afrika vor.",
+                     [{
+                     "option": "Meise",
+                     "answer": true
+                     },
+                     {
+                     "option": "Amsel",
+                     "answer": false
+                     },
+                     {
+                     "option": "Star",
+                     "answer": false
+                     },
+                     {
+                     "option": "Gimpel",
+                     "answer": false
+                     }]
+                     ));
+                     //http://de.wikipedia.org/wiki/Eichelh%C3%A4her
+                     questions.push(new Question(102, "Vögel", "http://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Garrulus_glandarius_B_Luc_Viatour.jpg/640px-Garrulus_glandarius_B_Luc_Viatour.jpg", "@Luc Viatour - own work www.lucnix.be CC BY-SA 3.0", "Vor dem Winter werden umfangreiche Vorräte aus Eicheln und anderen Nussfrüchten angelegt.",
+                     [{
+                     "option": "Goldammer",
+                     "answer": false
+                     },
+                     {
+                     "option": "Buntspecht",
+                     "answer": false
+                     },
+                     {
+                     "option": "Elster",
+                     "answer": false
+                     },
+                     {
+                     "option": "Eichelhäher",
+                     "answer": true
+                     }]
+                     ));*/
+
+
                     //Damit daten im lokal Storage abgelegt werden, muss später entfernt werden
                     localStorage.setItem('questions', JSON.stringify(questions));
                 } else {
@@ -165,7 +226,7 @@ angular.module('imageQuizz').factory('QuestionData',
                 for (var i = 0; i < questions.length; i++) {
                     if (modules.indexOf(questions[i].category) === -1) {
                         modules.push(questions[i].category);
-                        console.log(modules);
+                        //console.log(modules);
                     }
                 }
                 modules.sort();

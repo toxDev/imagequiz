@@ -1,6 +1,8 @@
 'use strict';
 angular.module('imageQuizz').controller('SettingsController',
-    function ($ionicModal, StatData, $scope, $ionicPopup, QuestionData) {
+    function ($ionicModal, StatData, $scope, $ionicPopup, $ionicNavBarDelegate) {
+
+        $ionicNavBarDelegate.setTitle("Einstellungen");
 
         $scope.modules = QuestionData.findAllCategorys();
 

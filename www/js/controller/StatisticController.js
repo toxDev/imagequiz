@@ -1,14 +1,29 @@
 'use strict';
 angular.module('imageQuizz').controller('StatisticController',
-    function ($scope, StatData, QuestionData) {
+    function ($scope, StatData, QuestionData, $ionicNavBarDelegate, $ionicLoading, $timeout) {
 
-        //Statistik Daten abrufen
+        $scope.loadingIndicator = $ionicLoading.show({
+            template: 'Lade Statistik<br><i class="icon ion-ionic"></i>',
+            animation: 'fade-in',
+            showBackdrop: true,
+            maxWidth: 200,
+            showDelay: 500
+        });
+
+        //$timeout(function(){
+        //    $ionicLoading.hide();
+        //},3000);
+
+        $scope.hideLoadingIndicator = function () {
+            $ionicLoading.hide();
+        }
+
+
+        $ionicNavBarDelegate.setTitle("Statistik");
+        //Statistik Daten abrufen (PieChart)
         var stat_data = StatData.findAllStats();
-        var sum_right = 0;
-        var sum_false = 0;
-        var undone_questions = 0;
+        var sum_right = 0, sum_false = 0, undone_questions = 0;
         for (var i = 0; i < stat_data.length; i++) {
-            console.log("hallo" + stat_data[i].countRight);
             if (!stat_data[i].countRight && !stat_data[i].countWrong) {
                 undone_questions++;
             } else {
@@ -16,7 +31,7 @@ angular.module('imageQuizz').controller('StatisticController',
                 sum_false += stat_data[i].countWrong;
             }
         }
-
+        //Statistik Daten abrufen (PieChart)
         var categorys = QuestionData.findAllCategorys();
         var chartRows = [];
         for (var i = 0; i < categorys.length; i++) {
@@ -25,7 +40,7 @@ angular.module('imageQuizz').controller('StatisticController',
             var category_wrong = 0;
             for (var j = 0; j < questions.length; j++) {
                 var stat = StatData.findStatByQuestionId(questions[j].id);
-                if (stat.actRightSeries >= 7) {
+                if (stat.actRightSeries >= 6) {
                     category_right++;
                 } else {
                     category_wrong++;
@@ -34,7 +49,7 @@ angular.module('imageQuizz').controller('StatisticController',
             chartRows.push({c: [{v: categorys[i]}, {v: category_right}, {v: category_wrong}]})
         }
 
-
+        //PieChart
         $scope.chartObject = {};
         $scope.chartObject = {"type": "PieChart"}
         $scope.chartObject.data = {
@@ -44,13 +59,13 @@ angular.module('imageQuizz').controller('StatisticController',
             ], "rows": [
                 {
                     c: [
-                        {v: "Korrekt"},
+                        {v: "korrekt beantwortet"},
                         {v: sum_right}
                     ]
                 },
                 {
                     c: [
-                        {v: "Falsch"},
+                        {v: "falsch beantwortet"},
                         {v: sum_false}
                     ]
                 },
@@ -66,8 +81,9 @@ angular.module('imageQuizz').controller('StatisticController',
             'title': 'Insgesamt beantwortetet Fragen'
 
         }
-        $scope.chartObject.cssStyle = "height:400px; width:100%";
+        $scope.chartObject.cssStyle = "height:300px; width:100%;";
 
+        //BarChart
         $scope.chartObjectColumn = {};
         $scope.chartObjectColumn = {"type": "BarChart"}
         $scope.chartObjectColumn.data = {
@@ -82,7 +98,6 @@ angular.module('imageQuizz').controller('StatisticController',
             'isStacked': 'true',
             'legend': {position: 'bottom', textStyle: {color: 'black', fontSize: 16}}
         }
-
 
         $scope.chartObjectColumn.cssStyle = "height:400px; width:100%;";
     }
