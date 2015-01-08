@@ -3,16 +3,14 @@ angular.module('imageQuizz').service('ModuleData',
 
         this.load = function () {
 
-            var url = 'https://www.googledrive.com/host/0B0qhk0Zibw_FUEtTY2NaREppM00';
+            var url = 'https://www.googledrive.com/host/0B0qhk0Zibw_FWE5HS0xGWlEzeDA';
             var modules = [];
-
             var promise = $http.get(url);
+
             promise.success(function (data, status) {
                 // status 200 == ok new data
                 if (status == 200 && angular.isArray(data)) {
-                    console.log(data);
-                    modules = JSON.parse(data);
-                    console.log(modules);
+                    localStorage.setItem('modules', JSON.stringify(data));
                     return status;
                 }
             }).error(function (data, status) {
@@ -20,8 +18,21 @@ angular.module('imageQuizz').service('ModuleData',
             });
         };
 
-        this.findAll = function () {
+        this.searchModules = function () {
+            var modules = localStorage.getItem('modules');
+            var questions = localStorage.getItem('questions');
+            var temp = [];
 
+            for (var i = 0; i < modules.length; i++) {
+                if (modules.indexOf(questions[i]) === -1) {
+                    temp.push(modules[i]);
+                }
+            }
+            return temp;
+        };
+
+        this.findAll = function () {
+            var modules = localStorage.getItem('modules');
             if (!modules) {
                 modules = [];
                 localStorage.setItem('modules', JSON.stringify(modules));

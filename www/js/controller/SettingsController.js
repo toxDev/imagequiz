@@ -34,7 +34,6 @@ angular.module('imageQuizz').controller('SettingsController',
                 var uID = Math.floor(Math.random() * 1000000);
                 localStorage.setItem('uid', JSON.stringify(uID));
             }
-            return uID;
         };
 
         //Modal View Import
@@ -65,8 +64,9 @@ angular.module('imageQuizz').controller('SettingsController',
          */
         $scope.openModal = function (index) {
             if (index == 1) {
-                $scope.modal1.show()
                 ModuleData.load();
+                $scope.modules = ModuleData.findAll();
+                $scope.modal1.show()
             }
             else {
                 $scope.modal2.show()
