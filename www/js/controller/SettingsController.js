@@ -1,6 +1,6 @@
 'use strict';
 angular.module('imageQuizz').controller('SettingsController',
-    function ($ionicModal, StatData, $scope, $ionicPopup, $ionicNavBarDelegate) {
+    function ($ionicModal, StatData, $scope, $ionicPopup, $ionicNavBarDelegate, QuestionData, ModuleData) {
 
         $ionicNavBarDelegate.setTitle("Einstellungen");
 
@@ -64,8 +64,14 @@ angular.module('imageQuizz').controller('SettingsController',
          * @param index from the Modal which would open
          */
         $scope.openModal = function (index) {
-            if (index == 1) $scope.modal1.show();
-            else $scope.modal2.show();
+            if (index == 1) {
+                $scope.modal1.show()
+                ModuleData.load();
+            }
+            else {
+                $scope.modal2.show()
+            }
+            ;
         };
         /**
          *Close the specific modal
@@ -80,7 +86,6 @@ angular.module('imageQuizz').controller('SettingsController',
          * Destroying all Modals
          */
         $scope.$on('$destroy', function () {
-            console.log('Destroying modals...');
             $scope.modal1.remove();
             $scope.modal2.remove();
         })
