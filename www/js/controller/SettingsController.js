@@ -4,6 +4,7 @@ angular.module('imageQuizz').controller('SettingsController',
 
         $ionicNavBarDelegate.setTitle("Einstellungen");
 
+        //ModuleData.load();
         $scope.modules = QuestionData.findAllCategorys();
 
         //checkbox data
@@ -66,6 +67,7 @@ angular.module('imageQuizz').controller('SettingsController',
             if (index == 1) {
                 ModuleData.load();
                 $scope.modules = ModuleData.findAll();
+                // $scope.modules = ModuleData.searchModules();
                 $scope.modal1.show()
             }
             else {

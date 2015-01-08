@@ -21,14 +21,12 @@ angular.module('imageQuizz').service('ModuleData',
         this.searchModules = function () {
             var modules = localStorage.getItem('modules');
             var questions = localStorage.getItem('questions');
-            var temp = [];
 
-            for (var i = 0; i < modules.length; i++) {
-                if (modules.indexOf(questions[i]) === -1) {
-                    temp.push(modules[i]);
-                }
-            }
-            return temp;
+            var temp = modules.concat(questions);
+            console.log(temp);
+            localStorage.setItem('questions', JSON.stringify(temp));
+            console.log(localStorage.getItem('questions'));
+            //return temp;
         };
 
         this.findAll = function () {

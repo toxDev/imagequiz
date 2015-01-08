@@ -7,7 +7,7 @@
     </div>
 
     <ion-content class="has-header">
-        <div class="item item-input-inset">
+        <!--<div class="item item-input-inset">
             <label class="item-input-wrapper">
                 <input type="text" placeholder="Kategorien durchsuchen" ng-model="searchQuery">
             </label>
@@ -15,16 +15,16 @@
                     style="min-height: inherit; line-height: inherit;"
                     ng-click="searchQuery=''" ng-show="searchQuery">Cancel
             </button>
-        </div>
+        </div>-->
         <ion-list>
             <ion-item class="item-text-wrap"
-                      ng-repeat="module in filteredModules = (modules | filter:{category: searchQuery} | unique:'category' | orderBy: 'category')">
+                      ng-repeat="module in filteredModules = (modules | unique:'category' | orderBy: 'category')">
                 {{module.category}}
             </ion-item>
         </ion-list>
     </ion-content>
     <ion-footer-bar class="bar-balanced">
-        <div class="button-bar">
+        <div class="button-bar" ng-click="ModuleData.searchModules()">
             <button class="button button-clear">Importieren</button>
         </div>
     </ion-footer-bar>
