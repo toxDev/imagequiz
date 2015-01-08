@@ -1,6 +1,23 @@
 'use strict';
 angular.module('imageQuizz').controller('StatisticController',
-    function ($scope, StatData, QuestionData, $ionicNavBarDelegate) {
+    function ($scope, StatData, QuestionData, $ionicNavBarDelegate, $ionicLoading, $timeout) {
+
+        $scope.loadingIndicator = $ionicLoading.show({
+            template: 'Lade Statistik<br><i class="icon ion-ionic"></i>',
+            animation: 'fade-in',
+            showBackdrop: true,
+            maxWidth: 200,
+            showDelay: 500
+        });
+
+        //$timeout(function(){
+        //    $ionicLoading.hide();
+        //},3000);
+
+        $scope.hideLoadingIndicator = function () {
+            $ionicLoading.hide();
+        }
+
 
         $ionicNavBarDelegate.setTitle("Statistik");
         //Statistik Daten abrufen (PieChart)
