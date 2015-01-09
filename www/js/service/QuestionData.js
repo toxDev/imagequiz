@@ -255,6 +255,23 @@ angular.module('imageQuizz').factory('QuestionData',
                     }
                 }
                 return temp_question;
+            },
+
+            addQuestion: function (newQuestion) {
+                if (Question) {
+                    var questions = this.findAllQuestions();
+                    for (var i = 0; i < questions.lenth; i++) {
+                        if (question[i].id == newQuestion.id) {
+                            return false;
+                        }
+                    }
+                    questions.push(newQuestion);
+                    localStorage.setItem('questions', JSON.stringify(questions));
+                    return true;
+
+                } else {
+                    return false;
+                }
             }
 
         };
