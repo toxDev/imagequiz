@@ -226,7 +226,6 @@ angular.module('imageQuizz').factory('QuestionData',
                 for (var i = 0; i < questions.length; i++) {
                     if (modules.indexOf(questions[i].category) === -1) {
                         modules.push(questions[i].category);
-                        //console.log(modules);
                     }
                 }
                 modules.sort();

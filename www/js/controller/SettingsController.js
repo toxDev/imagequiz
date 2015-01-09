@@ -6,6 +6,7 @@ angular.module('imageQuizz').controller('SettingsController',
 
         //ModuleData.load();
         $scope.modules = QuestionData.findAllCategorys();
+        $scope.importModules = ModuleData.searchModules();
 
         //checkbox data
         $scope.cloudDataChange = function () {
@@ -66,7 +67,7 @@ angular.module('imageQuizz').controller('SettingsController',
         $scope.openModal = function (index) {
             if (index == 1) {
                 ModuleData.load();
-                $scope.modules = ModuleData.findAll();
+                $scope.modules = ModuleData.searchModules();
                 // $scope.modules = ModuleData.searchModules();
                 $scope.modal1.show()
             }

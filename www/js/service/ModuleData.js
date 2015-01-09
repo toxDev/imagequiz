@@ -1,5 +1,5 @@
 angular.module('imageQuizz').service('ModuleData',
-    function ($http, Question) {
+    function ($http, QuestionData) {
 
         this.load = function () {
 
@@ -18,15 +18,52 @@ angular.module('imageQuizz').service('ModuleData',
             });
         };
 
-        this.searchModules = function () {
-            var modules = localStorage.getItem('modules');
-            var questions = localStorage.getItem('questions');
+        this.contains = function (arr, str) {
+            var i = arr.length;
 
-            var temp = modules.concat(questions);
-            console.log(temp);
-            localStorage.setItem('questions', JSON.stringify(temp));
-            console.log(localStorage.getItem('questions'));
-            //return temp;
+            while (i--) {
+                if (arr[i] === str) {
+                    return true;
+                }
+            }
+            return false;
+        };
+
+        this.searchModules = function () {
+
+            var modules = localStorage.getItem('modules');
+            var tempModules = JSON.parse(modules);
+
+            var localCategorys = QuestionData.findAllCategorys();
+            var temp = [];
+            var finalModules = [];
+
+            for (var i = 0; i < tempModules.length; i++) {
+                if (temp.indexOf(tempModules[i].category) === -1) {
+                    temp.push(tempModules[i].category);
+                }
+            }
+            //console.log(temp);
+            //console.log(localCategorys);
+
+            for (var i = 0; i < temp.length; i++) {
+
+                for (var j = 0; j < localCategorys.length; j++) {
+                    //console.log("Vergleich: " + temp[i] + ' ' + localCategorys[j] +" erg " );
+                    if (this.contains(temp, localCategorys[j])) {
+                        console.log("break " + i);
+                        //finalModules = temp.slice(i);
+                        //console.log("nach vergleich: "+ temp);
+                        break;
+                    }
+                    else {
+                        console.log('gepusht');
+                        finalModules.push(temp[i]);
+                    }
+                }
+            }
+            console.log(finalModules);
+            return finalModules;
         };
 
         this.findAll = function () {

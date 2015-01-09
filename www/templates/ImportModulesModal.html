@@ -17,14 +17,16 @@
             </button>
         </div>-->
         <ion-list>
-            <ion-item class="item-text-wrap"
-                      ng-repeat="module in filteredModules = (modules | unique:'category' | orderBy: 'category')">
-                {{module.category}}
+            <ion-item class="item-text-wrap animation">
+                <ion-checkbox
+                        ng-repeat="item in filteredModules = (importModules | unique: 'category' | orderBy: 'category')">
+                    {{item}}
+                </ion-checkbox>
             </ion-item>
         </ion-list>
     </ion-content>
     <ion-footer-bar class="bar-balanced">
-        <div class="button-bar" ng-click="ModuleData.searchModules()">
+        <div class="button-bar">
             <button class="button button-clear">Importieren</button>
         </div>
     </ion-footer-bar>
