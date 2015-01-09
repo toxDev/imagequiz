@@ -3,7 +3,7 @@ angular.module('imageQuizz').controller('StatisticController',
     function ($scope, StatData, QuestionData, $ionicNavBarDelegate, $ionicLoading, $timeout) {
 
         $scope.loadingIndicator = $ionicLoading.show({
-            template: 'Lade Statistik<br><i class="icon ion-loading-c"></i>',
+            template: 'Lade Statistik<br><i class="icon ion-loading-a"></i>',
             animation: 'fade-in',
             showBackdrop: true,
             maxWidth: 200,
