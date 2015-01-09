@@ -14,11 +14,7 @@ angular.module('imageQuizz').controller('ModuleListController',
             if (tmp[letter] == undefined) {
                 tmp[letter] = []
             }
-
             tmp[letter].push(modules[i]);
-
-            console.log(letter);
-
         }
 
         /**
