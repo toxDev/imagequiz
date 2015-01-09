@@ -13,8 +13,7 @@ angular.module('imageQuizz').controller('SettingsController',
 
         //checkbox data
         $scope.cloudDataChange = function () {
-            console.log('cloud service changed',
-                $scope.cloudData.checked);
+            $scope.cloudData.checked;
 
             if ($scope.cloudData.checked == true) {
                 localStorage.setItem('sync', JSON.stringify(1));

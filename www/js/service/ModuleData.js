@@ -1,6 +1,12 @@
+/**
+ * TODO: comment
+ */
 angular.module('imageQuizz').service('ModuleData',
     function ($http, QuestionData) {
 
+        /**
+         * TODO: comment
+         */
         this.load = function () {
             var url = 'https://www.googledrive.com/host/0B0qhk0Zibw_FWE5HS0xGWlEzeDA';
             var modules = [];
@@ -17,6 +23,12 @@ angular.module('imageQuizz').service('ModuleData',
             });
         };
 
+        /**
+         * TODO: comment
+         * @param arr
+         * @param str
+         * @returns {boolean}
+         */
         this.contains = function (arr, str) {
 
             for (var i = 0; i < arr.length; i++) {
@@ -27,6 +39,10 @@ angular.module('imageQuizz').service('ModuleData',
             return false;
         };
 
+        /**
+         * TODO: comment
+         * @returns {Array.<T>}
+         */
         this.searchModules = function () {
 
             var modules = localStorage.getItem('modules');
@@ -50,16 +66,4 @@ angular.module('imageQuizz').service('ModuleData',
             }
             return finalModules.sort();
         };
-
-        /*this.findAll = function () {
-            var modules = localStorage.getItem('modules');
-            if (!modules) {
-                modules = [];
-                localStorage.setItem('modules', JSON.stringify(modules));
-
-            } else {
-                modules = JSON.parse(modules);
-            }
-            return modules;
-         };*/
     });

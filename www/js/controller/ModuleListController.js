@@ -1,3 +1,6 @@
+/**
+ * TODO: comment
+ */
 'use strict';
 angular.module('imageQuizz').controller('ModuleListController',
     function ($scope, QuestionData) {
@@ -11,9 +14,17 @@ angular.module('imageQuizz').controller('ModuleListController',
             if (tmp[letter] == undefined) {
                 tmp[letter] = []
             }
+
             tmp[letter].push(modules[i]);
+
+            console.log(letter);
+
         }
 
+        /**
+         *
+         * @type {{}}
+         */
         $scope.repeaterObject = tmp;
 
         //Für Zustandswechsel anmelden
@@ -23,13 +34,19 @@ angular.module('imageQuizz').controller('ModuleListController',
                     var saveSearchQuery = localStorage.setItem('saveQuery', JSON.stringify(thisSt.searchQuery));
                 }
             });
-
+        /**
+         *
+         * @type {boolean}
+         */
         $scope.searchActive = false;
         if (localStorage.getItem('saveQuery')) {
             this.searchActive = true;
             this.searchQuery = JSON.parse(localStorage.getItem('saveQuery'));
             localStorage.removeItem('saveQuery');
         }
+        /**
+         *
+         */
         this.toggleSearch = function () {
             if (this.searchActive) {
                 this.searchQuery = '';
