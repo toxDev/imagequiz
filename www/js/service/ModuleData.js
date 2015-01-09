@@ -46,33 +46,11 @@ angular.module('imageQuizz').service('ModuleData',
             }
             for (var i = 0; i < temp.length; i++) {
                 if (!this.contains(localCategorys, temp[i])) {
-                    finalModules.push(temp[i]);
+                    finalModules.push({"text": temp[i], "checked": false});
                 }
             }
 
-
-
-            //console.log(temp);
-            //console.log(localCategorys);
-
-            /* for (var i = 0; i < temp.length; i++) {
-
-                for (var j = 0; j < localCategorys.length; j++) {
-                    //console.log("Vergleich: " + temp[i] + ' ' + localCategorys[j] +" erg " );
-                    if (this.contains(temp, localCategorys[j])) {
-                        console.log("break " + i);
-                        //finalModules = temp.slice(i);
-                        //console.log("nach vergleich: "+ temp);
-                        break;
-                    }
-                    else {
-                        console.log('gepusht');
-                        finalModules.push(temp[i]);
-                    }
-                }
-            }
-             console.log(finalModules);*/
-            return finalModules;
+            return finalModules.sort();
         };
 
         this.findAll = function () {
