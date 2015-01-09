@@ -3,7 +3,7 @@
  */
 'use strict';
 angular.module('imageQuizz').controller('SettingsController',
-    function ($ionicModal, StatData, $scope, $ionicPopup, $ionicNavBarDelegate, QuestionData, ModuleData) {
+    function ($ionicModal, StatData, $scope, $ionicPopup, $ionicNavBarDelegate, QuestionData, ModuleData, $state) {
 
         $ionicNavBarDelegate.setTitle("Einstellungen");
 
@@ -97,6 +97,7 @@ angular.module('imageQuizz').controller('SettingsController',
                 }
             }
             $scope.closeModal(1);
+            $state.go('tabs.home');
         };
 
         /**
