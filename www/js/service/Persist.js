@@ -2,11 +2,11 @@
 angular.module('imageQuizz').factory('Persist',
     function ($firebase, FIREBASE_URL) {
 
-        var rootRef = new Firebase(FIREBASE_URL);
-        var userDataRef = rootRef.child('userdata');
-        var userRef = userDataRef.child(localStorage.getItem('uid'));
+        //var rootRef = new Firebase(FIREBASE_URL);
+        //var userDataRef = rootRef.child('userdata');
+        //var userRef = userDataRef.child(localStorage.getItem('uid'));
 
-        var userRefNg = $firebase(userRef);
+        //var userRefNg = $firebase(userRef);
 
         var service = {
             findAll: function () {

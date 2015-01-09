@@ -2,7 +2,6 @@ angular.module('imageQuizz').service('ModuleData',
     function ($http, QuestionData) {
 
         this.load = function () {
-
             var url = 'https://www.googledrive.com/host/0B0qhk0Zibw_FWE5HS0xGWlEzeDA';
             var modules = [];
             var promise = $http.get(url);
@@ -19,10 +18,9 @@ angular.module('imageQuizz').service('ModuleData',
         };
 
         this.contains = function (arr, str) {
-            var i = arr.length;
 
-            while (i--) {
-                if (arr[i] === str) {
+            for (var i = 0; i < arr.length; i++) {
+                if (arr[i] == str) {
                     return true;
                 }
             }
@@ -32,6 +30,9 @@ angular.module('imageQuizz').service('ModuleData',
         this.searchModules = function () {
 
             var modules = localStorage.getItem('modules');
+            if (modules == null) {
+                modules = [];
+            }
             var tempModules = JSON.parse(modules);
 
             var localCategorys = QuestionData.findAllCategorys();
@@ -43,10 +44,18 @@ angular.module('imageQuizz').service('ModuleData',
                     temp.push(tempModules[i].category);
                 }
             }
+            for (var i = 0; i < temp.length; i++) {
+                if (!this.contains(localCategorys, temp[i])) {
+                    finalModules.push(temp[i]);
+                }
+            }
+
+
+
             //console.log(temp);
             //console.log(localCategorys);
 
-            for (var i = 0; i < temp.length; i++) {
+            /* for (var i = 0; i < temp.length; i++) {
 
                 for (var j = 0; j < localCategorys.length; j++) {
                     //console.log("Vergleich: " + temp[i] + ' ' + localCategorys[j] +" erg " );
@@ -62,7 +71,7 @@ angular.module('imageQuizz').service('ModuleData',
                     }
                 }
             }
-            console.log(finalModules);
+             console.log(finalModules);*/
             return finalModules;
         };
 
