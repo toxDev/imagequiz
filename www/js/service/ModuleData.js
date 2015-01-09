@@ -34,7 +34,6 @@ angular.module('imageQuizz').service('ModuleData',
                 modules = [];
             }
             var tempModules = JSON.parse(modules);
-
             var localCategorys = QuestionData.findAllCategorys();
             var temp = [];
             var finalModules = [];
@@ -46,14 +45,13 @@ angular.module('imageQuizz').service('ModuleData',
             }
             for (var i = 0; i < temp.length; i++) {
                 if (!this.contains(localCategorys, temp[i])) {
-                    finalModules.push({"text": temp[i], "checked": false});
+                    finalModules.push({"category": temp[i], "checked": false});
                 }
             }
-
             return finalModules.sort();
         };
 
-        this.findAll = function () {
+        /*this.findAll = function () {
             var modules = localStorage.getItem('modules');
             if (!modules) {
                 modules = [];
@@ -63,5 +61,5 @@ angular.module('imageQuizz').service('ModuleData',
                 modules = JSON.parse(modules);
             }
             return modules;
-        };
+         };*/
     });

@@ -1,3 +1,6 @@
+/**
+ * TODO: comment
+ */
 'use strict';
 angular.module('imageQuizz').controller('SettingsController',
     function ($ionicModal, StatData, $scope, $ionicPopup, $ionicNavBarDelegate, QuestionData, ModuleData) {
@@ -76,9 +79,24 @@ angular.module('imageQuizz').controller('SettingsController',
             }
             ;
         };
-
+        /**
+         * TODO: comment
+         */
         $scope.import = function () {
-            console.log($scope.importModules);
+
+            var modules = JSON.parse(localStorage.getItem('modules'));
+            var importM = $scope.importModules;
+
+            for (var i = 0; i < importM.length; i++) {
+                if (importM[i].checked) {
+                    for (var j = 0; j < modules.length; j++) {
+                        if (modules[j].category == importM[i].category) {
+                            QuestionData.addQuestion(modules[j]);
+                        }
+                    }
+                }
+            }
+            $scope.closeModal(1);
         };
 
         /**
