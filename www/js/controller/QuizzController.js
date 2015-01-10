@@ -4,15 +4,17 @@ angular.module('imageQuizz').controller('QuizzController',
 
         //Setzt den 'correctRightSeriesCounter' einer Kategorie zurück
         this.removeFullyRememberedQuestions = function (questionList) {
-            for (var i = 0; i < questionList.length; i++) {
-                if (StatData.findStatByQuestionId(questionList[i].id).actRightSeries >= 6) {
-                    questionList.splice(i, 1);
-                    i = i - 1;
+            for (var i = 0; i < questionList.length; i++){
+                if(StatData.findStatByQuestionId(questionList[i].id).actRightSeries >= 6){
+                    questionList.splice(i,1);
+                    i = i-1;
                 }
             }
             return questionList;
         };
 
+
+        //actversion
         //Setzen der ersten Frage, ermitteln der Fragen die noch nicht als gelernt eingestuft sind
         $scope.cur = 0;
         $scope.questionList = this.removeFullyRememberedQuestions(QuestionData.findAllQuestionsByCategory($stateParams.id));
@@ -38,11 +40,43 @@ angular.module('imageQuizz').controller('QuizzController',
             }
         });
 
-        this.removeFullyRememberedQuestions = function (questionList) {
-            questionList.forEach(function (question) {
-                if(StatData.findStatByQuestionId(question.id).actRightSeries == 6){
-                    questionList.splice(questionList.indexOf(question),1);
-                }
+        //Erkennung der swipe Gesten (Frage vor/zurück)
+/*        $scope.swipeRight = function () {
+            $scope.questionList = $scope.ref.removeFullyRememberedQuestions(QuestionData.findAllQuestionsByCategory($stateParams.id));
+            $scope.act = --$scope.cur % $scope.complete + 1;
+            $scope.question = $scope.questionList[$scope.act - 1];
+            $ionicNavBarDelegate.setTitle($scope.act + "/" + $scope.complete);
+        };*/
+        $scope.nextQuestion = function () {
+            //$scope.questionList = $scope.ref.removeFullyRememberedQuestions(QuestionData.findAllQuestionsByCategory($stateParams.id));
+            if($scope.cur < $scope.questionList.length){
+                $scope.question = $scope.questionList[$scope.cur++];
+                $ionicNavBarDelegate.setTitle($scope.cur + "/" + $scope.complete);
+            } else {
+                var categoryCompletePopup = $ionicPopup.alert({
+                    title: 'Rundenstatistik',
+                    template: 'Bearbeitete Fragen: '+$scope.workedQuestionCount +'<br><hr>Korrekt beantwortet: '+$scope.correctAnswersCount+'<br>Falsch beantwortet: '+$scope.wrongAnswerCount+'<hr>Gelernte Karten: '+$scope.learnedQuestionCount
+                });
+                categoryCompletePopup.then(function(res) {
+                    $ionicNavBarDelegate.back();
+                })
+            }
+
+        };
+
+        $scope.nextQuestion();
+
+        //Aktelle Anzahl an Fragen und aktuelle Frage
+        $scope.complete = $scope.questionList.length;
+        $scope.act = 1;
+
+        $ionicNavBarDelegate.setTitle($scope.act + "/" + $scope.complete);
+
+        //Zeigt zu einer Frage für 2500ms den in der Frage hinterlegten Infotext an
+        this.toggleInfo = function () {
+            var popup = $ionicPopup.alert({
+                title: 'Information',
+                template: $scope.question.infoText
             });
             $timeout(function () {
                 popup.close();
@@ -69,11 +103,11 @@ angular.module('imageQuizz').controller('QuizzController',
                 right += 1;
                 series += 1;
                 $scope.correctAnswersCount++;
-                if (series == 6) {
+                if(series == 6){
                     $scope.learnedQuestionCount++;
                 }
                 $timeout(function () {
-                    StatData.updateStat($scope.question.id, right, wrong, series);
+                    StatData.updateStat($scope.question.id,right,wrong,series);
                     $scope.rightAnswerAnswer = "";
                     $scope.nextQuestion();
                 }, 1000);
@@ -92,7 +126,7 @@ angular.module('imageQuizz').controller('QuizzController',
                 $scope.wrongAnswerCount++;
 
                 $timeout(function () {
-                    StatData.updateStat($scope.question.id, right, wrong, series);
+                    StatData.updateStat($scope.question.id,right,wrong,series);
                     $scope.wrongAnswer = "";
                     $scope.rightAnswerAnswer = "";
                     $scope.nextQuestion();

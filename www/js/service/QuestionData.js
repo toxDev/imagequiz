@@ -271,6 +271,17 @@ angular.module('imageQuizz').factory('QuestionData',
                 } else {
                     return false;
                 }
+            },
+
+            deleteCategory: function (category){
+                var questions = this.findAllQuestions();
+                var temp = [];
+                for (var i = 0; i < questions.length; i++) {
+                    if(questions[i].category != category){
+                        temp.push(questions[i]);
+                    }
+                }
+                localStorage.setItem('questions', JSON.stringify(temp));
             }
 
         };

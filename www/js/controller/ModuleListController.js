@@ -3,7 +3,7 @@
  */
 'use strict';
 angular.module('imageQuizz').controller('ModuleListController',
-    function ($scope, QuestionData) {
+    function ($scope, QuestionData, $ionicPopup) {
 
         var thisSt = this;
         var modules = QuestionData.findAllQuestions(); 
@@ -48,5 +48,36 @@ angular.module('imageQuizz').controller('ModuleListController',
                 this.searchQuery = '';
             }
             this.searchActive = !this.searchActive;
+        }
+
+        $scope.deleteCategory = function (category) {
+            var popup = $ionicPopup.confirm({
+                title: 'Kategorie löschen',
+                template: 'Sind Sie sicher das die Kategorie <strong>'+category+'</strong> gelöscht werden soll?' ,
+                cancelText: 'Abbruch',
+                okText: 'Löschen'
+            });
+            popup.then(function (res) {
+                if (res) {
+                    QuestionData.deleteCategory(category);
+                    /* ACHTUNG REDUNDANTER CODE; MUSS IN CONTROLER IN FUNKTION GEKAPSELT WERDEN!*/
+                     var modules = QuestionData.findAllQuestions();
+                     var tmp = {};
+                     for (var i = 0; i < modules.length; i++) {
+                     var letter = modules[i].category.charAt(0);
+                     if (tmp[letter] == undefined) {
+                     tmp[letter] = []
+                     }
+                     tmp[letter].push(modules[i]);
+                     }
+
+                     /**
+                     *
+                     * @type {{}}
+                     */
+                    $scope.repeaterObject = tmp;
+                    /*DOPPELTER CODE ENDE*/
+                }
+            });
         }
     });
