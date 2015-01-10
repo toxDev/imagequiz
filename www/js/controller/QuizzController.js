@@ -13,7 +13,6 @@ angular.module('imageQuizz').controller('QuizzController',
             return questionList;
         };
 
-
         //Setzen der ersten Frage, ermitteln der Fragen die noch nicht als gelernt eingestuft sind
         $scope.cur = 0;
         $scope.questionList = this.removeFullyRememberedQuestions(QuestionData.findAllQuestionsByCategory($stateParams.id));
