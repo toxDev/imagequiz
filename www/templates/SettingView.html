@@ -4,14 +4,14 @@
             <div class="card">
                 <div class="item item-divider">Statistik speichern
                 </div>
-                <ion-checkbox style="text-align: left" ng-model="cloudData.checked" ng-change="cloudDataChange()">
+                <ion-checkbox style="text-align: left" ng-model="cloudData.checked" ng-change="persistModeChange()">
                     Statistiken in der Cloud speichern?
                 </ion-checkbox>
             </div>
             <div class="card">
                 <div class="item item-text-wrap">
-                    UserID: {{localStorage.getItem('uid')}} <br>
-                    LastSync: {{localStorage.getItem('lastSync')}}
+                    UserID: {{userID}} <br>
+                    <!--LastSync: {{localStorage.getItem('lastSync')}}-->
                 </div>
             </div>
             <!-- <div class="item item-divider">Weitere Optionen</div>-->

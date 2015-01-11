@@ -5,7 +5,7 @@ angular.module('imageQuizz').factory('StatData',
             findAllStats: function () {
 
                 if( localStorage.getItem('sync') == 1) {
-                    var stats = Persist.findAll();
+                    //var stats = Persist.findAll();
                     if (!stats){
                         var stats = [];
                     }

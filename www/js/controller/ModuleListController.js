@@ -3,10 +3,22 @@
  */
 'use strict';
 angular.module('imageQuizz').controller('ModuleListController',
-    function ($scope, QuestionData, $ionicPopup) {
+    function ($scope, QuestionData, $ionicPopup, Persist, $timeout) {
+
+
+
+        //TESTPLACE PERSIST
+        //Persist.writeData();
+        //Persist.findAllData();
+        //Persist.getParentId();
+        //console.log(QuestionData.getUserId());
+        localStorage.setItem('sync', 0);
+        console.log(QuestionData.findAllQuestions());
+        localStorage.setItem('sync', 1);
+        console.log(QuestionData.findAllQuestions());
 
         var thisSt = this;
-        var modules = QuestionData.findAllQuestions(); 
+        var modules = QuestionData.findAllQuestions();
 
         var tmp = {};
         for (var i = 0; i < modules.length; i++) {

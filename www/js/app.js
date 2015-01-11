@@ -1,7 +1,6 @@
 angular.module('imageQuizz', ['ionic', 'ui.utils', 'firebase', 'googlechart'])
 
     .config(function ($stateProvider, $urlRouterProvider) {
-
         $stateProvider
             .state('tabs', {
                 url: "/tab",

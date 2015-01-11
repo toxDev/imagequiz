@@ -3,7 +3,7 @@
  */
 'use strict';
 angular.module('imageQuizz').controller('SettingsController',
-    function ($ionicModal, StatData, $scope, $ionicPopup, $ionicNavBarDelegate, QuestionData, ModuleData, $state) {
+    function ($ionicModal, StatData, $scope, $ionicPopup, $ionicNavBarDelegate, QuestionData, ModuleData, $state, Persist) {
 
         $ionicNavBarDelegate.setTitle("Einstellungen");
 
@@ -13,8 +13,6 @@ angular.module('imageQuizz').controller('SettingsController',
 
         //checkbox data
         $scope.cloudDataChange = function () {
-            $scope.cloudData.checked;
-
             if ($scope.cloudData.checked == true) {
                 localStorage.setItem('sync', JSON.stringify(1));
             }
@@ -24,21 +22,41 @@ angular.module('imageQuizz').controller('SettingsController',
         };
 
         //variable for checkbox decision
-        $scope.cloudData = {checked: false};
+        $scope.cloudData = {checked: true};
 
         /**
          * Generate a specific user ID for firebase
          * @returns uID for firebase syn and backup
          */
-        this.generateUID = function () {
-
+        $scope.generateUID = function () {
             var uID = localStorage.getItem('uid');
 
             if (!uID) {
-                var uID = Math.floor(Math.random() * 1000000);
-                localStorage.setItem('uid', JSON.stringify(uID));
+                uID = Persist.getUserId();
+                localStorage.setItem('uid', uID);
             }
+
+            return uID;
         };
+
+        if(localStorage.getItem('sync')){
+            $scope.userID = localStorage.getItem('uid');
+        } else {
+            $scope.userID = "";
+        }
+
+        $scope.ref = this;
+
+        $scope.persistModeChange = function (){
+            if($scope.cloudData.checked){
+                //Aktiviwerung der cloudfunktion
+                $scope.userID = $scope.generateUID();
+            } else {
+                //Absicherung ob wirklich sync beendet werden soll.
+                $scope.userID = "";
+            }
+
+        }
 
         //Modal View Import
         $ionicModal.fromTemplateUrl('templates/ImportModulesModal.html', {
