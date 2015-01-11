@@ -1,17 +1,22 @@
 /**
- * TODO: comment
+ * Der SettingsController ist zuständig für den SettingsView der App. Er kümmert sich zum Beispiel um die Abhandlung
+ * der beiden Modale und ihrer Funktionen. Desweiteren kann man mit diesm Controller weitere Kategorien(Module) hinzufügen,
+ * die Statistiken zurücksetzen und die Benutzerdaten über ein Firebase backend sichern.
+ *
+ * @author <Florian Kolb>
+ * @email <florian.kolb@mni.thm.de>
  */
 'use strict';
 angular.module('imageQuizz').controller('SettingsController',
     function ($ionicModal, StatData, $scope, $ionicPopup, $ionicNavBarDelegate, QuestionData, ModuleData, $state) {
 
         $ionicNavBarDelegate.setTitle("Einstellungen");
-
-        //ModuleData.load();
         $scope.modules = QuestionData.findAllCategorys();
-        //$scope.importModules = ModuleData.searchModules();
 
-        //checkbox data
+        /**
+         * Die Funktion cloudDataChange fragt den Wert der Checkbox ab und bei
+         * einer änderung dieses Wertes, wir die variable "sync" dementsprechend geändert.
+         */
         $scope.cloudDataChange = function () {
             $scope.cloudData.checked;
 
@@ -23,7 +28,10 @@ angular.module('imageQuizz').controller('SettingsController',
             }
         };
 
-        //variable for checkbox decision
+        /**
+         * Die Variable cloudData legt einen festen Wert von der Checkbox entscheidung fest.
+         * @type {{checked: boolean}}
+         */
         $scope.cloudData = {checked: false};
 
         /**
@@ -97,6 +105,12 @@ angular.module('imageQuizz').controller('SettingsController',
             }
             $scope.closeModal(1);
             $state.go('tabs.home');
+        };
+
+        $scope.deleteStats = function () {
+
+            var localStats = JSON.parse(localStorage.getItem('stats'));
+
         };
 
         /**

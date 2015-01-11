@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<widget id="de.mapp.imagequiz" version="0.0.5" xmlns="http://www.w3.org/ns/widgets"
+<widget id="de.mapp.imagequiz" version="1.0.1" xmlns="http://www.w3.org/ns/widgets"
         xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>imageQuiz</name>
     <description>
         An Image Quiz with the Ionic Framework.
     </description>
-    <author email="florian.kolb@mni.thm.de" href="http://ionicframework.com/">
+    <author email="florian.kolb@mni.thm.de; andreas.ebner@mni.thm.de; julian.schmitt@mni.thm.de"
+            href="http://floriankolb.de">
         WebApp THM
     </author>
     <content src="index.html"/>

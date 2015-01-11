@@ -13,16 +13,14 @@
                         ng-repeat="item in importModules" ng-model="item.checked" ng-checked="item.checked">
                     {{item.category}}
                 </ion-checkbox>
-
-                <div class="card" ng-hide="importModules.length">
-                    <div class="item" style="text-align: center;">
-                        <p class="icon ion-sad-outline">Keine Kategorien vorhanden</p>
-                    </div>
-                </div>
             </ion-item>
-
         </ion-list>
-
+        <div class="card" ng-hide="importModules.length">
+            <a class="item item-icon-left">
+                <i class="icon ion-sad"></i>
+                Keine neuen Kategorien vorhanden
+            </a>
+        </div>
     </ion-content>
     <ion-footer-bar class="bar-balanced">
         <div class="button-bar">

@@ -1,7 +1,14 @@
+/**
+ * TODO: comment
+ */
 'use strict';
 angular.module('imageQuizz').factory('QuestionData',
     function (Question) {
         var service = {
+            /**
+             * TODO: comment
+             * @returns {*}
+             */
             findAllQuestions: function () {
                 var questions = localStorage.getItem('questions');
                 if (!questions) {
@@ -220,6 +227,10 @@ angular.module('imageQuizz').factory('QuestionData',
                 return questions;
             },
 
+            /**
+             * TODO: comment
+             * @returns {Array}
+             */
             findAllCategorys: function () {
                 var questions = this.findAllQuestions();
                 var modules = [];
@@ -233,6 +244,11 @@ angular.module('imageQuizz').factory('QuestionData',
                 return modules
             },
 
+            /**
+             * TODO: comment
+             * @param category
+             * @returns {Array}
+             */
             findAllQuestionsByCategory: function (category) {
                 var questions = this.findAllQuestions();
                 var temp_questions = [];
@@ -244,6 +260,11 @@ angular.module('imageQuizz').factory('QuestionData',
                 return temp_questions;
             },
 
+            /**
+             * TODO: comment
+             * @param id
+             * @returns {Array}
+             */
             findQuestionById: function (id) {
                 var questions = this.findAllQuestions();
                 var temp_question = [];
@@ -256,6 +277,11 @@ angular.module('imageQuizz').factory('QuestionData',
                 return temp_question;
             },
 
+            /**
+             * TODO: comment
+             * @param newQuestion
+             * @returns {boolean}
+             */
             addQuestion: function (newQuestion) {
                 if (Question) {
                     var questions = this.findAllQuestions();
@@ -273,6 +299,10 @@ angular.module('imageQuizz').factory('QuestionData',
                 }
             },
 
+            /**
+             * TODO: comment
+             * @param category
+             */
             deleteCategory: function (category){
                 var questions = this.findAllQuestions();
                 var temp = [];
