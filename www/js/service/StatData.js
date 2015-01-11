@@ -1,6 +1,6 @@
 'use strict';
 angular.module('imageQuizz').factory('StatData',
-    function (Stat, Persist) {
+    function (Stat) {
         var service = {
             findAllStats: function () {
 

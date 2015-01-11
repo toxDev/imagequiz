@@ -10,7 +10,7 @@ angular.module('imageQuizz').factory('QuestionData',
 
         if(!uID){
             console.log("User ID war nicht gesetzt!");
-            rootUserRef = rootRef.push();
+            rootUserRef = rootUserRef.push();
         } else {
             userDataRef = rootUserRef.child(uID);
             console.log("User ID war bereits gesetzt!");
@@ -26,12 +26,12 @@ angular.module('imageQuizz').factory('QuestionData',
             findAllQuestions: function () {
                 var sync = localStorage.getItem('sync');
                 if(sync == 1){
-                    var result = [];
+                   /* var result = [];
                     var temp = userRefNg.$asArray()
                     for (var i = 0; i < temp.length; i++) {
                         result.push(temp[i]);
                     }
-                    return result;
+                    return result;*/
 
                     /*
                     var temp = userRefNg.$asArray()
@@ -42,7 +42,7 @@ angular.module('imageQuizz').factory('QuestionData',
                             }
                             return result;
                         });*/
-                    return result;
+                    return userRefNg.$asArray();
                 } else {
                     var questions = localStorage.getItem('questions');
                     if (!questions) {

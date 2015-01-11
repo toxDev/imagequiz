@@ -3,10 +3,11 @@
  */
 'use strict';
 angular.module('imageQuizz').controller('ModuleListController',
-    function ($scope, QuestionData, $ionicPopup, Persist, $timeout) {
+    function ($scope, QuestionData, $ionicPopup) {
 
+        this.records = QuestionData.findAllQuestions();
 
-
+        localStorage.setItem('uid', '-JfOYM_xX6QUZKQVdla-');
         //TESTPLACE PERSIST
         //Persist.writeData();
         //Persist.findAllData();
