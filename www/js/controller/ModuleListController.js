@@ -6,22 +6,32 @@ angular.module('imageQuizz').controller('ModuleListController',
     function ($scope, QuestionData, $ionicPopup) {
 
         var thisSt = this;
-        var modules = QuestionData.findAllQuestions(); 
 
-        var tmp = {};
-        for (var i = 0; i < modules.length; i++) {
-            var letter = modules[i].category.charAt(0);
-            if (tmp[letter] == undefined) {
-                tmp[letter] = []
+        /**
+         *
+         * @returns {{}}
+         */
+        this.loadList = function () {
+
+            var modules = QuestionData.findAllQuestions();
+
+            var tmp = {};
+            for (var i = 0; i < modules.length; i++) {
+                var letter = modules[i].category.charAt(0);
+                if (tmp[letter] == undefined) {
+                    tmp[letter] = []
+                }
+                tmp[letter].push(modules[i]);
             }
-            tmp[letter].push(modules[i]);
-        }
+            return tmp;
+        };
+
 
         /**
          *
          * @type {{}}
          */
-        $scope.repeaterObject = tmp;
+        $scope.repeaterObject = this.loadList();
 
         //Für Zustandswechsel anmelden
         $scope.$on('$stateChangeStart',
@@ -40,6 +50,7 @@ angular.module('imageQuizz').controller('ModuleListController',
             this.searchQuery = JSON.parse(localStorage.getItem('saveQuery'));
             localStorage.removeItem('saveQuery');
         }
+        ;
         /**
          *
          */
@@ -48,8 +59,12 @@ angular.module('imageQuizz').controller('ModuleListController',
                 this.searchQuery = '';
             }
             this.searchActive = !this.searchActive;
-        }
+        };
 
+        /**
+         *
+         * @param category
+         */
         $scope.deleteCategory = function (category) {
             var popup = $ionicPopup.confirm({
                 title: 'Kategorie löschen',
@@ -60,23 +75,7 @@ angular.module('imageQuizz').controller('ModuleListController',
             popup.then(function (res) {
                 if (res) {
                     QuestionData.deleteCategory(category);
-                    /* ACHTUNG REDUNDANTER CODE; MUSS IN CONTROLER IN FUNKTION GEKAPSELT WERDEN!*/
-                     var modules = QuestionData.findAllQuestions();
-                     var tmp = {};
-                     for (var i = 0; i < modules.length; i++) {
-                     var letter = modules[i].category.charAt(0);
-                     if (tmp[letter] == undefined) {
-                     tmp[letter] = []
-                     }
-                     tmp[letter].push(modules[i]);
-                     }
-
-                     /**
-                     *
-                     * @type {{}}
-                     */
-                    $scope.repeaterObject = tmp;
-                    /*DOPPELTER CODE ENDE*/
+                    $scope.repeaterObject = thisSt.loadList();
                 }
             });
         }
