@@ -1,6 +1,8 @@
 angular.module('imageQuizz', ['ionic', 'ui.utils', 'firebase', 'googlechart'])
 
     .config(function ($stateProvider, $urlRouterProvider) {
+        //localStorage.setItem('uid', '-JfOYM_xX6QUZKQVdla-');
+        //wird beim ersten start benötigt.
         $stateProvider
             .state('tabs', {
                 url: "/tab",

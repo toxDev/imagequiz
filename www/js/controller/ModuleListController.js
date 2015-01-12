@@ -3,7 +3,7 @@
  */
 'use strict';
 angular.module('imageQuizz').controller('ModuleListController',
-    function ($scope, QuestionData, $ionicPopup) {
+    function ($scope, QuestionData, $ionicPopup, $timeout, $FirebaseObject) {
 
         this.records = QuestionData.findAllQuestions();
 
@@ -20,6 +20,12 @@ angular.module('imageQuizz').controller('ModuleListController',
 
         var thisSt = this;
         var modules = QuestionData.findAllQuestions();
+        console.log("module " + modules.length);
+
+        modules.$loaded().then(function () {
+            console.log(modules.length);
+            console.log("hallo");
+        });
 
         var tmp = {};
         for (var i = 0; i < modules.length; i++) {
