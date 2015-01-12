@@ -107,7 +107,7 @@ angular.module('imageQuizz').controller('SettingsController',
             $state.go('tabs.home');
         };
 
-        $scope.deleteStats = function () {
+        $scope.updateStats = function () {
 
             var localStats = JSON.parse(localStorage.getItem('stats'));
 

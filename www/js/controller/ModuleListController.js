@@ -3,7 +3,7 @@
  */
 'use strict';
 angular.module('imageQuizz').controller('ModuleListController',
-    function ($scope, QuestionData, $ionicPopup) {
+    function ($scope, QuestionData, $ionicPopup, StatData) {
 
         var thisSt = this;
 
@@ -25,7 +25,6 @@ angular.module('imageQuizz').controller('ModuleListController',
             }
             return tmp;
         };
-
 
         /**
          *
@@ -51,6 +50,7 @@ angular.module('imageQuizz').controller('ModuleListController',
             localStorage.removeItem('saveQuery');
         }
         ;
+
         /**
          *
          */
@@ -59,6 +59,23 @@ angular.module('imageQuizz').controller('ModuleListController',
                 this.searchQuery = '';
             }
             this.searchActive = !this.searchActive;
+        };
+
+        this.removeFromList = function (category) {
+            var stats = StatData.findAllStats();
+            var questions = QuestionData.findAllQuestions();
+
+            for (var i = 0; i < questions.length; i++) {
+
+                if (questions[i].category == category) {
+                    var id = questions[i].id;
+                    for (var j = 0; j < stats.length; j++) {
+
+                        StatData.updateStat(id, 0, 0, 0);
+                    }
+                }
+            }
+            QuestionData.deleteCategory(category);
         };
 
         /**
@@ -74,7 +91,7 @@ angular.module('imageQuizz').controller('ModuleListController',
             });
             popup.then(function (res) {
                 if (res) {
-                    QuestionData.deleteCategory(category);
+                    thisSt.removeFromList(category);
                     $scope.repeaterObject = thisSt.loadList();
                 }
             });
