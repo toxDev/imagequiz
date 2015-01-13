@@ -15,12 +15,13 @@ angular.module('imageQuizz').factory('QuestionData',
             console.log("User ID war nicht gesetzt!");
             //console.log(rootUserRef.push().toString());
             userDataRef = new Firebase(rootUserRef.push().toString());
+            localStorage.setItem('uid',userDataRef.key());
         } else {
             userDataRef = rootUserRef.child(uID);
             console.log("User ID war bereits gesetzt!");
         }
         //console.log(userDataRef.key());
-        var userRefNg = $firebase(userDataRef);
+        var userRefNg = $firebase(userDataRef.child('questiondata'));
         console.log("Pfad zu Firebase " + userDataRef.toString());
 
         var service = {
