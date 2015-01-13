@@ -3,30 +3,31 @@
  */
 'use strict';
 angular.module('imageQuizz').controller('ModuleListController',
-    function ($scope, QuestionData, $ionicPopup, $timeout, $FirebaseObject, StatData) {
+    function ($scope, QuestionData, $ionicPopup, $timeout, $FirebaseObject, StatData, Persist) {
 
         this.records = QuestionData.findAllQuestions();
 
-        localStorage.setItem('uid', '-JfOYM_xX6QUZKQVdla-');
+        //localStorage.setItem('uid', '-JfOYM_xX6QUZKQVdla-');
         //TESTPLACE PERSIST
-        //Persist.writeData();
+       // Persist.writeData();
         //Persist.findAllData();
         //Persist.getParentId();
         //console.log(QuestionData.getUserId());
-        localStorage.setItem('sync', 0);
+       /* localStorage.setItem('sync', 0);
         console.log(QuestionData.findAllQuestions());
         localStorage.setItem('sync', 1);
         console.log(QuestionData.findAllQuestions());
-
+        */
         var self = this;
         var modules = QuestionData.findAllQuestions();
         console.log("module " + modules.length);
 
-        modules.$loaded().then(function () {
+        /*modules.$loaded().then(function () {
             console.log(modules.length);
             console.log("hallo");
             $scope.repeaterObject = self.loadList();
         });
+*/
 
 
         /**

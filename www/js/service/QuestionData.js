@@ -3,9 +3,9 @@
  */
 'use strict';
 angular.module('imageQuizz').factory('QuestionData',
-    function ($firebase, Question, $timeout, $FirebaseObject) {
+    function ($firebase, Question, $timeout, $FirebaseObject, FIREBASE_URL) {
 
-        var rootRef = new Firebase('imagequizzmapp.firebaseIO.com');
+        var rootRef = new Firebase(FIREBASE_URL);
         var rootUserRef = rootRef.child('users');
 
         var uID = localStorage.getItem('uid');
@@ -13,12 +13,13 @@ angular.module('imageQuizz').factory('QuestionData',
 
         if(!uID){
             console.log("User ID war nicht gesetzt!");
-            rootUserRef = rootUserRef.push();
+            //console.log(rootUserRef.push().toString());
+            userDataRef = new Firebase(rootUserRef.push().toString());
         } else {
             userDataRef = rootUserRef.child(uID);
             console.log("User ID war bereits gesetzt!");
         }
-
+        //console.log(userDataRef.key());
         var userRefNg = $firebase(userDataRef);
         console.log("Pfad zu Firebase " + userDataRef.toString());
 

@@ -1,19 +1,23 @@
-'use strict'
+'use strict';
 angular.module('imageQuizz').factory('Persist',
     function ($firebase, FIREBASE_URL, QuestionData) {
 
-        var rootRef = new Firebase('imagequizzmapp.firebaseIO.com/users');
+        var rootRef = new Firebase(FIREBASE_URL+"/users");
 
         var uID = localStorage.getItem('uid');
 
         var userDataRef;
         if(!uID){
             console.log("User ID war nicht gesetzt!");
-            userDataRef = rootRef.push();
+            userDataRef = new Firebase(rootRef.push().toString());
         } else {
             userDataRef = rootRef.child(uID);
             console.log("User ID war bereits gesetzt!");
         }
+
+        var questionDataRef = userDataRef.child('questiondata');
+        var statDataRef = userDataRef.child('statdata');
+        var questionDataRefNg = $firebase(questionDataRef);
 
         var userRefNg = $firebase(userDataRef);
         console.log("Pfad zu Firebase " + userDataRef.toString());
@@ -38,10 +42,11 @@ angular.module('imageQuizz').factory('Persist',
             writeData: function(){
                 //rootRef.set({'name':'Anreas','alter':20});
 
-                userDataRef.set(QuestionData.findAllQuestions());
+                questionDataRef.set(QuestionData.findAllQuestions());
             },
             findAllData: function(){
-                return userRefNg.$asArray();
+
+                return questionDataRefNg.$asArray();
             },
             /*
             findAll: function () {
@@ -49,7 +54,6 @@ angular.module('imageQuizz').factory('Persist',
             },
             update: function (stat) {
                 this.findAll().$save(stat);
-                //TODO last sync time
             },
             persist: function (stat) {
                 this.findAll().$add(stat);
