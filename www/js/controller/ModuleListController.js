@@ -18,14 +18,16 @@ angular.module('imageQuizz').controller('ModuleListController',
         localStorage.setItem('sync', 1);
         console.log(QuestionData.findAllQuestions());
 
-        var thisSt = this;
+        var self = this;
         var modules = QuestionData.findAllQuestions();
         console.log("module " + modules.length);
 
         modules.$loaded().then(function () {
             console.log(modules.length);
             console.log("hallo");
+            $scope.repeaterObject = self.loadList();
         });
+
 
         /**
          *
@@ -52,11 +54,12 @@ angular.module('imageQuizz').controller('ModuleListController',
          */
         $scope.repeaterObject = this.loadList();
 
+
         //Für Zustandswechsel anmelden
         $scope.$on('$stateChangeStart',
             function () {
-                if (thisSt.searchActive == true) {
-                    var saveSearchQuery = localStorage.setItem('saveQuery', JSON.stringify(thisSt.searchQuery));
+                if (self.searchActive == true) {
+                    var saveSearchQuery = localStorage.setItem('saveQuery', JSON.stringify(self.searchQuery));
                 }
             });
         /**
@@ -111,8 +114,8 @@ angular.module('imageQuizz').controller('ModuleListController',
             });
             popup.then(function (res) {
                 if (res) {
-                    thisSt.removeFromList(category);
-                    $scope.repeaterObject = thisSt.loadList();
+                    self.removeFromList(category);
+                    $scope.repeaterObject = self.loadList();
                 }
             });
         }
