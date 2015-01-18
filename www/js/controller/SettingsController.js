@@ -20,11 +20,13 @@ angular.module('imageQuizz').controller('SettingsController',
         $scope.cloudDataChange = function () {
             $scope.cloudData.checked;
 
-            if ($scope.cloudData.checked == true) {
+            if ($scope.cloudData.checked) {
                 localStorage.setItem('sync', JSON.stringify(1));
+                $scope.idPopup();
             }
             else {
                 localStorage.setItem('sync', JSON.stringify(0));
+                $scope.confirmPopup();
             }
         };
 
@@ -32,13 +34,23 @@ angular.module('imageQuizz').controller('SettingsController',
          * Die Variable cloudData legt einen festen Wert von der Checkbox entscheidung fest.
          * @type {{checked: boolean}}
          */
-        $scope.cloudData = {checked: false};
+
+        if (localStorage.getItem('sync') == 1) {
+            $scope.cloudData = {checked: true};
+        }
+        else {
+            $scope.cloudData = {checked: false};
+        }
+
+
+        $scope.user = {ID: null};
+
 
         /**
          * Generate a specific user ID for firebase
          * @returns uID for firebase syn and backup
          */
-        this.generateUID = function () {
+        this.saveUID = function () {
 
             var uID = localStorage.getItem('uid');
 
@@ -107,10 +119,87 @@ angular.module('imageQuizz').controller('SettingsController',
             $state.go('tabs.home');
         };
 
-        $scope.updateStats = function () {
+        $scope.updateStats = function (category) {
+            console.log(category);
+            var localStats = localStorage.getItem('stats');
+            var questionsByCat = QuestionData.findAllQuestionsByCategory(category);
+            var resetM = $scope.modules;
 
-            var localStats = JSON.parse(localStorage.getItem('stats'));
 
+            console.log(localStats);
+            console.log(questionsByCat);
+            console.log(resetM);
+
+            if (resetM.checked) {
+
+                for (var i = 0; i < localStats.length; i++) {
+                    var id = questionsByCat.id;
+
+                    if (id === localStats.id) {
+                        localStats.actRightSeries = 0;
+                    }
+                }
+                localStorage.setItem('stats', localStats);
+            }
+            $scope.closeModal(2);
+        };
+
+        $scope.idPopup = function () {
+            var tempID = localStorage.getItem('uid');
+            var popupSync = $ionicPopup.show({
+
+                template: '<input type="text" ng-model="user.ID" placeholder="{{user.ID}}">',
+                title: 'Bitte geben sie eine userID ein',
+                subTitle: 'Wenn sie keine besitzen einfach auf <br>weiter</br>',
+                scope: $scope,
+                buttons: [
+                    {
+                        text: 'Abbrechen',
+                        onTap: function () {
+                            $scope.cloudData.checked = false;
+                            $scope.cloudDataChange();
+                        }
+                    },
+
+                    {
+                        text: '<b>weiter</b>',
+                        type: 'button-positive',
+                        onTap: function () {
+                            if (!$scope.user.ID) {
+                                return tempID;
+                            } else {
+                                //$scope.cloudData.checked;
+                                //$scope.cloudDataChange();
+                                localStorage.setItem('uid', $scope.user.ID);
+                                return $scope.user.ID;
+                            }
+                        }
+                    }
+
+                ]
+            });
+
+
+            $scope.confirmPopup = function () {
+                var popupConfirm = $ionicPopup.show({
+                    title: 'Sind sie sich wirklich sicher?',
+                    subTitle: 'Ansonsten einfach nochmal Mutti fragen',
+                    scope: $scope,
+                    buttons: [
+                        {
+                            text: 'Abbrechen',
+                            onTap: function () {
+                                $scope.cloudData.checked = true;
+                                $scope.cloudDataChange();
+                            }
+                        },
+
+                        {
+                            text: '<br>Ja klar!</br>',
+                            type: 'button-positive'
+                        }]
+                })
+            }
         };
 
         /**

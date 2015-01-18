@@ -3,7 +3,7 @@
  */
 'use strict';
 angular.module('imageQuizz').controller('ModuleListController',
-    function ($scope, QuestionData, $ionicPopup, StatData) {
+    function ($scope, QuestionData, $ionicPopup, StatData, $state) {
 
         var thisSt = this;
 
@@ -95,5 +95,9 @@ angular.module('imageQuizz').controller('ModuleListController',
                     $scope.repeaterObject = thisSt.loadList();
                 }
             });
+        }
+
+        $scope.goImport = function () {
+            $state.go('tabs.settings');
         }
     });

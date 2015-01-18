@@ -8,13 +8,21 @@
     <ion-content class="has-header">
         <ion-list can-swipe="true">
             <ion-item class="item-text-wrap animation">
-                <ion-checkbox ng-repeat="module in modules">{{module}}</ion-checkbox>
+                <ion-checkbox ng-repeat="module in modules" ng-model="module.checked" ng-checked="item.checked">
+                    {{module}}
+                </ion-checkbox>
             </ion-item>
         </ion-list>
+        <div class="card" ng-hide="modules.length">
+            <a class="item item-icon-left">
+                <i class="icon ion-sad"></i>
+                Nichts zum zurücksetzen
+            </a>
+        </div>
     </ion-content>
     <ion-footer-bar class="bar-assertive">
         <div class="button-bar">
-            <button class="button button-clear" ng-click="">Zurücksetzen</button>
+            <button class="button button-clear" ng-click="updateStats(module)">Karten zurücksetzen</button>
         </div>
     </ion-footer-bar>
 </ion-modal-view>
