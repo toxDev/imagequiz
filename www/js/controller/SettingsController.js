@@ -18,14 +18,14 @@ angular.module('imageQuizz').controller('SettingsController',
          * einer änderung dieses Wertes, wir die variable "sync" dementsprechend geändert.
          */
         $scope.cloudDataChange = function () {
-            $scope.cloudData.checked;
+            //$scope.cloudData.checked;
 
             if ($scope.cloudData.checked) {
-                localStorage.setItem('sync', JSON.stringify(1));
+                //localStorage.setItem('sync', JSON.stringify(1));
                 $scope.idPopup();
             }
             else {
-                localStorage.setItem('sync', JSON.stringify(0));
+                //localStorage.setItem('sync', JSON.stringify(0));
                 $scope.confirmPopup();
             }
         };
@@ -50,14 +50,9 @@ angular.module('imageQuizz').controller('SettingsController',
          * Generate a specific user ID for firebase
          * @returns uID for firebase syn and backup
          */
-        this.saveUID = function () {
+        $scope.getUID = function () {
 
-            var uID = localStorage.getItem('uid');
-
-            if (!uID) {
-                var uID = Math.floor(Math.random() * 1000000);
-                localStorage.setItem('uid', JSON.stringify(uID));
-            }
+            return localStorage.getItem('uid');
         };
 
         //Modal View Import
@@ -145,10 +140,9 @@ angular.module('imageQuizz').controller('SettingsController',
         };
 
         $scope.idPopup = function () {
-            var tempID = localStorage.getItem('uid');
             var popupSync = $ionicPopup.show({
 
-                template: '<input type="text" ng-model="user.ID" placeholder="{{user.ID}}">',
+                template: '<input type="text" ng-model="user.ID" placeholder="{{getUID()}}">',
                 title: 'Bitte geben sie eine userID ein',
                 subTitle: 'Wenn sie keine besitzen einfach auf <br>weiter</br>',
                 scope: $scope,
@@ -157,20 +151,19 @@ angular.module('imageQuizz').controller('SettingsController',
                         text: 'Abbrechen',
                         onTap: function () {
                             $scope.cloudData.checked = false;
-                            $scope.cloudDataChange();
                         }
                     },
 
                     {
-                        text: '<b>weiter</b>',
+                        text: '<strong>weiter</strong>',
                         type: 'button-positive',
                         onTap: function () {
                             if (!$scope.user.ID) {
-                                return tempID;
+                                localStorage.setItem('sync', 1);
+                                return $scope.getUID();
                             } else {
-                                //$scope.cloudData.checked;
-                                //$scope.cloudDataChange();
                                 localStorage.setItem('uid', $scope.user.ID);
+                                localStorage.setItem('sync', 1);
                                 return $scope.user.ID;
                             }
                         }
@@ -190,13 +183,16 @@ angular.module('imageQuizz').controller('SettingsController',
                             text: 'Abbrechen',
                             onTap: function () {
                                 $scope.cloudData.checked = true;
-                                $scope.cloudDataChange();
                             }
                         },
 
                         {
-                            text: '<br>Ja klar!</br>',
-                            type: 'button-positive'
+                            text: '<strong>Ok</strong>',
+                            type: 'button-positive',
+                            onTap: function () {
+                                $scope.cloudData.checked = false;
+                                localStorage.setItem('sync', 0);
+                            }
                         }]
                 })
             }
