@@ -22,12 +22,12 @@ angular.module('imageQuizz').controller('ModuleListController',
         var modules = QuestionData.findAllQuestions();
         console.log("module " + modules.length);
 
-        modules.$loaded().then(function () {
+       /* modules.$loaded().then(function () {
             console.log(modules.length);
             console.log("hallo");
             $scope.repeaterObject = self.loadList();
         });
-
+*/
 
 
         /**

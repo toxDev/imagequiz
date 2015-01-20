@@ -21,7 +21,8 @@ angular.module('imageQuizz').factory('QuestionData',
             console.log("User ID war bereits gesetzt!");
         }
         //console.log(userDataRef.key());
-        var userRefNg = $firebase(userDataRef.child('questiondata'));
+        var questionDataRef = userDataRef.child('questiondata');
+        var userRefNg = $firebase(questionDataRef);
         console.log("Pfad zu Firebase " + userDataRef.toString());
 
         var service = {
@@ -265,7 +266,6 @@ angular.module('imageQuizz').factory('QuestionData',
                     }
                     return questions;
                 }
-
             },
 
             /**
@@ -324,15 +324,20 @@ angular.module('imageQuizz').factory('QuestionData',
              * @returns {boolean}
              */
             addQuestion: function (newQuestion) {
-                if (Question) {
+                if (newQuestion) {
                     var questions = this.findAllQuestions();
-                    for (var i = 0; i < questions.lenth; i++) {
-                        if (question[i].id == newQuestion.id) {
+                    for (var i = 0; i < questions.length; i++) {
+                        if (questions[i].id == newQuestion.id) {
                             return false;
                         }
                     }
                     questions.push(newQuestion);
-                    localStorage.setItem('questions', JSON.stringify(questions));
+                    var sync = localStorage.getItem('sync');
+                    if(sync == 1){
+                        questionDataRef.set(questions);
+                    } else {
+                        localStorage.setItem('questions', JSON.stringify(questions));
+                    }
                     return true;
 
                 } else {
@@ -352,7 +357,12 @@ angular.module('imageQuizz').factory('QuestionData',
                         temp.push(questions[i]);
                     }
                 }
-                localStorage.setItem('questions', JSON.stringify(temp));
+                var sync = localStorage.getItem('sync');
+                if(sync == 1){
+                    questionDataRef.set(temp);
+                } else {
+                    localStorage.setItem('questions', JSON.stringify(temp));
+                }
             }
 
         };
