@@ -128,31 +128,46 @@ angular.module('imageQuizz').controller('SettingsController',
         };
 
         /**
-         *
+         * TODO: comment
+         * @param arr
+         * @param str
+         * @returns {boolean}
+         */
+        $scope.contains = function (arr, str) {
+
+            for (var i = 0; i < arr.length; i++) {
+                if (arr[i] == str) {
+                    return true;
+                }
+            }
+            return false;
+        };
+
+        /**
+         *TODO: localStats array zeigt eine länge von 265 an obwohl nur 4 Einträge enthalten sind!!??
          */
         $scope.updateStats = function () {
-            var localStats = localStorage.getItem('stats');
+            var localStats = StatData.findAllStats();
             var resetM = $scope.resetModules;
             var questionsByCat = [];
             var tempStats = [];
 
             for (var i = 0; i < resetM.length; i++) {
-
                 if (resetM[i].checked) {
                     var category = resetM[i].category;
                     questionsByCat = QuestionData.findAllQuestionsByCategory(category);
-                    console.log(questionsByCat);
+                }
+                for (var j = 0; j < questionsByCat.length; j++) {
+                    for (var k = 0; k < localStats.length; k++) {
+                        if (questionsByCat[j].id === localStats[k].questionID) {
 
-                    for (var j = 0; j < localStats.length; j++) {
-
-                        if (questionsByCat[i].id === localStats[j].questionID) {
-                            console.log('ich auch');
-                            localStats[j].actRightSeries = 0;
+                            localStats[k].actRightSeries = 0;
                         }
                     }
                 }
             }
-            localStorage.setItem('stats', localStats);
+
+            localStorage.setItem('stats', JSON.stringify(localStats));
             $scope.closeModal(2);
         };
 
