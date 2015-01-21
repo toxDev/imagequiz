@@ -2,7 +2,7 @@
  * TODO: comment
  */
 angular.module('imageQuizz').service('ModuleData',
-    function ($http, QuestionData) {
+    function ($http, QuestionData, $timeout) {
 
         /**
          * TODO: comment
@@ -44,12 +44,14 @@ angular.module('imageQuizz').service('ModuleData',
          * @returns {Array.<T>}
          */
         this.searchModules = function () {
+            $timeout(function() {
 
-            var modules = localStorage.getItem('modules');
-            if (modules == null) {
-                modules = [];
-            }
-            var tempModules = JSON.parse(modules);
+            }, 200);
+             var modules = localStorage.getItem('modules');
+             if (modules == null) {
+             modules = [];
+             }
+             var tempModules = JSON.parse(modules);
             var localCategorys = QuestionData.findAllCategorys();
             var temp = [];
             var finalModules = [];

@@ -54,7 +54,7 @@ angular.module('imageQuizz').factory('QuestionData',
                     if (!questions) {
                         //init storage
                         var questions = [];
-                        questions.push(new Question(1, "Gefährliche Raubtiere", "img/gefaehrliche_raubtiere/loewe.jpg", "@FlickrLickr", "Eine gefährliche Raubkatze",
+/*                        questions.push(new Question(1, "Gefährliche Raubtiere", "img/gefaehrliche_raubtiere/loewe.jpg", "@FlickrLickr", "Eine gefährliche Raubkatze",
                             [{
                                 "option": "Löwe",
                                 "answer": true
@@ -197,7 +197,7 @@ angular.module('imageQuizz').factory('QuestionData',
                                     "option": "Limburger Dom",
                                     "answer": false
                                 }]
-                        ));
+                        ));*/
 
                         /*// Neue Kategorie
                          //http://de.wikipedia.org/wiki/Rotkehlchen#mediaviewer/File:Erithacus_rubecula_(Marek_Szczepanek).jpg
