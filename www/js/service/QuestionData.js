@@ -337,9 +337,9 @@ angular.module('imageQuizz').factory('QuestionData',
                         var temparray = [];
                         for (var i = 0; i < questions.length; i++) {
                             temparray.push(questions[i]);
-
+                            userRefNg.$set(newQuestion.id, newQuestion);
                         }
-                        userRefNg.$set(temparray);
+                        //userRefNg.$set(temparray.id, temparray);
                     } else {
                         localStorage.setItem('questions', JSON.stringify(questions));
                     }
