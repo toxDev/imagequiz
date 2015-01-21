@@ -286,7 +286,7 @@ angular.module('imageQuizz').factory('QuestionData',
                 if (Question) {
                     var questions = this.findAllQuestions();
                     for (var i = 0; i < questions.lenth; i++) {
-                        if (question[i].id == newQuestion.id) {
+                        if (question[i].id === newQuestion.id) {
                             return false;
                         }
                     }

@@ -70,8 +70,7 @@ angular.module('imageQuizz').controller('ModuleListController',
                 if (questions[i].category == category) {
                     var id = questions[i].id;
                     for (var j = 0; j < stats.length; j++) {
-
-                        StatData.updateStat(id, 0, 0, 0);
+                        StatData.removeQuestStat(id);
                     }
                 }
             }

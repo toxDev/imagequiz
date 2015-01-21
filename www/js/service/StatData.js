@@ -4,9 +4,9 @@ angular.module('imageQuizz').factory('StatData',
         var service = {
             findAllStats: function () {
 
-                if( localStorage.getItem('sync') == 1) {
+                if (localStorage.getItem('sync') == 1) {
                     var stats = Persist.findAll();
-                    if (!stats){
+                    if (!stats) {
                         var stats = [];
                     }
                     localStorage.setItem('stats', JSON.stringify(stats));
@@ -27,15 +27,15 @@ angular.module('imageQuizz').factory('StatData',
                 //Vergleich in der forEach Schleife funktioniert nicht, daher normale For-Schleife.
 
                 /*
-                stats.forEach(function (stat) {
-                    if (stat.questionID == id) {
-                        return stat;
-                    }
-                });
-                */
+                 stats.forEach(function (stat) {
+                 if (stat.questionID == id) {
+                 return stat;
+                 }
+                 });
+                 */
 
-                for(var i = 0; i < stats.length; i++){
-                    if(stats[i].questionID == id){
+                for (var i = 0; i < stats.length; i++) {
+                    if (stats[i].questionID == id) {
                         return stats[i];
                     }
                 }
@@ -45,21 +45,37 @@ angular.module('imageQuizz').factory('StatData',
                 var stats = this.findAllStats();
                 stats.push(new Stat(questionID, 0, 0, 0));
                 localStorage.setItem('stats', JSON.stringify(stats));
-                if(localStorage.getItem('sync') == 1) {
+                if (localStorage.getItem('sync') == 1) {
                     Persist.persist(new Stat(questionID, 0, 0, 0));
                 }
             },
+
+            /**
+             *TODO: fertig implementieren
+             */
+            removeQuestStat: function (id) {
+                var temp = [];
+                var stats = this.findAllStats();
+
+                for (var i = 0; i < stats.length; i++) {
+                    if (stats[i].id != id) {
+                        temp.push(stats[i]);
+                    }
+                }
+                localStorage.setItem('stats', JSON.stringify(temp));
+            },
+
             updateStat: function (id, right, wrong, series) {
                 var stats = this.findAllStats();
 
-                for(var i = 0; i < stats.length; i++){
-                    if(stats[i].questionID == id){
-                        stats[i] = new Stat(id,right,wrong,series);
+                for (var i = 0; i < stats.length; i++) {
+                    if (stats[i].questionID == id) {
+                        stats[i] = new Stat(id, right, wrong, series);
                     }
                 }
                 localStorage.setItem('stats', JSON.stringify(stats));
-                if(localStorage.getItem('sync') == 1){
-                    Persist.update(new Stat(id,right,wrong,series));
+                if (localStorage.getItem('sync') == 1) {
+                    Persist.update(new Stat(id, right, wrong, series));
                 }
             }
         };
