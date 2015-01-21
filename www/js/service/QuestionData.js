@@ -26,6 +26,9 @@ angular.module('imageQuizz').factory('QuestionData',
         console.log("Pfad zu Firebase " + userDataRef.toString());
 
         var service = {
+            setUid: function(uid){
+                //userDataRef;
+            },
             getUserId: function () {
                 return userDataRef.key();
             },
@@ -364,7 +367,11 @@ angular.module('imageQuizz').factory('QuestionData',
                 }
                 var sync = localStorage.getItem('sync');
                 if(sync == 1){
-                    questionDataRef.set(temp);
+                    for (var i = 0; i < questions.length; i++) {
+                        if(questions[i].category == category){
+                            userRefNg.$remove(questions[i].id);
+                        }
+                    }
                 } else {
                     localStorage.setItem('questions', JSON.stringify(temp));
                 }

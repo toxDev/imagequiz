@@ -3,8 +3,7 @@
  */
 'use strict';
 angular.module('imageQuizz').controller('ModuleListController',
-    function ($scope, QuestionData, $ionicPopup, StatData, $state) {
-
+    function ($scope, QuestionData, $ionicPopup, StatData, $state, $FirebaseObject, $timeout) {
         var thisSt = this;
         $scope.proofModules = QuestionData.findAllQuestions().length;
 
@@ -13,19 +12,41 @@ angular.module('imageQuizz').controller('ModuleListController',
          * @returns {{}}
          */
         this.loadList = function () {
+            var sync = localStorage.getItem('sync');
+            if(sync == 1){
+                var modules = QuestionData.findAllQuestions();
+                modules.$loaded().then(function () {
+                    console.log(modules);
 
-            var modules = QuestionData.findAllQuestions();
-            console.log(modules);
+                    var tmp = {};
+                    for (var i = 0; i < modules.length; i++) {
+                        var letter = modules[i].category.charAt(0);
+                        if (tmp[letter] == undefined) {
+                            tmp[letter] = []
+                        }
+                        tmp[letter].push(modules[i]);
+                    }
+                    $scope.repeaterObject = tmp;
+                    //unschön
+                    $state.reload();
+                    $scope.proofModules = QuestionData.findAllQuestions().length;
+                    return tmp;
+                })
+            } else {
+                var modules = QuestionData.findAllQuestions();
 
-            var tmp = {};
-            for (var i = 0; i < modules.length; i++) {
-                var letter = modules[i].category.charAt(0);
-                if (tmp[letter] == undefined) {
-                    tmp[letter] = []
-                }
-                tmp[letter].push(modules[i]);
+                    console.log(modules);
+                    var tmp = {};
+                    for (var i = 0; i < modules.length; i++) {
+                        var letter = modules[i].category.charAt(0);
+                        if (tmp[letter] == undefined) {
+                            tmp[letter] = []
+                        }
+                        tmp[letter].push(modules[i]);
+                    }
+                    $scope.repeaterObject = tmp;
+                    return tmp;
             }
-            return tmp;
         };
 
         /**
@@ -64,20 +85,23 @@ angular.module('imageQuizz').controller('ModuleListController',
         };
 
         this.removeFromList = function (category) {
-            var stats = StatData.findAllStats();
+            //var stats = StatData.findAllStats();
             var questions = QuestionData.findAllQuestions();
 
             for (var i = 0; i < questions.length; i++) {
 
                 if (questions[i].category == category) {
-                    var id = questions[i].id;
-                    for (var j = 0; j < stats.length; j++) {
+                    //var id = questions[i].id;
+                    //for (var j = 0; j < stats.length; j++) {
 
-                        StatData.updateStat(id, 0, 0, 0);
-                    }
+                    //    StatData.updateStat(id, 0, 0, 0);
+                    //}
                 }
             }
             QuestionData.deleteCategory(category);
+            $timeout(function () {
+                thisSt.loadList();
+            }, 300);
         };
 
         /**
