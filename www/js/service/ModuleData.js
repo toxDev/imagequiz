@@ -11,6 +11,7 @@ angular.module('imageQuizz').service('ModuleData',
             var url = 'https://www.googledrive.com/host/0B0qhk0Zibw_FWE5HS0xGWlEzeDA';
             var modules = [];
             var promise = $http.get(url);
+            //console.log(JSON.parse(localStorage.getItem('questions')));
 
             promise.success(function (data, status) {
                 // status 200 == ok new data
@@ -49,9 +50,9 @@ angular.module('imageQuizz').service('ModuleData',
             }, 200);
              var modules = localStorage.getItem('modules');
              if (modules == null) {
-             modules = [];
+                 modules = "{}";
              }
-             var tempModules = JSON.parse(modules);
+            var tempModules = JSON.parse(modules);
             var localCategorys = QuestionData.findAllCategorys();
             var temp = [];
             var finalModules = [];
@@ -60,12 +61,12 @@ angular.module('imageQuizz').service('ModuleData',
                 if (temp.indexOf(tempModules[i].category) === -1) {
                     temp.push(tempModules[i].category);
                 }
-            }
+                }
             for (var i = 0; i < temp.length; i++) {
                 if (!this.contains(localCategorys, temp[i])) {
                     finalModules.push({"category": temp[i], "checked": false});
                 }
-            }
+                }
             return finalModules.sort();
         };
     });
