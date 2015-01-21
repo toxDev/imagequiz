@@ -89,6 +89,7 @@ angular.module('imageQuizz').controller('SettingsController',
                 $scope.modal1.show()
             }
             else {
+                $scope.resetModules = $scope.searchReset();
                 $scope.modal2.show()
             }
             ;
@@ -114,28 +115,44 @@ angular.module('imageQuizz').controller('SettingsController',
             $state.go('tabs.home');
         };
 
-        $scope.updateStats = function (category) {
-            console.log(category);
+        $scope.searchReset = function () {
+
+            var temp = $scope.modules;
+            var finalModules = [];
+
+            for (var i = 0; i < temp.length; i++) {
+                finalModules.push({"category": temp[i], "checked": false});
+            }
+            ;
+            return finalModules;
+        };
+
+        /**
+         *
+         */
+        $scope.updateStats = function () {
             var localStats = localStorage.getItem('stats');
-            var questionsByCat = QuestionData.findAllQuestionsByCategory(category);
-            var resetM = $scope.modules;
+            var resetM = $scope.resetModules;
+            var questionsByCat = [];
+            var tempStats = [];
 
+            for (var i = 0; i < resetM.length; i++) {
 
-            console.log(localStats);
-            console.log(questionsByCat);
-            console.log(resetM);
+                if (resetM[i].checked) {
+                    var category = resetM[i].category;
+                    questionsByCat = QuestionData.findAllQuestionsByCategory(category);
+                    console.log(questionsByCat);
 
-            if (resetM.checked) {
+                    for (var j = 0; j < localStats.length; j++) {
 
-                for (var i = 0; i < localStats.length; i++) {
-                    var id = questionsByCat.id;
-
-                    if (id === localStats.id) {
-                        localStats.actRightSeries = 0;
+                        if (questionsByCat[i].id === localStats[j].questionID) {
+                            console.log('ich auch');
+                            localStats[j].actRightSeries = 0;
+                        }
                     }
                 }
-                localStorage.setItem('stats', localStats);
             }
+            localStorage.setItem('stats', localStats);
             $scope.closeModal(2);
         };
 
