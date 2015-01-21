@@ -31,13 +31,13 @@
                     </ion-option-button>
                 </ion-item>
             </ion-list>
-            <div class="card" ng-hide="modules.length">
-                <div class="item item-text-wrap">
-                    <p>Keine Kategorien vorhanden</p>
-                    <button class="button button-block ion-ios7-cloud-download button-light"
-                            ng-click="goImport()">Kategorien importieren
-                    </button>
-                </div>
+        </div>
+        <div class="card" ng-hide="proofModules">
+            <div class="item item-text-wrap">
+                <p>Keine Kategorien vorhanden {{modules.length}}</p>
+                <button class="button button-block ion-plus"
+                        ng-click="goImport()"> Kategorien importieren
+                </button>
             </div>
         </div>
     </ion-content>

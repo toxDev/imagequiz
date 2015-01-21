@@ -54,6 +54,9 @@ angular.module('imageQuizz', ['ionic', 'ui.utils', 'firebase', 'googlechart'])
         $urlRouterProvider.otherwise("/tab/modules");
 
     })
+
+    .constant('FIREBASE_URL', 'https://imagequizz.firebaseio.com')
+
     .run(function ($ionicPlatform) {
 
         $ionicPlatform.ready(function () {

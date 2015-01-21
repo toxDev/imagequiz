@@ -334,7 +334,7 @@ angular.module('imageQuizz').factory('QuestionData',
                     questions.push(newQuestion);
                     var sync = localStorage.getItem('sync');
                     if(sync == 1){
-                        questionDataRef.set(questions);
+                        userRefNg.set(questions);
                     } else {
                         localStorage.setItem('questions', JSON.stringify(questions));
                     }

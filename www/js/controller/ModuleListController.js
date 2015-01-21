@@ -6,6 +6,7 @@ angular.module('imageQuizz').controller('ModuleListController',
     function ($scope, QuestionData, $ionicPopup, StatData, $state) {
 
         var thisSt = this;
+        $scope.proofModules = QuestionData.findAllQuestions().length;
 
         /**
          *
@@ -93,6 +94,7 @@ angular.module('imageQuizz').controller('ModuleListController',
                 if (res) {
                     thisSt.removeFromList(category);
                     $scope.repeaterObject = thisSt.loadList();
+                    $scope.proofModules = QuestionData.findAllQuestions().length;
                 }
             });
         }
