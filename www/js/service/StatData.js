@@ -1,16 +1,37 @@
 'use strict';
 angular.module('imageQuizz').factory('StatData',
-    function (Stat, Persist) {
+    function (Stat, FIREBASE_URL, $firebase, $FirebaseObject) {
+
+        var rootRef = new Firebase(FIREBASE_URL);
+        var rootUserRef = rootRef.child('users');
+
+        var uID = localStorage.getItem('uid');
+        var userDataRef;
+
+        if(!uID){
+            console.log("User ID war nicht gesetzt!");
+            //console.log(rootUserRef.push().toString());
+            userDataRef = new Firebase(rootUserRef.push().toString());
+            localStorage.setItem('uid',userDataRef.key());
+        } else {
+            userDataRef = rootUserRef.child(uID);
+            console.log("User ID war bereits gesetzt!");
+        }
+        //console.log(userDataRef.key());
+        var statDataRef = userDataRef.child('statdata');
+        var userRefNg = $firebase(statDataRef);
+        console.log("Pfad zu Firebase " + userDataRef.toString());
+
         var service = {
             findAllStats: function () {
 
                 if( localStorage.getItem('sync') == 1) {
-                    var stats = Persist.findAll();
-                    if (!stats){
-                        var stats = [];
+                    var stats = userRefNg.$asArray();
+                    if(stats == null || stats.length == 0){
+                        stats = localStorage.getItem('stats');
+                        stats = JSON.parse(stats);
+                        statDataRef.set(stats);
                     }
-                    localStorage.setItem('stats', JSON.stringify(stats));
-                    return stats;
                 } else {
                     var stats = localStorage.getItem('stats');
                     if (!stats) {
@@ -19,20 +40,11 @@ angular.module('imageQuizz').factory('StatData',
                     } else {
                         stats = JSON.parse(stats);
                     }
-                    return stats;
                 }
+                return stats;
             },
             findStatByQuestionId: function (id) {
                 var stats = this.findAllStats();
-                //Vergleich in der forEach Schleife funktioniert nicht, daher normale For-Schleife.
-
-                /*
-                stats.forEach(function (stat) {
-                    if (stat.questionID == id) {
-                        return stat;
-                    }
-                });
-                */
 
                 for(var i = 0; i < stats.length; i++){
                     if(stats[i].questionID == id){
@@ -43,23 +55,32 @@ angular.module('imageQuizz').factory('StatData',
             },
             addStat: function (questionID) {
                 var stats = this.findAllStats();
-                stats.push(new Stat(questionID, 0, 0, 0));
-                localStorage.setItem('stats', JSON.stringify(stats));
+                var temp = [];
+                for(var i = 0; i < stats.length; i++){
+                    temp.push(new Stat(stats[i].questionID,stats[i].countRight,stats[i].countWrong,stats[i].actRightSeries));
+                }
+                temp.push(new Stat(questionID, 0, 0, 0));
+
                 if(localStorage.getItem('sync') == 1) {
-                    Persist.persist(new Stat(questionID, 0, 0, 0));
+                    statDataRef.set(temp);
+                } else {
+                    localStorage.setItem('stats', JSON.stringify(stats));
                 }
             },
             updateStat: function (id, right, wrong, series) {
                 var stats = this.findAllStats();
-
+                var temp = [];
                 for(var i = 0; i < stats.length; i++){
-                    if(stats[i].questionID == id){
-                        stats[i] = new Stat(id,right,wrong,series);
+                    if(stats[i].questionID != id){
+                        temp.push(new Stat(stats[i].questionID,stats[i].countRight,stats[i].countWrong,stats[i].actRightSeries));
                     }
                 }
-                localStorage.setItem('stats', JSON.stringify(stats));
+                temp.push(new Stat(id,right,wrong,series));
+
                 if(localStorage.getItem('sync') == 1){
-                    Persist.update(new Stat(id,right,wrong,series));
+                    statDataRef.set(temp);
+                } else {
+                    localStorage.setItem('stats', JSON.stringify(stats));
                 }
             }
         };

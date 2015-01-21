@@ -1,7 +1,8 @@
 angular.module('imageQuizz', ['ionic', 'ui.utils', 'firebase', 'googlechart'])
 
     .config(function ($stateProvider, $urlRouterProvider) {
-
+        //localStorage.setItem('uid', '-JfOYM_xX6QUZKQVdla-');
+        //wird beim ersten start benötigt.
         $stateProvider
             .state('tabs', {
                 url: "/tab",
@@ -54,6 +55,7 @@ angular.module('imageQuizz', ['ionic', 'ui.utils', 'firebase', 'googlechart'])
 
     })
     .run(function ($ionicPlatform) {
+
         $ionicPlatform.ready(function () {
             // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
             // for form inputs)
