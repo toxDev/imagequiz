@@ -11,7 +11,6 @@ angular.module('imageQuizz').service('ModuleData',
             var url = 'https://www.googledrive.com/host/0B0qhk0Zibw_FWE5HS0xGWlEzeDA';
             var modules = [];
             var promise = $http.get(url);
-            //console.log(JSON.parse(localStorage.getItem('questions')));
 
             promise.success(function (data, status) {
                 // status 200 == ok new data

@@ -15,6 +15,7 @@ angular.module('imageQuizz').controller('ModuleListController',
         this.loadList = function () {
 
             var modules = QuestionData.findAllQuestions();
+            console.log(modules);
 
             var tmp = {};
             for (var i = 0; i < modules.length; i++) {

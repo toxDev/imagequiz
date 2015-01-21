@@ -54,7 +54,7 @@ angular.module('imageQuizz').factory('QuestionData',
                     if (!questions) {
                         //init storage
                         var questions = [];
-/*                        questions.push(new Question(1, "Gefährliche Raubtiere", "img/gefaehrliche_raubtiere/loewe.jpg", "@FlickrLickr", "Eine gefährliche Raubkatze",
+                        /*questions.push(new Question(1, "Gefährliche Raubtiere", "img/gefaehrliche_raubtiere/loewe.jpg", "@FlickrLickr", "Eine gefährliche Raubkatze",
                             [{
                                 "option": "Löwe",
                                 "answer": true
@@ -334,7 +334,12 @@ angular.module('imageQuizz').factory('QuestionData',
                     questions.push(newQuestion);
                     var sync = localStorage.getItem('sync');
                     if(sync == 1){
-                        userRefNg.set(questions);
+                        var temparray = [];
+                        for (var i = 0; i < questions.length; i++) {
+                            temparray.push(questions[i]);
+
+                        }
+                        userRefNg.$set(temparray);
                     } else {
                         localStorage.setItem('questions', JSON.stringify(questions));
                     }
