@@ -5,10 +5,11 @@
 angular.module('imageQuizz').controller('ModuleListController',
     function ($scope, QuestionData, $ionicPopup, StatData, $state) {
 
-        var thisSt = this;
+        //variable auf this objekt
+        var self = this;
 
         /**
-         *
+         *TODO: comment
          * @returns {{}}
          */
         this.loadList = function () {
@@ -27,7 +28,7 @@ angular.module('imageQuizz').controller('ModuleListController',
         };
 
         /**
-         *
+         *TODO: comment
          * @type {{}}
          */
         $scope.repeaterObject = this.loadList();
@@ -35,12 +36,13 @@ angular.module('imageQuizz').controller('ModuleListController',
         //Für Zustandswechsel anmelden
         $scope.$on('$stateChangeStart',
             function () {
-                if (thisSt.searchActive == true) {
-                    var saveSearchQuery = localStorage.setItem('saveQuery', JSON.stringify(thisSt.searchQuery));
+                if (self.searchActive == true) {
+                    var saveSearchQuery = localStorage.setItem('saveQuery', JSON.stringify(self.searchQuery));
                 }
             });
+
         /**
-         *
+         *TODO: comment
          * @type {boolean}
          */
         $scope.searchActive = false;
@@ -52,7 +54,7 @@ angular.module('imageQuizz').controller('ModuleListController',
         ;
 
         /**
-         *
+         *TODO: comment
          */
         this.toggleSearch = function () {
             if (this.searchActive) {
@@ -61,6 +63,10 @@ angular.module('imageQuizz').controller('ModuleListController',
             this.searchActive = !this.searchActive;
         };
 
+        /**
+         * TODO: commnet
+         * @param category
+         */
         this.removeFromList = function (category) {
             var stats = StatData.findAllStats();
             var questions = QuestionData.findAllQuestions();
@@ -70,7 +76,8 @@ angular.module('imageQuizz').controller('ModuleListController',
                 if (questions[i].category == category) {
                     var id = questions[i].id;
                     for (var j = 0; j < stats.length; j++) {
-                        StatData.removeQuestStat(id);
+                        //StatData.removeQuestStat(id);
+                        StatData.updateStat(id, 0, 0, 0);
                     }
                 }
             }
@@ -78,7 +85,7 @@ angular.module('imageQuizz').controller('ModuleListController',
         };
 
         /**
-         *
+         *TODO: comment
          * @param category
          */
         $scope.deleteCategory = function (category) {
@@ -90,12 +97,15 @@ angular.module('imageQuizz').controller('ModuleListController',
             });
             popup.then(function (res) {
                 if (res) {
-                    thisSt.removeFromList(category);
-                    $scope.repeaterObject = thisSt.loadList();
+                    self.removeFromList(category);
+                    $scope.repeaterObject = self.loadList();
                 }
             });
         }
 
+        /**
+         * TODO: comment
+         */
         $scope.goImport = function () {
             $state.go('tabs.settings');
         }

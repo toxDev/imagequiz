@@ -18,14 +18,10 @@ angular.module('imageQuizz').controller('SettingsController',
          * einer änderung dieses Wertes, wir die variable "sync" dementsprechend geändert.
          */
         $scope.cloudDataChange = function () {
-            //$scope.cloudData.checked;
-
             if ($scope.cloudData.checked) {
-                //localStorage.setItem('sync', JSON.stringify(1));
                 $scope.idPopup();
             }
             else {
-                //localStorage.setItem('sync', JSON.stringify(0));
                 $scope.confirmPopup();
             }
         };
@@ -34,7 +30,6 @@ angular.module('imageQuizz').controller('SettingsController',
          * Die Variable cloudData legt einen festen Wert von der Checkbox entscheidung fest.
          * @type {{checked: boolean}}
          */
-
         if (localStorage.getItem('sync') == 1) {
             $scope.cloudData = {checked: true};
         }
@@ -42,12 +37,14 @@ angular.module('imageQuizz').controller('SettingsController',
             $scope.cloudData = {checked: false};
         }
 
-
+        /**
+         * TODO: comment
+         * @type {{ID: null}}
+         */
         $scope.user = {ID: null};
 
-
         /**
-         * Generate a specific user ID for firebase
+         * TODO: comment
          * @returns uID for firebase syn and backup
          */
         $scope.getUID = function () {
@@ -55,7 +52,9 @@ angular.module('imageQuizz').controller('SettingsController',
             return localStorage.getItem('uid');
         };
 
-        //Modal View Import
+        /**
+         * TODO: comment
+         */
         $ionicModal.fromTemplateUrl('templates/ImportModulesModal.html', {
             id: '1',
             scope: $scope,
@@ -66,7 +65,9 @@ angular.module('imageQuizz').controller('SettingsController',
             $scope.modal1 = modal;
         });
 
-        //Modal View Delete Stats
+        /**
+         * TODO: comment
+         */
         $ionicModal.fromTemplateUrl('templates/DeleteQuestionStatsModal.html', {
             id: '2',
             scope: $scope,
@@ -78,7 +79,7 @@ angular.module('imageQuizz').controller('SettingsController',
         });
 
         /**
-         *Open a specific modal
+         *TODO: comment
          * @param index from the Modal which would open
          */
         $scope.openModal = function (index) {
@@ -94,6 +95,7 @@ angular.module('imageQuizz').controller('SettingsController',
             }
             ;
         };
+
         /**
          * TODO: comment
          */
@@ -115,6 +117,10 @@ angular.module('imageQuizz').controller('SettingsController',
             $state.go('tabs.home');
         };
 
+        /**
+         * TODO: comment
+         * @returns {Array}
+         */
         $scope.searchReset = function () {
 
             var temp = $scope.modules;
@@ -144,13 +150,12 @@ angular.module('imageQuizz').controller('SettingsController',
         };
 
         /**
-         *TODO: localStats array zeigt eine länge von 265 an obwohl nur 4 Einträge enthalten sind!!??
+         *TODO: comment
          */
         $scope.updateStats = function () {
             var localStats = StatData.findAllStats();
             var resetM = $scope.resetModules;
             var questionsByCat = [];
-            var tempStats = [];
 
             for (var i = 0; i < resetM.length; i++) {
                 if (resetM[i].checked) {
@@ -160,7 +165,6 @@ angular.module('imageQuizz').controller('SettingsController',
                 for (var j = 0; j < questionsByCat.length; j++) {
                     for (var k = 0; k < localStats.length; k++) {
                         if (questionsByCat[j].id === localStats[k].questionID) {
-
                             localStats[k].actRightSeries = 0;
                         }
                     }
@@ -171,6 +175,9 @@ angular.module('imageQuizz').controller('SettingsController',
             $scope.closeModal(2);
         };
 
+        /**
+         * TODO: comment
+         */
         $scope.idPopup = function () {
             var popupSync = $ionicPopup.show({
 
@@ -204,7 +211,9 @@ angular.module('imageQuizz').controller('SettingsController',
                 ]
             });
 
-
+            /**
+             * TODO: comment
+             */
             $scope.confirmPopup = function () {
                 var popupConfirm = $ionicPopup.show({
                     title: 'Sind sie sich wirklich sicher?',
@@ -231,7 +240,7 @@ angular.module('imageQuizz').controller('SettingsController',
         };
 
         /**
-         *Close the specific modal
+         *TODO: comment
          * @param index from the opened Modal
          */
         $scope.closeModal = function (index) {
@@ -240,7 +249,7 @@ angular.module('imageQuizz').controller('SettingsController',
         };
 
         /**
-         * Destroying all Modals
+         * TODO: comment
          */
         $scope.$on('$destroy', function () {
             $scope.modal1.remove();
