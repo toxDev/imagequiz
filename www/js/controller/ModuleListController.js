@@ -4,7 +4,7 @@
 'use strict';
 angular.module('imageQuizz').controller('ModuleListController',
     function ($scope, QuestionData, $ionicPopup, StatData, $state, $FirebaseObject, $timeout) {
-        var thisSt = this;
+        var self = this;
         $scope.proofModules = QuestionData.findAllQuestions().length;
 
         /**
@@ -15,8 +15,6 @@ angular.module('imageQuizz').controller('ModuleListController',
             var sync = localStorage.getItem('sync');
             if(sync == 1){
                 var modules = QuestionData.findAllQuestions();
-                modules.$loaded().then(function () {
-                    console.log(modules);
 
                     var tmp = {};
                     for (var i = 0; i < modules.length; i++) {
@@ -31,7 +29,7 @@ angular.module('imageQuizz').controller('ModuleListController',
                     $state.reload();
                     $scope.proofModules = QuestionData.findAllQuestions().length;
                     return tmp;
-                })
+
             } else {
                 var modules = QuestionData.findAllQuestions();
 
@@ -58,8 +56,8 @@ angular.module('imageQuizz').controller('ModuleListController',
         //Für Zustandswechsel anmelden
         $scope.$on('$stateChangeStart',
             function () {
-                if (thisSt.searchActive == true) {
-                    var saveSearchQuery = localStorage.setItem('saveQuery', JSON.stringify(thisSt.searchQuery));
+                if (self.searchActive == true) {
+                    var saveSearchQuery = localStorage.setItem('saveQuery', JSON.stringify(self.searchQuery));
                 }
             });
         /**
@@ -100,7 +98,7 @@ angular.module('imageQuizz').controller('ModuleListController',
             }
             QuestionData.deleteCategory(category);
             $timeout(function () {
-                thisSt.loadList();
+                self.loadList();
             }, 300);
         };
 
@@ -117,8 +115,8 @@ angular.module('imageQuizz').controller('ModuleListController',
             });
             popup.then(function (res) {
                 if (res) {
-                    thisSt.removeFromList(category);
-                    $scope.repeaterObject = thisSt.loadList();
+                    self.removeFromList(category);
+                    $scope.repeaterObject = self.loadList();
                     $scope.proofModules = QuestionData.findAllQuestions().length;
                 }
             });

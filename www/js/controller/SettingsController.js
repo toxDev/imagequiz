@@ -12,6 +12,7 @@ angular.module('imageQuizz').controller('SettingsController',
 
         $ionicNavBarDelegate.setTitle("Einstellungen");
         $scope.modules = QuestionData.findAllCategorys();
+        ModuleData.load();
 
         /**
          * Die Funktion cloudDataChange fragt den Wert der Checkbox ab und bei

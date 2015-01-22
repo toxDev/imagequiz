@@ -26,11 +26,15 @@ angular.module('imageQuizz').factory('StatData',
             findAllStats: function () {
 
                 if( localStorage.getItem('sync') == 1) {
-                    var stats = userRefNg.$asArray();
-                    if(stats == null || stats.length == 0){
+                    var userStats = userRefNg.$asArray();
+                    userStats.$loaded().then(function (userStats) {
+                        console.log(userStats.length);
+                    });
+
+                    if (userStats == null || userStats.length == 0) {
                         stats = localStorage.getItem('stats');
                         stats = JSON.parse(stats);
-                        statDataRef.set(stats);
+                        userRefNg.$set(stats);
                     }
                 } else {
                     var stats = localStorage.getItem('stats');
@@ -41,6 +45,7 @@ angular.module('imageQuizz').factory('StatData',
                         stats = JSON.parse(stats);
                     }
                 }
+                console.log(stats);
                 return stats;
             },
             findStatByQuestionId: function (id) {
@@ -62,7 +67,7 @@ angular.module('imageQuizz').factory('StatData',
                 temp.push(new Stat(questionID, 0, 0, 0));
 
                 if(localStorage.getItem('sync') == 1) {
-                    statDataRef.set(temp);
+                    userRefNg.$set(temp);
                 } else {
                     localStorage.setItem('stats', JSON.stringify(stats));
                 }
@@ -78,9 +83,9 @@ angular.module('imageQuizz').factory('StatData',
                 temp.push(new Stat(id,right,wrong,series));
 
                 if(localStorage.getItem('sync') == 1){
-                    statDataRef.set(temp);
+                    userRefNg.$set(temp);
                 } else {
-                    localStorage.setItem('stats', JSON.stringify(stats));
+                    localStorage.setItem('stats', JSON.stringify(temp));
                 }
             }
         };
