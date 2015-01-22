@@ -12,22 +12,18 @@ angular.module('imageQuizz').controller('SettingsController',
 
         $ionicNavBarDelegate.setTitle("Einstellungen");
         $scope.modules = QuestionData.findAllCategorys();
-        ModuleData.load();
 
         /**
          * Die Funktion cloudDataChange fragt den Wert der Checkbox ab und bei
          * einer änderung dieses Wertes, wir die variable "sync" dementsprechend geändert.
          */
         $scope.cloudDataChange = function () {
-            //$scope.cloudData.checked;
 
             if ($scope.cloudData.checked) {
-                //localStorage.setItem('sync', JSON.stringify(1));
                 $scope.idPopup();
             }
             else {
-                //localStorage.setItem('sync', JSON.stringify(0));
-                $scope.confirmPopup();
+                $scope.confPopup();
             }
         };
 
@@ -43,7 +39,6 @@ angular.module('imageQuizz').controller('SettingsController',
             $scope.cloudData = {checked: false};
         }
 
-
         $scope.user = {ID: null};
 
 
@@ -52,7 +47,6 @@ angular.module('imageQuizz').controller('SettingsController',
          * @returns uID for firebase syn and backup
          */
         $scope.getUID = function () {
-
             return localStorage.getItem('uid');
         };
 
@@ -170,10 +164,11 @@ angular.module('imageQuizz').controller('SettingsController',
                     }
 
                 ]
-            });
+            })
+        };
 
 
-            $scope.confirmPopup = function () {
+        $scope.confPopup = function () {
                 var popupConfirm = $ionicPopup.show({
                     title: 'Sind sie sich wirklich sicher?',
                     subTitle: 'Ansonsten einfach nochmal Mutti fragen',
@@ -195,7 +190,6 @@ angular.module('imageQuizz').controller('SettingsController',
                             }
                         }]
                 })
-            }
         };
 
         /**
