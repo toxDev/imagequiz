@@ -1,6 +1,6 @@
 'use strict';
 angular.module('imageQuizz').factory('StatData',
-    function (Stat, FIREBASE_URL, $firebase, $FirebaseObject) {
+    function (Stat, FIREBASE_URL, $firebase, $FirebaseObject, $timeout) {
 
         var rootRef = new Firebase(FIREBASE_URL);
         var rootUserRef = rootRef.child('users');
@@ -24,16 +24,22 @@ angular.module('imageQuizz').factory('StatData',
 
         var service = {
             findAllStats: function () {
-
+                var stats = [];
+                console.log(stats.length);
                 if( localStorage.getItem('sync') == 1) {
-                    var stats = userRefNg.$asArray();
+                    stats = userRefNg.$asArray();
                     if(stats == null || stats.length == 0){
-                        stats = localStorage.getItem('stats');
-                        stats = JSON.parse(stats);
-                        statDataRef.set(stats);
+                        /*stats = localStorage.getItem('stats');
+                        if(stats != null || stats.length > 0){
+                            stats = JSON.parse(stats);
+                            statDataRef.set(stats);
+                        } else {
+
+                        }*/
+                        stats = [];
                     }
                 } else {
-                    var stats = localStorage.getItem('stats');
+                    stats = localStorage.getItem('stats');
                     if (!stats) {
                         stats = [];
                         localStorage.setItem('stats', JSON.stringify(stats));
@@ -45,7 +51,7 @@ angular.module('imageQuizz').factory('StatData',
             },
             findStatByQuestionId: function (id) {
                 var stats = this.findAllStats();
-
+                console.log(stats);
                 for(var i = 0; i < stats.length; i++){
                     if(stats[i].questionID == id){
                         return stats[i];
@@ -54,6 +60,7 @@ angular.module('imageQuizz').factory('StatData',
                 return false;
             },
             addStat: function (questionID) {
+                console.log('addStat: '+questionID);
                 var stats = this.findAllStats();
                 var temp = [];
                 for(var i = 0; i < stats.length; i++){
@@ -62,12 +69,15 @@ angular.module('imageQuizz').factory('StatData',
                 temp.push(new Stat(questionID, 0, 0, 0));
 
                 if(localStorage.getItem('sync') == 1) {
+                    console.log(temp);
                     statDataRef.set(temp);
+
                 } else {
-                    localStorage.setItem('stats', JSON.stringify(stats));
+                    localStorage.setItem('stats', JSON.stringify(temp));
                 }
             },
             updateStat: function (id, right, wrong, series) {
+                console.log('updateStat: '+id+'; '+right+'; '+wrong+'; '+series);
                 var stats = this.findAllStats();
                 var temp = [];
                 for(var i = 0; i < stats.length; i++){
@@ -78,9 +88,10 @@ angular.module('imageQuizz').factory('StatData',
                 temp.push(new Stat(id,right,wrong,series));
 
                 if(localStorage.getItem('sync') == 1){
+                    console.log(temp);
                     statDataRef.set(temp);
                 } else {
-                    localStorage.setItem('stats', JSON.stringify(stats));
+                    localStorage.setItem('stats', JSON.stringify(temp));
                 }
             }
         };

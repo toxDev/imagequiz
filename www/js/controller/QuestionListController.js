@@ -8,11 +8,17 @@ angular.module('imageQuizz').controller('QuestionListController',
 
         $scope.startQuizzMode = function () {
             for (var i = 0; i < $scope.questionList.length; i++) {
-                if (StatData.findStatByQuestionId($scope.questionList[i].id).actRightSeries < 6 && (!($scope.questionList.length == 0)) && $scope.questionList) {
+                if(StatData.findAllStats == null || (StatData.findAllStats).length == 0){
+                    $state.go('question_view_quizz', {id: $stateParams.id});
+                    return;
+                }
+                if (StatData.findStatByQuestionId($scope.questionList[i].id).actRightSeries < 6
+                        && (!($scope.questionList.length == 0)) && $scope.questionList) {
                     $state.go('question_view_quizz', {id: $stateParams.id});
                     return;
                 }
             }
+
             var popup = $ionicPopup.confirm({
                 title: 'Du hast alle Fragen gelernt!',
                 template: 'Soll der Lern-Zähler zurückgesetzt werden?',

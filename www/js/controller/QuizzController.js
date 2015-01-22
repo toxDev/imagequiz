@@ -35,7 +35,9 @@ angular.module('imageQuizz').controller('QuizzController',
         //TO-DO muss hier entfernt werden, bzw. es muss sichergestellt sein das die Statistik beim Modul import angelegt wird.
         $scope.questionList.forEach(function (question) {
             if (!StatData.findStatByQuestionId(question.id)) {
-                StatData.addStat(question.id);
+                $timeout(function () {
+                    StatData.addStat(question.id);
+                }, 100*question.id);
                 console.log("Statistik hinzugefügt");
             }
         });
